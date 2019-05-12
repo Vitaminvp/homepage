@@ -4,6 +4,9 @@ const monthsLivingInLviv = todaysDate.getMonth() - lvivRelocationDate.getMonth()
 document.getElementById("kyiv-rent-months").innerHTML = "paid " + monthsLivingInLviv + " month" + (monthsLivingInLviv === 1 ? "" : "s") + " of rent already";
 function switchToColor(color) {
     try {
+        document.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(function(page) {
+            page.style.color = color;
+        });
         document.querySelectorAll(".page").forEach(function(page) {
             page.style.borderColor = color;
         });
@@ -37,4 +40,9 @@ document.getElementById("resume").addEventListener("click", function() {
 });
 if (window.location.hash === "#childhood") {
     callFuncOnCollection(childhoodPhotos.getElementsByTagName("NOSCRIPT"), replaceNoscript);
+}
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function() {
+        navigator.serviceWorker.register('/sw.js');
+    });
 }
