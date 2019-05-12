@@ -83,7 +83,7 @@ self.__precacheManifest = [
   },
   {
     "url": "assets/photos/avatar.svg",
-    "revision": "8a69ca8b4f6d891f6f65e48097e052dd"
+    "revision": "67ac2e26ce4f235f8c08a06b8ab5c9a6"
   },
   {
     "url": "assets/sounds/meh.mp3",
