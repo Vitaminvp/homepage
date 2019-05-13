@@ -19,6 +19,8 @@ document.getElementById("midnightblue").addEventListener("click", switchToColor.
 document.getElementById("chartreuse").addEventListener("click", switchToColor.bind(this, "chartreuse"));
 document.getElementById("tomato").addEventListener("click", switchToColor.bind(this, "tomato"));
 document.getElementById("royalblue").addEventListener("click", switchToColor.bind(this, "royalblue"));
+document.getElementById("deeppink").addEventListener("click", switchToColor.bind(this, "deeppink"));
+document.getElementById("aqua").addEventListener("click", switchToColor.bind(this, "aqua"));
 document.getElementById("meh").addEventListener("click", function() {
     this.querySelector('audio').play();
 });
