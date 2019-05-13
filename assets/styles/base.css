@@ -823,6 +823,12 @@ li.bordered > ul > details > div {
 .color.royalblue:before {
     background-color: royalblue;
 }
+.color.aqua:before {
+    background-color: aqua;
+}
+.color.deeppink:before {
+    background-color: deeppink;
+}
 
 /* Audio button */
 button.audio {
@@ -912,7 +918,7 @@ dialog:target ~ * {
     display: none;
 }
 .cv {
-    margin-top: 23px;
+    margin-top: 15px;
 }
 
 /* Close */
@@ -1029,7 +1035,7 @@ footer {
 /* Flip me */
 .flip-box {
     background-color: transparent;
-    width: 205px;
+    width: 225px;
     height: 70px;
     perspective: 1000px;
 }
