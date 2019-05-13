@@ -91,7 +91,7 @@ self.__precacheManifest = [
   },
   {
     "url": "assets/styles/base.css",
-    "revision": "02b77a579d2ae9e4b0814c19723869dc"
+    "revision": "77608422b89c7652328d783b3fec3185"
   },
   {
     "url": "favicon.ico",
@@ -99,7 +99,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "3b08584a3e19e7620fdbffda4ff7fadd"
+    "revision": "b947a36e97e500180940910226b68ecc"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
