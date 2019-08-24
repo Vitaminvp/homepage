@@ -151,7 +151,7 @@ self.__precacheManifest = [
   },
   {
     "url": "assets/photos/avatar.svg",
-    "revision": "293b02b7792bce5fc96e7be63abf6f32"
+    "revision": "67ac2e26ce4f235f8c08a06b8ab5c9a6"
   },
   {
     "url": "assets/sounds/meh.mp3",
@@ -159,7 +159,7 @@ self.__precacheManifest = [
   },
   {
     "url": "assets/styles/base.css",
-    "revision": "77608422b89c7652328d783b3fec3185"
+    "revision": "97570234e51916eb3220fbba5fe69851"
   },
   {
     "url": "favicon-16x16.png",
@@ -179,7 +179,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "1ffe43a4ef2f5202a0e44b02441a4ae4"
+    "revision": "0ea694fcdf43ec976492bc3497d70cda"
   },
   {
     "url": "ms-icon-144x144.png",

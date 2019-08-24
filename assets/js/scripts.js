@@ -10,6 +10,9 @@ function switchToColor(color) {
         document.querySelectorAll(".page").forEach(function(page) {
             page.style.borderColor = color;
         });
+        document.querySelectorAll("a").forEach(function(page) {
+            page.style.color = color;
+        });
         document.querySelectorAll(".avatar").forEach(function(avatar) {
             avatar.contentDocument.getElementById("circle").setAttribute("fill", color);
         });

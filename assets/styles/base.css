@@ -811,6 +811,9 @@ li.bordered > ul > details > div {
     vertical-align: top;
     position: relative;
 }
+.color.red:before {
+    background-color: red;
+}
 .color.midnightblue:before {
     background-color: midnightblue;
 }
