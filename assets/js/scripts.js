@@ -21,6 +21,7 @@ document.getElementById("tomato").addEventListener("click", switchToColor.bind(t
 document.getElementById("royalblue").addEventListener("click", switchToColor.bind(this, "royalblue"));
 document.getElementById("deeppink").addEventListener("click", switchToColor.bind(this, "deeppink"));
 document.getElementById("aqua").addEventListener("click", switchToColor.bind(this, "aqua"));
+document.getElementById("red").addEventListener("click", switchToColor.bind(this, "red"));
 document.getElementById("meh").addEventListener("click", function() {
     this.querySelector('audio').play();
 });
