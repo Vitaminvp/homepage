@@ -70,10 +70,10 @@ document.getElementById("meh").addEventListener("click", function() {
 });
 const logo = document.getElementById("logo");
 logo.addEventListener("mouseover", function() {
-  this.querySelector("audio").play();
+  logo.querySelector("audio").play();
 });
 logo.addEventListener("mouseout", function() {
-  this.querySelector("audio").pause();
+  logo.querySelector("audio").pause();
 });
 document.querySelectorAll(".pig").forEach(page => {
   page.addEventListener("click", () => {
