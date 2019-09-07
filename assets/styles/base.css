@@ -511,6 +511,7 @@ article {
   max-width: 15rem;
   display: block;
   flex: 1 0 auto;
+  margin: auto;
 }
 @media only screen and (max-width: 1199px) {
   .avatar-wrapper {
@@ -620,6 +621,9 @@ article {
   }
   .contacts li {
     margin-right: 0;
+  }
+  .flip-box {
+    margin: auto;
   }
 }
 @media only screen and (max-width: 1199px) {
