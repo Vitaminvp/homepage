@@ -154,12 +154,44 @@ self.__precacheManifest = [
     "revision": "67ac2e26ce4f235f8c08a06b8ab5c9a6"
   },
   {
+    "url": "assets/photos/diploma-EasyCode.jpg",
+    "revision": "b89e9171a4cece1b0262f41cd3c3ecdb"
+  },
+  {
+    "url": "assets/photos/diploma-university.jpg",
+    "revision": "7bba6440dc8f1044f3fdaff099771053"
+  },
+  {
+    "url": "assets/photos/diploma-WebAcademy.jpg",
+    "revision": "3ebecf8ebb2bd7477b8132eba902b42f"
+  },
+  {
+    "url": "assets/photos/en.jpg",
+    "revision": "8c8db4652ebca3dfc70c6cb1426cf2b1"
+  },
+  {
+    "url": "assets/photos/en2.jpg",
+    "revision": "49ade34d2692dc62c7ee5a9744d5d101"
+  },
+  {
+    "url": "assets/photos/en3.jpg",
+    "revision": "7cf1252aab79f7ffdae11e7c02cd0ecc"
+  },
+  {
+    "url": "assets/photos/en4.jpg",
+    "revision": "8e6653d5fbcbf4069bd3f5e0aff13024"
+  },
+  {
+    "url": "assets/photos/en5.jpg",
+    "revision": "d91d6ce7425043b1cb6d8dc919a78b63"
+  },
+  {
     "url": "assets/sounds/meh.mp3",
     "revision": "cab8cb281bed323604cd6544eeb4c470"
   },
   {
     "url": "assets/styles/base.css",
-    "revision": "97570234e51916eb3220fbba5fe69851"
+    "revision": "36fdcd34b8ae4991c8565b223a85ac9c"
   },
   {
     "url": "favicon-16x16.png",
@@ -179,7 +211,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "e14637ea4e1ccd044388f18797aa4e1f"
+    "revision": "394bdec73fe202d3dfb3b017b5a00dbd"
   },
   {
     "url": "ms-icon-144x144.png",
