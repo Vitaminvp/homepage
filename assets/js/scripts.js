@@ -27,14 +27,15 @@ function switchToColor(color) {
     });
     document.querySelectorAll(".card__top").forEach(function(page) {
       page.style.backgroundColor = color;
-      // document.styleSheets[0].insertRule(`.card__back::before { background-color: ${color}; }`, 0);
-      // document.styleSheets[0].insertRule(`.card__back::after { background-color: ${color}; }`, 0);
     });
     document.querySelectorAll(".card__bottom").forEach(function(page) {
       page.style.backgroundColor = color;
     });
     document.querySelectorAll(".card__back").forEach(function(page) {
-      // page.style.backgroundColor = color;
+      page.style.setProperty("--dynamic-background", color);
+    });
+    document.querySelectorAll(".flip-clock__slot").forEach(function(page) {
+      page.style.color = color;
     });
     document.querySelectorAll(".avatar").forEach(function(avatar) {
       avatar.contentDocument
@@ -294,14 +295,12 @@ function Clock(countdown, callback) {
       callback();
       return;
     }
-
     for (key in trackers) {
       trackers[key].update(t[key]);
     }
   }
-
   setTimeout(updateClock, 1000);
 }
 
 const c = new Clock(experienceStartDate);
-experienceNode.replaceWith(c.el) ;
+experienceNode.replaceWith(c.el);

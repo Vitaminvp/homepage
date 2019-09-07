@@ -1102,6 +1102,16 @@ footer {
   font-size: 2vw;
   line-height: 0.95;
 }
+
+.card__back {
+  --dynamic-background: #222;
+}
+
+.card__top,
+.card__bottom {
+  background-color: #222;
+}
+
 .card__top,
 .card__bottom,
 .card__back::before,
@@ -1109,7 +1119,6 @@ footer {
   display: block;
   height: 0.72em;
   color: #ccc;
-  background: #222;
   padding: 0.25em 0.25em;
   border-radius: 0.15em 0.15em 0 0;
   backface-visiblity: hidden;
@@ -1117,11 +1126,12 @@ footer {
   width: 1.8em;
   transform: translateZ(0);
 }
-
 .card__back::before,
 .card__back::after {
-  /*background: transparent;*/
+  background-color: #222;
+  background-color: var(--dynamic-background);
 }
+
 .card__bottom {
   color: #fff;
   position: absolute;
