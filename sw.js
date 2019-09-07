@@ -155,35 +155,35 @@ self.__precacheManifest = [
   },
   {
     "url": "assets/photos/diploma-EasyCode.jpg",
-    "revision": "b89e9171a4cece1b0262f41cd3c3ecdb"
+    "revision": "53e8b475b38aeb6c4d6a8db1f0d64a19"
   },
   {
     "url": "assets/photos/diploma-university.jpg",
-    "revision": "7bba6440dc8f1044f3fdaff099771053"
+    "revision": "6c4ad1be41c49469f32120ca8eb3389f"
   },
   {
     "url": "assets/photos/diploma-WebAcademy.jpg",
-    "revision": "3ebecf8ebb2bd7477b8132eba902b42f"
+    "revision": "c4495b6522f0a15b046ee1483bfc70b8"
   },
   {
     "url": "assets/photos/en.jpg",
-    "revision": "8c8db4652ebca3dfc70c6cb1426cf2b1"
+    "revision": "e4c38be5a7ebf08b2fd1afb3b626f9d4"
   },
   {
     "url": "assets/photos/en2.jpg",
-    "revision": "49ade34d2692dc62c7ee5a9744d5d101"
+    "revision": "e4b0f1dc3cee9b8f4642102b9716d94e"
   },
   {
     "url": "assets/photos/en3.jpg",
-    "revision": "7cf1252aab79f7ffdae11e7c02cd0ecc"
+    "revision": "827e1a957fe5de2187eae4b6382dde44"
   },
   {
     "url": "assets/photos/en4.jpg",
-    "revision": "8e6653d5fbcbf4069bd3f5e0aff13024"
+    "revision": "6d5507cda9a5a9630db1c020ec321b14"
   },
   {
     "url": "assets/photos/en5.jpg",
-    "revision": "d91d6ce7425043b1cb6d8dc919a78b63"
+    "revision": "0e28355505c5c31e43a1ee93f8bd6558"
   },
   {
     "url": "assets/sounds/meh.mp3",
