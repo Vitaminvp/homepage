@@ -150,7 +150,9 @@ a[rel="external"]:not(.label):hover,
 a.language:hover span {
   text-decoration: underline;
 }
-
+#logo:hover {
+  /*  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;*/
+}
 /* Prevent `sub` and `sup` elements from affecting the line height in all browsers */
 sub,
 sup {
@@ -221,7 +223,15 @@ button:-moz-focusring,
 .nowrap {
   white-space: nowrap;
 }
-
+.pig {
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+.pig:hover {
+  position: relative;
+  display: inline-block;
+  transform: scale(3);
+}
 /* Article */
 article {
   max-width: 100%;
@@ -511,6 +521,7 @@ article {
   max-width: 15rem;
   display: block;
   flex: 1 0 auto;
+  margin: auto;
 }
 @media only screen and (max-width: 1199px) {
   .avatar-wrapper {
@@ -620,6 +631,9 @@ article {
   }
   .contacts li {
     margin-right: 0;
+  }
+  .flip-box {
+    margin: auto;
   }
 }
 @media only screen and (max-width: 1199px) {
