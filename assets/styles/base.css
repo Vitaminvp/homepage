@@ -1069,116 +1069,159 @@ footer {
   background-color: #fff;
   transform: rotateY(180deg);
 }
+
 /*Counter*/
-.countdown {
-  display: inline-block;
-  margin: 0 auto;
-}
-.countdown .bloc-time {
-  float: left;
-  margin-right: 10px;
+.flip-clock {
   text-align: center;
+  perspective: 400px;
+  display: inline-flex;
+  margin-top: 10px;
 }
-.countdown .bloc-time:last-child {
-  margin-right: 0;
+.flip-clock *,
+.flip-clock *:before,
+.flip-clock *:after {
+  box-sizing: border-box;
 }
-.countdown .count-title {
-  display: block;
-  margin-bottom: 2px;
-  font-size: 0.6em;
+.flip-clock__piece {
+  display: inline-block;
+  margin: 0 3px;
+}
+.flip-clock__slot {
+  position: absolute;
+  font-size: 0.65vw;
   line-height: 1;
-  color: #1a1a1a;
   text-transform: uppercase;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
 }
-.countdown .figure {
-  position: relative;
-  float: left;
-  height: 24px;
-  width: 20px;
-  margin-right: 4px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2),
-    inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
-}
-.countdown .figure:last-child {
-  margin-right: 0;
-}
-.countdown .figure > span {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  font: normal 1em/25px "Segoe UI";
-  font-weight: 700;
-  color: #de4848;
-}
-.countdown .figure .top:after,
-.countdown .figure .bottom-back:after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-.countdown .figure .top {
-  z-index: 3;
-  background-color: #f7f7f7;
-  transform-origin: 50% 100%;
-  -webkit-transform-origin: 50% 100%;
-  border-top-radius: 10px;
-  transform: perspective(200px);
-}
-.countdown .figure .bottom {
-  z-index: 1;
-}
-.countdown .figure .bottom:before {
-  content: "";
-  position: absolute;
+.card {
   display: block;
-  top: 0;
+  position: relative;
+  padding-bottom: 0.72em;
+  font-size: 2vw;
+  line-height: 0.95;
+}
+
+.card__back {
+  --dynamic-background: #222;
+}
+
+.card__top,
+.card__bottom {
+  background-color: #222;
+}
+
+.card__top,
+.card__bottom,
+.card__back::before,
+.card__back::after {
+  display: block;
+  height: 0.72em;
+  color: #ccc;
+  padding: 0.25em 0.25em;
+  border-radius: 0.15em 0.15em 0 0;
+  backface-visiblity: hidden;
+  transform-style: preserve-3d;
+  width: 1.8em;
+  transform: translateZ(0);
+}
+.card__back::before,
+.card__back::after {
+  background-color: #222;
+  background-color: var(--dynamic-background);
+}
+
+.card__bottom {
+  color: #fff;
+  position: absolute;
+  top: 50%;
   left: 0;
-  width: 100%;
-  height: 50%;
-  background-color: rgba(0, 0, 0, 0.02);
-}
-.countdown .figure .bottom-back {
-  z-index: 2;
-  top: 0;
-  height: 50%;
+  border-top: solid 1px #000;
+  background: #393939;
+  border-radius: 0 0 0.15em 0.15em;
+  pointer-events: none;
   overflow: hidden;
-  background-color: #f7f7f7;
-  border-top-radius: 10px;
 }
-.countdown .figure .bottom-back span {
+.card__bottom::after {
+  display: block;
+  margin-top: -0.72em;
+}
+.card__back::before,
+.card__bottom::after {
+  content: attr(data-value);
+}
+.card__back {
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  height: 100%;
+  left: 0%;
+  pointer-events: none;
 }
-.countdown .figure .top,
-.countdown .figure .top-back {
-  height: 50%;
+.card__back::before {
+  position: relative;
+  z-index: -1;
   overflow: hidden;
-  backface-visibility: hidden;
 }
-.countdown .figure .top-back {
-  z-index: 4;
-  bottom: 0;
-  background-color: #fff;
-  -webkit-transform-origin: 50% 0;
-  transform-origin: 50% 0;
-  transform: perspective(200px) rotateX(180deg);
-  border-bottom-radius: 10px;
+.flip .card__back::before {
+  animation: flipTop 0.3s cubic-bezier(0.37, 0.01, 0.94, 0.35);
+  animation-fill-mode: both;
+  transform-origin: center bottom;
 }
-.countdown .figure .top-back span {
-  position: absolute;
-  top: -100%;
-  left: 0;
-  right: 0;
-  margin: auto;
+.flip .card__back .card__bottom {
+  transform-origin: center top;
+  animation-fill-mode: both;
+  animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
+}
+@keyframes flipTop {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 2;
+  }
+  0%,
+  99% {
+    opacity: 0.99;
+  }
+  100% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
+@keyframes flipBottom {
+  0%,
+  50% {
+    z-index: -1;
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  51% {
+    opacity: 0.99;
+  }
+  100% {
+    opacity: 0.99;
+    transform: rotateX(0deg);
+    z-index: 5;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .flip-clock {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+  .card {
+    font-size: 20px;
+  }
+  .flip-clock__slot {
+    font-size: 7px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .card {
+    font-size: 30px;
+  }
+  .flip-clock__slot {
+    font-size: 8px;
+  }
 }
