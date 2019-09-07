@@ -186,12 +186,24 @@ self.__precacheManifest = [
     "revision": "0e28355505c5c31e43a1ee93f8bd6558"
   },
   {
+    "url": "assets/photos/smoking.png",
+    "revision": "c7053b2dd319e45769a985a41677e920"
+  },
+  {
+    "url": "assets/sounds/all-folks.mp3",
+    "revision": "a518345abbaf86d002d8cb8ee3a37b38"
+  },
+  {
+    "url": "assets/sounds/likeabos.mp3",
+    "revision": "fc8126cc2d7168f9f978220890a04ceb"
+  },
+  {
     "url": "assets/sounds/meh.mp3",
     "revision": "cab8cb281bed323604cd6544eeb4c470"
   },
   {
     "url": "assets/styles/base.css",
-    "revision": "c6716729b79c6dc07d198ee9aa1cc175"
+    "revision": "075ead45bf79551debd393c1d93f0e00"
   },
   {
     "url": "favicon-16x16.png",
@@ -211,7 +223,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "c2f84624c6ee33d558d5de287982d6d5"
+    "revision": "ba6a06544d73ce6dc5505e9f48aaffc6"
   },
   {
     "url": "ms-icon-144x144.png",

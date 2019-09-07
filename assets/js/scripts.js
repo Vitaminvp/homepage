@@ -68,6 +68,18 @@ document
 document.getElementById("meh").addEventListener("click", function() {
   this.querySelector("audio").play();
 });
+const logo = document.getElementById("logo");
+logo.addEventListener("mouseover", function() {
+  this.querySelector("audio").play();
+});
+logo.addEventListener("mouseout", function() {
+  this.querySelector("audio").pause();
+});
+document.querySelectorAll(".pig").forEach(page => {
+  page.addEventListener("click", () => {
+    page.querySelector("audio").play();
+  });
+});
 function replaceNoscript(noscript) {
   const parent = noscript.parentElement;
   Array.prototype.slice
