@@ -13,7 +13,6 @@ document.getElementById("kyiv-rent-months").innerHTML =
 
 function timer(fromDate, node) {
   const startDate = new Date(fromDate.toISOString().substr(0, 10));
-  // const endingDate = new Date().toISOString().substr(0, 10);    // need date in YYYY-MM-DD format
   const endDate = new Date();
 
   const startYear = startDate.getFullYear();
@@ -49,7 +48,6 @@ function timer(fromDate, node) {
   } ${minutesDiff} ${minutes === 1 ? "minute" : "minutes"}
   ${secondsDiff} ${seconds === 1 ? "second" : "seconds"}`;
 }
-
 
 function switchToColor(color) {
   try {
