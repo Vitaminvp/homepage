@@ -203,7 +203,7 @@ self.__precacheManifest = [
   },
   {
     "url": "assets/styles/base.css",
-    "revision": "d315ae5232fe7aa92e83eee903ac881c"
+    "revision": "6b138ad1d06c1aa46b98f357d7e82490"
   },
   {
     "url": "favicon-16x16.png",
@@ -223,7 +223,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "ba6a06544d73ce6dc5505e9f48aaffc6"
+    "revision": "e1614b06351203a62566e1c573cd04f8"
   },
   {
     "url": "ms-icon-144x144.png",

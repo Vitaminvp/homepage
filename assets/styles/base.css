@@ -257,6 +257,9 @@ article {
     margin-bottom: calc((100% - 1127px) / 2);
   }
 }
+#logo{
+    padding: 5px;
+}
 
 /* Page */
 .page {
