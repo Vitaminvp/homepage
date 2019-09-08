@@ -69,12 +69,16 @@ document.getElementById("meh").addEventListener("click", function() {
   this.querySelector("audio").play();
 });
 const logo = document.getElementById("logo");
+const audio = logo.querySelector("audio");
 logo.addEventListener("mouseover", function() {
-  logo.querySelector("audio").play();
+  audio.play().catch(function() {
+    audio.pause();
+  });
 });
 logo.addEventListener("mouseout", function() {
-  logo.querySelector("audio").pause();
+  audio.pause();
 });
+
 document.querySelectorAll(".pig").forEach(page => {
   page.addEventListener("click", () => {
     page.querySelector("audio").play();
