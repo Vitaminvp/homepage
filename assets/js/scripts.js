@@ -82,6 +82,7 @@ logo.addEventListener("mouseout", function() {
 document.querySelectorAll(".pig").forEach(page => {
   page.addEventListener("click", () => {
     page.querySelector("audio").play();
+    navigator.vibrate([500, 250, 500, 250, 500, 250, 500, 250, 500, 250, 500])
   });
 });
 function replaceNoscript(noscript) {
