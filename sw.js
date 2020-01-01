@@ -239,7 +239,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "690f8b001f5c0fb343e81d21f6a1f7f2"
+    "revision": "b910e57899284a8e586bb3cf51af8b3d"
   },
   {
     "url": "ms-icon-144x144.png",
