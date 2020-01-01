@@ -257,8 +257,8 @@ article {
     margin-bottom: calc((100% - 1127px) / 2);
   }
 }
-#logo{
-    padding: 5px;
+#logo {
+  padding: 5px;
 }
 
 /* Page */
@@ -938,6 +938,11 @@ dialog:target ~ * {
 }
 .cv {
   margin-top: 15px;
+}
+
+img.logo {
+  position: relative;
+  top: 5px;
 }
 
 /* Close */

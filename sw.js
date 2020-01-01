@@ -94,6 +94,22 @@ self.__precacheManifest = [
     "revision": "2e1ec0322311f281e6fb0f61753b7744"
   },
   {
+    "url": "assets/images/agrichain.png",
+    "revision": "5c65dd4c55f5596b99b9da2444c9ff85"
+  },
+  {
+    "url": "assets/images/livestories.png",
+    "revision": "dbd6d06e2da39726aeb48da669d6f4ea"
+  },
+  {
+    "url": "assets/images/pdffiller.png",
+    "revision": "86a749d08de8a22e8c3216fd77b65473"
+  },
+  {
+    "url": "assets/images/softcom.png",
+    "revision": "ea0227dae8107994d6b4fc32fcc31c78"
+  },
+  {
     "url": "assets/photos/1.jpg",
     "revision": "ca2bf391c505eb7baa62851e4b9983b3"
   },
@@ -203,7 +219,7 @@ self.__precacheManifest = [
   },
   {
     "url": "assets/styles/base.css",
-    "revision": "6b138ad1d06c1aa46b98f357d7e82490"
+    "revision": "b304de6382fc9b14488e0b3f6e045ed2"
   },
   {
     "url": "favicon-16x16.png",
@@ -223,7 +239,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "e1614b06351203a62566e1c573cd04f8"
+    "revision": "b910e57899284a8e586bb3cf51af8b3d"
   },
   {
     "url": "ms-icon-144x144.png",
