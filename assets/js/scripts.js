@@ -1,18 +1,17 @@
 const kyivRelocationDate = new Date("1998-08-01");
 const todaysDate = new Date();
-const experienceStartDate = new Date("2017-01-01");
+const experienceStartDate = new Date("2018-02-01");
 const experienceNode = document.getElementById("experience");
 
-const monthsLivingInLviv =
+const monthsLivingInKyiv =
   todaysDate.getMonth() -
   kyivRelocationDate.getMonth() +
   12 * (todaysDate.getFullYear() - kyivRelocationDate.getFullYear());
 document.getElementById("kyiv-rent-months").innerHTML =
-  "paid " +
-  monthsLivingInLviv +
+    monthsLivingInKyiv +
   " month" +
-  (monthsLivingInLviv === 1 ? "" : "s") +
-  " of rent already";
+  (monthsLivingInKyiv === 1 ? "" : "s") +
+  " a native of Kiev";
 
 function switchToColor(color) {
   try {
@@ -41,6 +40,9 @@ function switchToColor(color) {
       avatar.contentDocument
         .getElementById("circle")
         .setAttribute("fill", color);
+    });
+    document.querySelectorAll(".divider").forEach(function(divider) {
+      divider.style.borderColor = color;
     });
   } catch (error) {}
 }
