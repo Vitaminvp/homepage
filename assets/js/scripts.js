@@ -1,6 +1,6 @@
 const kyivRelocationDate = new Date("1998-08-01");
 const todaysDate = new Date();
-const experienceStartDate = new Date("2017-01-01");
+const experienceStartDate = new Date("2018-02-01");
 const experienceNode = document.getElementById("experience");
 
 const monthsLivingInLviv =
