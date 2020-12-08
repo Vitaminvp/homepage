@@ -902,9 +902,7 @@ button.audio svg {
 }
 a.report {
   display: flex;
-}
-a.report img{
-  margin-right: 10px;
+  align-items: center;
 }
 
 /* Dialog */
