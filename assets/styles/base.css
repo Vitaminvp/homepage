@@ -149,6 +149,7 @@ a {
 a[rel="external"]:not(.label):hover,
 a.language:hover span {
   text-decoration: underline;
+  text-align: center;
 }
 
 /* Prevent `sub` and `sup` elements from affecting the line height in all browsers */
@@ -898,6 +899,10 @@ button.audio svg {
 }
 #resume .dots .dot:not(:last-child) {
   margin-right: 0.2142857em;
+}
+a.report {
+  display: flex;
+  align-items: center;
 }
 
 /* Dialog */
