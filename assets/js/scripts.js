@@ -3,16 +3,15 @@ const todaysDate = new Date();
 const experienceStartDate = new Date("2018-02-01");
 const experienceNode = document.getElementById("experience");
 
-const monthsLivingInLviv =
+const monthsLivingInKyiv =
   todaysDate.getMonth() -
   kyivRelocationDate.getMonth() +
   12 * (todaysDate.getFullYear() - kyivRelocationDate.getFullYear());
 document.getElementById("kyiv-rent-months").innerHTML =
-  "paid " +
-  monthsLivingInLviv +
+    monthsLivingInKyiv +
   " month" +
-  (monthsLivingInLviv === 1 ? "" : "s") +
-  " of rent already";
+  (monthsLivingInKyiv === 1 ? "" : "s") +
+  " a native of Kiev";
 
 function switchToColor(color) {
   try {

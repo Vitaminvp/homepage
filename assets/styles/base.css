@@ -904,6 +904,9 @@ a.report {
   display: flex;
   align-items: center;
 }
+a.report img {
+    margin-right: 5px;
+}
 
 /* Dialog */
 dialog {
