@@ -41,6 +41,9 @@ function switchToColor(color) {
         .getElementById("circle")
         .setAttribute("fill", color);
     });
+    document.querySelectorAll(".divider").forEach(function(divider) {
+      divider.style.borderColor = color;
+    });
   } catch (error) {}
 }
 document
