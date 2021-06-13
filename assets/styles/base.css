@@ -1253,3 +1253,6 @@ footer {
     font-size: 8px;
   }
 }
+.hidden {
+    display: none;
+}
