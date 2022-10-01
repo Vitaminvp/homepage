@@ -619,32 +619,63 @@ article {
 .contacts li a.phone {
   position: relative;
 }
-.contacts li a.phone .phone-number.ua {
+.contacts li a.phone:hover svg {
+  color: dimgrey;
+}
+.contacts li a.phone:hover .slide-text.ua {
   color: #dada30;
 }
-.contacts li a.phone .phone-number {
-  position: relative;
+.contacts li a.phone:hover .slide-text.pl {
+  color: red;
 }
-.contacts li a.phone .phone-number.ua:before {
+.contacts li a.phone .slide-text {
+  position: relative;
+  transition: all 0.4s linear;
+}
+.contacts li a.phone:hover .slide-text.ua:before {
   content: " +38 067 5070150";
   height: 50%;
   position: absolute;
   color: blue;
   overflow: hidden;
 }
-.contacts li a.phone .phone-number.uk {
+.contacts li a.phone:hover .slide-text.pl:before {
+  content: " +48 7866 74206";
+  height: 50%;
+  position: absolute;
+  color: #dddddd;
+  overflow: hidden;
+}
+.contacts li a.phone:hover .slide-text.uk {
   background-image: linear-gradient(to left, blue, white, red, white, blue, white, red, white, blue, white, red, white, blue);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-.contacts li a.phone:hover .phone-wrapper {
+.contacts li a.slide:hover .slide-wrapper {
   flex-shrink: 1;
   flex-grow: 100;
+}
+.contacts li a.phone:hover .slide-wrapper {
   width: 8rem;
 }
-.contacts li a.phone .phone-wrapper {
+.contacts li a.linkedin:hover .slide-wrapper {
+  width: 13.6rem;
+}
+.contacts li a.facebook:hover .slide-wrapper {
+  width: 15rem;
+}
+.contacts li a.mail:hover .slide-wrapper {
+  width: 6.8rem;
+}
+.contacts li a.github:hover .slide-wrapper {
+  width: 9rem;
+}
+.contacts li a.skype:hover .slide-wrapper {
+  width: 4.1rem;
+}
+.contacts li a.slide .slide-wrapper {
   transition: all 0.4s linear;
   overflow: hidden;
   display: inline-flex;
@@ -654,11 +685,12 @@ article {
 }
 .contacts li a.phone .phone-flag {
   position: absolute;
+  transition: all 0.4s linear;
   top: -4px;
   left: -4px;
 }
-.contacts li a.website {
-  display: none;
+.contacts li a.phone:hover .phone-flag {
+  transform: scale(1.5);
 }
 .contacts li a .icon {
   fill: currentColor;
@@ -825,6 +857,12 @@ li.bordered > ul > details > div {
 
 /* Print */
 @media print {
+  .print-only {
+    display: block !important;
+  }
+  .flip-box {
+    display: none;
+  }
   .page,
   .page[style] {
     padding: 0;
@@ -840,11 +878,15 @@ li.bordered > ul > details > div {
   .contacts {
     margin-top: 1em;
   }
-  .contacts li a.website {
-    display: block;
-  }
   .credits {
     display: none;
+  }
+  .contacts li a.slide .slide-wrapper {
+    width: auto;
+  }
+  .contacts li a.phone .slide-text.uk {
+    background-image: initial;
+    color: initial;
   }
 }
 
@@ -986,7 +1028,7 @@ dialog:target ~ * {
   display: none;
 }
 .cv {
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 img.logo {
@@ -1039,6 +1081,12 @@ img.logo {
   .credits {
     display: none;
   }
+  .contacts li a.slide .slide-wrapper {
+    width: auto;
+  }
+  .contacts li a.slide:hover .slide-wrapper {
+    width: auto;
+  }
 }
 
 /* Hide header, reveal footer */
@@ -1075,6 +1123,9 @@ footer {
   justify-content: center;
   z-index: 1;
 }
+.print-only {
+  display: none;
+}
 @media only screen and (max-width: 767px) {
   header {
     height: auto;
@@ -1109,7 +1160,7 @@ footer {
 .flip-box {
   background-color: transparent;
   width: 225px;
-  height: 70px;
+  height: 60px;
   perspective: 1000px;
 }
 .flip-box-inner {
