@@ -619,6 +619,9 @@ article {
 .contacts li a.phone {
   position: relative;
 }
+.contacts li a.phone:hover svg {
+  color: dimgrey;
+}
 .contacts li a.phone .phone-number.ua {
   color: #dada30;
 }
@@ -654,11 +657,12 @@ article {
 }
 .contacts li a.phone .phone-flag {
   position: absolute;
+  transition: all 0.4s linear;
   top: -4px;
   left: -4px;
 }
-.contacts li a.website {
-  display: none;
+.contacts li a.phone:hover .phone-flag {
+  transform: scale(1.5);
 }
 .contacts li a .icon {
   fill: currentColor;
@@ -825,6 +829,9 @@ li.bordered > ul > details > div {
 
 /* Print */
 @media print {
+  .print-only {
+    display: block !important;
+  }
   .page,
   .page[style] {
     padding: 0;
@@ -840,11 +847,15 @@ li.bordered > ul > details > div {
   .contacts {
     margin-top: 1em;
   }
-  .contacts li a.website {
-    display: block;
-  }
   .credits {
     display: none;
+  }
+  .contacts li a.phone .phone-wrapper {
+    width: 8rem;
+  }
+  .contacts li a.phone .phone-number.uk {
+    background-image: initial;
+    color: initial;
   }
 }
 
@@ -986,7 +997,7 @@ dialog:target ~ * {
   display: none;
 }
 .cv {
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 img.logo {
@@ -1075,6 +1086,9 @@ footer {
   justify-content: center;
   z-index: 1;
 }
+.print-only {
+  display: none;
+}
 @media only screen and (max-width: 767px) {
   header {
     height: auto;
@@ -1109,7 +1123,7 @@ footer {
 .flip-box {
   background-color: transparent;
   width: 225px;
-  height: 70px;
+  height: 60px;
   perspective: 1000px;
 }
 .flip-box-inner {
