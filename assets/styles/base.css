@@ -598,13 +598,6 @@ article {
   color: black;
   transition: color 0.2s ease-in-out;
 }
-.contacts li a span {
-  position: relative;
-}
-.contacts li a span > span {
-  position: absolute;
-  left: -20px;
-}
 .contacts li a.facebook:hover {
   color: #3b5998;
 }
@@ -623,8 +616,46 @@ article {
 .contacts li a.telegram:hover {
   color: #0088cc;
 }
-.contacts li a.phone:hover {
-  color: dimgrey;
+.contacts li a.phone {
+  position: relative;
+}
+.contacts li a.phone .phone-number.ua {
+  color: #dada30;
+}
+.contacts li a.phone .phone-number {
+  position: relative;
+}
+.contacts li a.phone .phone-number.ua:before {
+  content: " +38 067 5070150";
+  height: 50%;
+  position: absolute;
+  color: blue;
+  overflow: hidden;
+}
+.contacts li a.phone .phone-number.uk {
+  background-image: linear-gradient(to left, blue, white, red, white, blue, white, red, white, blue, white, red, white, blue);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.contacts li a.phone:hover .phone-wrapper {
+  flex-shrink: 1;
+  flex-grow: 100;
+  width: 8rem;
+}
+.contacts li a.phone .phone-wrapper {
+  transition: all 0.4s linear;
+  overflow: hidden;
+  display: inline-flex;
+  width: 0;
+  flex-shrink: 100;
+  flex-grow: 1;
+}
+.contacts li a.phone .phone-flag {
+  position: absolute;
+  top: -4px;
+  left: -4px;
 }
 .contacts li a.website {
   display: none;
@@ -639,6 +670,7 @@ article {
   .name,
   .job,
   .contacts {
+    flex-direction: column;
     text-align: center;
   }
   .contacts li {
@@ -651,7 +683,6 @@ article {
 @media only screen and (max-width: 1199px) {
   .contacts {
     margin-top: 1em;
-    flex-direction: column;
   }
 }
 
