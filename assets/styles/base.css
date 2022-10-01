@@ -598,8 +598,18 @@ article {
   color: black;
   transition: color 0.2s ease-in-out;
 }
+.contacts li a span {
+  position: relative;
+}
+.contacts li a span > span {
+  position: absolute;
+  left: -20px;
+}
 .contacts li a.facebook:hover {
   color: #3b5998;
+}
+.contacts li a.linkedin:hover {
+  color: #0b66c2;
 }
 .contacts li a.github:hover {
   color: dimgrey;
