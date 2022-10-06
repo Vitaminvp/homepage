@@ -512,23 +512,12 @@ article {
 }
 
 /* Avatar */
-.avatar-wrapper {
-  padding: 0 1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .avatar {
   position: relative;
   max-width: 15rem;
   display: block;
   flex: 1 0 auto;
   margin: auto;
-}
-@media only screen and (max-width: 1199px) {
-  .avatar-wrapper {
-    padding: 0;
-  }
 }
 
 /* Divider */
@@ -640,7 +629,7 @@ article {
   overflow: hidden;
 }
 .contacts li a.phone:hover .slide-text.pl:before {
-  content: " +48 7866 74206";
+  content: " +48 78 66 74206";
   height: 50%;
   position: absolute;
   color: #dddddd;
@@ -857,8 +846,14 @@ li.bordered > ul > details > div {
 
 /* Print */
 @media print {
+  #logo {
+    padding: 0 1.5rem;
+  }
   .print-only {
     display: block !important;
+  }
+  .except-print {
+    display: none !important;
   }
   .flip-box {
     display: none;
@@ -869,11 +864,14 @@ li.bordered > ul > details > div {
     box-shadow: none;
     border-color: transparent !important;
   }
+  .grid > .row {
+    padding-top: 0;
+  }
+  .grid > .column {
+    padding-top: 0;
+  }
   .grid {
     display: block;
-  }
-  .avatar-wrapper {
-    padding: 0;
   }
   .contacts {
     margin-top: 1em;
@@ -1248,7 +1246,6 @@ footer {
 }
 .card__back::before,
 .card__back::after {
-  background-color: #222;
   background-color: var(--dynamic-background);
 }
 
@@ -1275,7 +1272,7 @@ footer {
   position: absolute;
   top: 0;
   height: 100%;
-  left: 0%;
+  left: 0;
   pointer-events: none;
 }
 .card__back::before {
