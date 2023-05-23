@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 11.13.0
+  - 18.16.0
 script:
   - npm install --global workbox-cli
   - workbox generateSW workbox-config.js
@@ -23,4 +23,3 @@ deploy:
     acl: public_read
     on:
       branch: master
-      
