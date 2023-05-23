@@ -512,23 +512,12 @@ article {
 }
 
 /* Avatar */
-.avatar-wrapper {
-  padding: 0 1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .avatar {
   position: relative;
   max-width: 15rem;
   display: block;
   flex: 1 0 auto;
   margin: auto;
-}
-@media only screen and (max-width: 1199px) {
-  .avatar-wrapper {
-    padding: 0;
-  }
 }
 
 /* Divider */
@@ -622,32 +611,60 @@ article {
 .contacts li a.phone:hover svg {
   color: dimgrey;
 }
-.contacts li a.phone .phone-number.ua {
+.contacts li a.phone:hover .slide-text.ua {
   color: #dada30;
 }
-.contacts li a.phone .phone-number {
-  position: relative;
+.contacts li a.phone:hover .slide-text.pl {
+  color: red;
 }
-.contacts li a.phone .phone-number.ua:before {
+.contacts li a.phone .slide-text {
+  position: relative;
+  transition: all 0.4s linear;
+}
+.contacts li a.phone:hover .slide-text.ua:before {
   content: " +38 067 5070150";
   height: 50%;
   position: absolute;
   color: blue;
   overflow: hidden;
 }
-.contacts li a.phone .phone-number.uk {
+.contacts li a.phone:hover .slide-text.pl:before {
+  content: " +48 78 66 74206";
+  height: 50%;
+  position: absolute;
+  color: #dddddd;
+  overflow: hidden;
+}
+.contacts li a.phone:hover .slide-text.uk {
   background-image: linear-gradient(to left, blue, white, red, white, blue, white, red, white, blue, white, red, white, blue);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-.contacts li a.phone:hover .phone-wrapper {
+.contacts li a.slide:hover .slide-wrapper {
   flex-shrink: 1;
   flex-grow: 100;
+}
+.contacts li a.phone:hover .slide-wrapper {
   width: 8rem;
 }
-.contacts li a.phone .phone-wrapper {
+.contacts li a.linkedin:hover .slide-wrapper {
+  width: 13.6rem;
+}
+.contacts li a.facebook:hover .slide-wrapper {
+  width: 15rem;
+}
+.contacts li a.mail:hover .slide-wrapper {
+  width: 6.8rem;
+}
+.contacts li a.github:hover .slide-wrapper {
+  width: 9rem;
+}
+.contacts li a.skype:hover .slide-wrapper {
+  width: 4.1rem;
+}
+.contacts li a.slide .slide-wrapper {
   transition: all 0.4s linear;
   overflow: hidden;
   display: inline-flex;
@@ -829,8 +846,17 @@ li.bordered > ul > details > div {
 
 /* Print */
 @media print {
+  #logo {
+    padding: 0 1.5rem;
+  }
   .print-only {
     display: block !important;
+  }
+  .except-print {
+    display: none !important;
+  }
+  .flip-box {
+    display: none;
   }
   .page,
   .page[style] {
@@ -838,11 +864,14 @@ li.bordered > ul > details > div {
     box-shadow: none;
     border-color: transparent !important;
   }
+  .grid > .row {
+    padding-top: 0;
+  }
+  .grid > .column {
+    padding-top: 0;
+  }
   .grid {
     display: block;
-  }
-  .avatar-wrapper {
-    padding: 0;
   }
   .contacts {
     margin-top: 1em;
@@ -850,10 +879,10 @@ li.bordered > ul > details > div {
   .credits {
     display: none;
   }
-  .contacts li a.phone .phone-wrapper {
-    width: 8rem;
+  .contacts li a.slide .slide-wrapper {
+    width: auto;
   }
-  .contacts li a.phone .phone-number.uk {
+  .contacts li a.phone .slide-text.uk {
     background-image: initial;
     color: initial;
   }
@@ -1050,6 +1079,12 @@ img.logo {
   .credits {
     display: none;
   }
+  .contacts li a.slide .slide-wrapper {
+    width: auto;
+  }
+  .contacts li a.slide:hover .slide-wrapper {
+    width: auto;
+  }
 }
 
 /* Hide header, reveal footer */
@@ -1211,7 +1246,6 @@ footer {
 }
 .card__back::before,
 .card__back::after {
-  background-color: #222;
   background-color: var(--dynamic-background);
 }
 
@@ -1238,7 +1272,7 @@ footer {
   position: absolute;
   top: 0;
   height: 100%;
-  left: 0%;
+  left: 0;
   pointer-events: none;
 }
 .card__back::before {
