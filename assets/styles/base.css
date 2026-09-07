@@ -604,9 +604,6 @@ article {
 .contacts li a.mail:hover {
   color: dimgrey;
 }
-.contacts li a.skype:hover {
-  color: #00aff0;
-}
 .contacts li a.telegram:hover {
   color: #0088cc;
 }
@@ -616,29 +613,9 @@ article {
 .contacts li a.phone:hover svg {
   color: dimgrey;
 }
-.contacts li a.phone:hover .slide-text.ua {
-  color: #dada30;
-}
-.contacts li a.phone:hover .slide-text.pl {
-  color: red;
-}
 .contacts li a.phone .slide-text {
   position: relative;
   transition: all 0.4s linear;
-}
-.contacts li a.phone:hover .slide-text.ua:before {
-  content: " " var(--phone-ua);
-  height: 50%;
-  position: absolute;
-  color: blue;
-  overflow: hidden;
-}
-.contacts li a.phone:hover .slide-text.pl:before {
-  content: " " var(--phone-pl);
-  height: 50%;
-  position: absolute;
-  color: #dddddd;
-  overflow: hidden;
 }
 .contacts li a.phone:hover .slide-text.uk {
   background-image: linear-gradient(to left, blue, white, red, white, blue, white, red, white, blue, white, red, white, blue);
@@ -666,9 +643,6 @@ article {
 .contacts li a.github:hover .slide-wrapper {
   width: 9rem;
 }
-.contacts li a.skype:hover .slide-wrapper {
-  width: 4.1rem;
-}
 .contacts li a.slide .slide-wrapper {
   transition: all 0.4s linear;
   overflow: hidden;
@@ -691,9 +665,15 @@ article {
   height: 1.1428rem;
   vertical-align: text-bottom;
 }
+.role {
+  margin: 0.15em 0 0.5em;
+  color: var(--accent);
+  font-weight: bold;
+}
 
 @media only screen and (max-width: 767px) {
   .name,
+  .role,
   .job,
   .contacts {
     flex-direction: column;
@@ -1000,7 +980,8 @@ button.audio svg {
 #resume .dots .dot:not(:last-child) {
   margin-right: 0.2142857em;
 }
-a.report {
+a.report,
+span.report {
   display: flex;
   align-items: center;
 }
