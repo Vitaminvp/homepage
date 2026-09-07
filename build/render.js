@@ -16,6 +16,20 @@ const svg = require("./svg");
 const root = path.join(__dirname, "..");
 const size = (n) => `${n}x${n}`;
 
+// Whole years since a date. The one place the years of experience are counted:
+// both the intro copy and og:description take their phrasing from here, so
+// they cannot drift apart the way three hand-written numbers did.
+function yearsSince(iso) {
+  const start = new Date(iso);
+  const now = new Date();
+  let years = now.getFullYear() - start.getFullYear();
+  const months = now.getMonth() - start.getMonth();
+  if (months < 0 || (months === 0 && now.getDate() < start.getDate())) years--;
+  return years;
+}
+
+const experiencePhrase = `more than ${yearsSince(cv.dates.experienceStart)} years`;
+
 // ---------------------------------------------------------------- head ----
 
 function iconLinks() {
@@ -58,7 +72,10 @@ function head() {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="${cv.meta.themeColor}" />
-    <meta property="og:description" content="${cv.meta.ogDescription}" />
+    <meta property="og:description" content="${cv.meta.ogDescription.replace(
+      "{{experience}}",
+      experiencePhrase
+    )}" />
     ${iconLinks()}
     <link rel="manifest" href="/manifest.json" />
     <meta name="msapplication-TileColor" content="${cv.meta.tileColor}" />
@@ -160,7 +177,7 @@ function header() {
                   <div class="sixteen wide column except-print">
                     <p>
                       &mdash; Hello! I’m a frontend developer<strong style="margin-left: 0.0625em">*</strong>
-                      with <span id="experience">${cv.intro.fallbackExperience}</span> of
+                      with <span id="experience">${experiencePhrase} </span> of
                       application development. I strive to craft precise,
                       responsive, fast, easy-to-use environments with both
                       strong purpose and great looks.

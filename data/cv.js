@@ -82,8 +82,10 @@ module.exports = {
     title: "Vitalii Ovcharenko &mdash; Résumé",
     description: "My very own personal website.",
     subject: "This is just a résumé.",
+    // {{experience}} is filled in by the renderer from dates.experienceStart,
+    // so the years are counted in one place and never drift from the intro.
     ogDescription:
-      "&mdash; Hello! I’m a skilled frontend developer with more than 5 years of experience in application development. I strive to craft precise, responsive, fast, easy-to-use environments with both strong purpose and great looks.",
+      "&mdash; Hello! I’m a skilled frontend developer with {{experience}} of experience in application development. I strive to craft precise, responsive, fast, easy-to-use environments with both strong purpose and great looks.",
     themeColor: "white",
     tileColor: "#ffffff",
     // The source declared theme-color twice, with different values. Kept for
@@ -171,8 +173,8 @@ module.exports = {
 
   intro: {
     // The visible span is replaced at runtime by the flip clock counting from
-    // dates.experienceStart. Its text only shows with JS off.
-    fallbackExperience: "more than 3 years ",
+    // dates.experienceStart; its text only shows with JS off. Both it and
+    // meta.ogDescription take their years from that same date.
     footnote: {
       href: "https://css-tricks.com/the-great-divide/",
       text: "The Great Divide",
