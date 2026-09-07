@@ -570,7 +570,7 @@ function document() {
   return `<!DOCTYPE html>
 <html lang="en">
   ${head()}
-  <body>
+  <body data-experience-start="${cv.dates.experienceStart}" data-kyiv-relocation="${cv.dates.kyivRelocation}">
     ${cv.lightboxes.map(lightbox).join("\n    ")}
     <main>
       <article>
