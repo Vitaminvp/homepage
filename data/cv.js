@@ -37,12 +37,6 @@ const links = {
   nextjs: { text: "Next.js", url: "https://nextjs.org/" },
   redux: { text: "redux", url: "https://github.com/reactjs/redux" },
   reduxSaga: { text: "redux-saga", url: "https://redux-saga.js.org/" },
-  // Same technology as reduxSaga, different URL. The hand-written markup had
-  // both; step 2 collapses them.
-  reduxSagaRepo: {
-    text: "redux-saga",
-    url: "https://github.com/redux-saga/redux-saga",
-  },
   styledComponents: {
     text: "styled components",
     url: "https://github.com/styled-components/styled-components",
@@ -240,7 +234,7 @@ module.exports = {
             "reactRedux",
             "reactRouter",
             "redux",
-            "reduxSagaRepo",
+            "reduxSaga",
             "reduxThunk",
             "reselect",
             "reduxActions",
