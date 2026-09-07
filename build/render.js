@@ -79,7 +79,7 @@ function head() {
     ${iconLinks()}
     <link rel="manifest" href="/manifest.json" />
     <meta name="msapplication-TileColor" content="${cv.meta.tileColor}" />
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png" />
     <!--    <base href="https://vitaminvp.github.io/homepage/" />-->
     <title>${cv.meta.title}</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
@@ -592,4 +592,33 @@ function document() {
 `;
 }
 
+// ------------------------------------------------- the other two manifests ----
+
+// Both of these list the same icons the <head> links, so all three come from
+// cv.icons. The hand-written copies pointed at the repository root, where the
+// files stopped living in June 2021.
+
+function manifest() {
+  const icons = cv.icons.android.map((n) => ({
+    src: `/assets/icons/android-icon-${size(n)}.png`,
+    sizes: size(n),
+    type: "image/png",
+    // The convention these were written with: 48px is density 1.0.
+    density: Number.isInteger(n / 48) ? (n / 48).toFixed(1) : String(n / 48),
+  }));
+  return JSON.stringify({ name: cv.manifestName, icons }, null, 1) + "\n";
+}
+
+function browserconfig() {
+  const logo = (n) =>
+    `<square${size(n)}logo src="/assets/icons/ms-icon-${size(n)}.png"/>`;
+  return `<?xml version="1.0" encoding="utf-8"?>
+<browserconfig><msapplication><tile>${logo(70)}${logo(150)}${logo(
+    310
+  )}<TileColor>${cv.meta.tileColor}</TileColor></tile></msapplication></browserconfig>
+`;
+}
+
 fs.writeFileSync(path.join(root, "index.html"), document());
+fs.writeFileSync(path.join(root, "manifest.json"), manifest());
+fs.writeFileSync(path.join(root, "browserconfig.xml"), browserconfig());

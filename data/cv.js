@@ -78,6 +78,11 @@ module.exports = {
     siteLabel: "https://vitaminvp.github.io/",
   },
 
+  // What the site is called when installed to a home screen. The generated
+  // manifest kept the name the hand-written one had; "App" is almost certainly
+  // not what it should say, but renaming it is a content decision.
+  manifestName: "App",
+
   meta: {
     title: "Vitalii Ovcharenko &mdash; Résumé",
     description: "My very own personal website.",
@@ -99,8 +104,7 @@ module.exports = {
   },
 
   // One list of icon sizes, feeding <head>, manifest.json and
-  // browserconfig.xml. Step 1 keeps the root-relative paths the hand-written
-  // manifests used; step 2 points them at assets/icons/ where the files are.
+  // browserconfig.xml — which is what keeps their paths from drifting apart.
   icons: {
     apple: [57, 60, 72, 76, 114, 120, 144, 152, 180],
     android: [36, 48, 72, 96, 144, 192],
