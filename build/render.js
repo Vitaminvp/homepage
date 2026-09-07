@@ -80,7 +80,6 @@ function head() {
     <link rel="manifest" href="/manifest.json" />
     <meta name="msapplication-TileColor" content="${cv.meta.tileColor}" />
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-    <meta name="theme-color" content="${cv.meta.duplicateThemeColor}" />
     <!--    <base href="https://vitaminvp.github.io/homepage/" />-->
     <title>${cv.meta.title}</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />

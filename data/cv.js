@@ -86,11 +86,8 @@ module.exports = {
     // so the years are counted in one place and never drift from the intro.
     ogDescription:
       "&mdash; Hello! I’m a skilled frontend developer with {{experience}} of experience in application development. I strive to craft precise, responsive, fast, easy-to-use environments with both strong purpose and great looks.",
-    themeColor: "white",
+    themeColor: "#ffffff",
     tileColor: "#ffffff",
-    // The source declared theme-color twice, with different values. Kept for
-    // step 1; step 2 drops it.
-    duplicateThemeColor: "#ffffff",
     borderColor: "midnightblue",
   },
 
