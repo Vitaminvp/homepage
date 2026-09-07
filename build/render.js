@@ -35,7 +35,10 @@ function relMeLinks() {
   return cv.contacts
     .filter((c) => c.relMe)
     .map((c) => {
-      const href = c.relMe.href || c.href || `tel:${cv.phones[c.phone].tel}`;
+      const href =
+        c.kind === "email"
+          ? `mailto:${cv.identity.email}`
+          : c.href || `tel:${cv.phones[c.phone].tel}`;
       const type = c.relMe.type ? ` type="${c.relMe.type}"` : "";
       return `<link rel="me" href="${href}"${type} />`;
     })
@@ -100,8 +103,9 @@ function contact(c) {
   }
 
   const phone = c.phone ? cv.phones[c.phone] : null;
-  const href = phone ? `tel:${phone.tel}` : c.href;
-  const text = phone ? phone.display : c.text;
+  const email = c.kind === "email" ? cv.identity.email : null;
+  const href = phone ? `tel:${phone.tel}` : email ? `mailto:${email}` : c.href;
+  const text = phone ? phone.display : email || c.text;
   const wrap = c.wrapper || "span";
   const textClass = c.textClass || "slide-text";
 

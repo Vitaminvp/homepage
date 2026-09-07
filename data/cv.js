@@ -73,6 +73,7 @@ const phones = {
 module.exports = {
   identity: {
     name: "Vitalii Ovcharenko",
+    email: "vitamin@ukr.net",
     site: "https://vitaminvp.github.io/homepage/",
     siteLabel: "https://vitaminvp.github.io/",
   },
@@ -118,15 +119,8 @@ module.exports = {
       text: "facebook.com/vitaliy.ovcharenko.98",
       relMe: { type: "text/html" },
     },
-    {
-      icon: "mail",
-      href: "mailto:vitamin@ukr.net",
-      className: "mail slide",
-      text: "vitamin@ukr.net",
-      // The <head> spelled this address with a trailing underscore. Kept for
-      // step 1; step 2 makes both come from this one value.
-      relMe: { href: "mailto:vitamin_@ukr.net" },
-    },
+    // href and link text both come from identity.email.
+    { icon: "mail", kind: "email", className: "mail slide", relMe: {} },
     {
       icon: "github",
       href: "https://github.com/Vitaminvp",
