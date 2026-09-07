@@ -240,6 +240,15 @@ function header() {
 
 // ----------------------------------------------------------- experience ----
 
+// A bullet is a string, or {html, exceptPrint} when it belongs on the site but
+// not on the paper. The class goes on the <li>: hiding only the text would
+// leave an empty row behind.
+function bullet(b, indent) {
+  const html = typeof b === "string" ? b : b.html;
+  const cls = typeof b === "string" || !b.exceptPrint ? "" : ` class="except-print"`;
+  return `<li${cls}>${html}</li>`;
+}
+
 function label(key) {
   const { text, url } = cv.links[key];
   return `<a rel="external" class="label" href="${url}" target="_blank">${text}</a>`;
@@ -260,7 +269,7 @@ function project(p, index) {
     : `<strong>${p.product}${logo}</strong>`;
 
   const extra = p.bullets
-    .map((b) => `\n                          <li>${b}</li>`)
+    .map((b) => `\n                          ${bullet(b)}`)
     .join("");
 
   // The first project of an engagement repeats the role and employer the
@@ -338,15 +347,15 @@ function job(e) {
                           <img alt="${l.alt}" class="logo" src="${l.src}" height="${l.height}" width="${l.width}" />${gap}</a></strong>
                     </p>
                     <ul>
-                      ${e.bullets.map((b) => `<li>${b}</li>`).join("\n                      ")}
+                      ${e.bullets.map(bullet).join("\n                      ")}
                     </ul>
                   </li>`;
 }
 
 function sysadmin(e) {
   const company = (c) =>
-    `<a href="${c.url}" target="_blank" rel="external">${c.name}
-                        <img width="${c.logo.width}" src="${c.logo.src}" alt="${c.name}" class="logo" /></a>`;
+    `<a href="${c.url}" target="_blank" rel="external">${c.name}<span class="logo">
+                        <img width="${c.logo.width}" src="${c.logo.src}" alt="${c.name}" /></span></a>`;
 
   return `<li>
                     <p><em>${e.period}</em></p>
@@ -354,10 +363,10 @@ function sysadmin(e) {
                       <strong>${e.role}</strong> at different
                       companies (like state committee<span class="emoji"> 🏢</span>, communal enterprise<span class="emoji"> 📠</span>,
                       ${company(e.companies[0])},
-                      ${company(e.companies[1])}, ets.)
+                      ${company(e.companies[1])}, etc.)
                     </p>
                     <ul class="except-print">
-                      ${e.bullets.map((b) => `<li>${b}</li>`).join("\n                      ")}
+                      ${e.bullets.map(bullet).join("\n                      ")}
                     </ul>
                   </li>`;
 }
@@ -526,7 +535,10 @@ function platforms() {
 }
 
 function educationEntry(e) {
-  const li = e.hidden ? `<li class="hidden">` : `<li>`;
+  // `hidden` drops an entry everywhere; `exceptPrint` keeps it on the site and
+  // off the paper, which is what the 2018-19 bootcamps want.
+  const cls = e.hidden ? "hidden" : e.exceptPrint ? "except-print" : "";
+  const li = cls ? `<li class="${cls}">` : `<li>`;
   const dates = `<div>
                         <em>${e.dates}</em>
                       </div>`;

@@ -8,9 +8,8 @@
 //
 // Date ranges are stored as markup strings rather than parsed dates: the
 // ordinals are part of the typography, and a stored string keeps the diff
-// readable when a date changes. Where the source spelled an ordinal wrong
-// ("31th"), the spelling is preserved — step 1 reproduces the document as it
-// is, warts included.
+// readable when a date changes. The source spelled "31th"; that is corrected
+// now the document is being read by strangers rather than reproduced.
 
 // URL per technology, referenced by key from project stacks. Some point at
 // mirrors that now redirect (ReactTraining/react-router, reactjs/redux); they
@@ -369,7 +368,10 @@ module.exports = {
         bullets: [
           "React, Redux, Next.JS, TypeScript, server-side\n                        rendering, Jest, react testing library",
           "rewriting code from Python to TS (Next.JS)",
-          "writing tests Jest, React-test-library",
+          {
+            exceptPrint: true,
+            html: "writing tests Jest, React-test-library",
+          },
         ],
       },
       {
@@ -406,7 +408,18 @@ module.exports = {
         },
         bullets: [
           "built simple apps to assist in manufacturing process\n                        using HTML, CSS, JavaScript, PHP, mySQL",
-          `CMS Joomla, WordPress, Bitrix\n                        <span class="pig except-print"\n                          >🐷<audio preload="auto">\n                            <source\n                              src="assets/sounds/all-folks.mp3"\n                              type="audio/mpeg"\n                            /></audio\n                        ></span>\n                        and OpenCart`,
+          {
+            exceptPrint: true,
+            html: `CMS Joomla, WordPress, Bitrix
+                        <span class="pig"
+                          >🐷<audio preload="auto">
+                            <source
+                              src="assets/sounds/all-folks.mp3"
+                              type="audio/mpeg"
+                            /></audio
+                        ></span>
+                        and OpenCart`,
+          },
         ],
       },
       {
@@ -673,14 +686,16 @@ module.exports = {
       school: { name: "Matt Pocock", url: "https://www.totaltypescript.com/" },
     },
     {
+      exceptPrint: true,
       kind: "course",
-      dates: "1<sup>st</sup> May 2019 &ndash; 31<sup>th</sup> August 2019",
+      dates: "1<sup>st</sup> May 2019 &ndash; 31<sup>st</sup> August 2019",
       title: "PDFfiller js, react school",
       school: { name: "PDFfiller", url: "https://pdffiller.com.ua/" },
     },
     {
+      exceptPrint: true,
       kind: "course",
-      dates: "1<sup>st</sup> September 2018 &ndash; 31<sup>th</sup> May 2019",
+      dates: "1<sup>st</sup> September 2018 &ndash; 31<sup>st</sup> May 2019",
       title: "Kottans front-end",
       titleEmoji: "&#128640;",
       school: {
@@ -690,6 +705,7 @@ module.exports = {
       },
     },
     {
+      exceptPrint: true,
       kind: "course",
       dates: "18<sup>th</sup> December 2018 &ndash; 30<sup>th</sup> February 2019",
       title: "React for front-end Dev.",
@@ -699,6 +715,7 @@ module.exports = {
       },
     },
     {
+      exceptPrint: true,
       kind: "course",
       dates: "1<sup>st</sup> September 2018 &ndash; 26<sup>th</sup> November 2018",
       title: "Javascript + React Advanced",
@@ -722,7 +739,7 @@ module.exports = {
     {
       kind: "course",
       hidden: true,
-      dates: "1<sup>st</sup> September 2017 &ndash; 31<sup>th</sup> January 2018",
+      dates: "1<sup>st</sup> September 2017 &ndash; 31<sup>st</sup> January 2018",
       title: "Front-end",
       school: { name: "GoIt", url: "https://goit.ua" },
     },

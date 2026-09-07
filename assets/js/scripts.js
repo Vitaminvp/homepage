@@ -311,7 +311,12 @@
       return;
     }
     const clock = new Clock(new Date(document.body.dataset.experienceStart));
-    node.replaceWith(clock.el);
+    // The clock sits beside the written phrase rather than replacing it: on
+    // paper a row of flipping cards is not a number of years, so print shows
+    // the words and hides the clock. With this script off, no class is added
+    // and the words show everywhere.
+    node.classList.add("experience-print");
+    node.after(clock.el);
   }
 
   // --- mount ----------------------------------------------------------------
