@@ -270,9 +270,7 @@ module.exports = {
         role: "Front-End Developer",
         employer: {
           name: "Wix",
-          // Labelled Wix, pointing at GlobalLogic — and the entry below has
-          // the mirror-image mistake. Kept for step 1, swapped back in step 2.
-          url: "https://www.globallogic.com/ua/",
+          url: "https://www.wix.com/",
           logo: {
             src: "assets/images/wix.png",
             alt: "Wix",
@@ -294,7 +292,7 @@ module.exports = {
         role: "Front-End Developer",
         employer: {
           name: "GlobalLogic",
-          url: "https://www.wix.com/",
+          url: "https://www.globallogic.com/ua/",
           logo: {
             src: "assets/images/globallogic.png",
             alt: "globallogic",
