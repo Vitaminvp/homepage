@@ -860,13 +860,28 @@ li.bordered > ul > details > div {
   .except-print {
     display: none !important;
   }
+  /* Decorations carry no information on paper: logos, emoji, the phone flags
+     and the colour swatches. The markup names what a thing is; this decides
+     whether it prints. */
+  .logo,
+  .emoji,
+  .phone-flag,
+  .color {
+    display: none !important;
+  }
   .flip-box {
     display: none;
   }
   .page {
     padding: 0;
     box-shadow: none;
-    border-color: transparent !important;
+  }
+  /* The frame is inset 2em, but print drops the page padding, so it would sit
+     on top of the text. It was hidden by inheriting a transparent border from
+     .page; the frame now takes its colour straight from --accent, so it has to
+     be hidden outright. */
+  .page:before {
+    display: none;
   }
   .grid > .row {
     padding-top: 0;

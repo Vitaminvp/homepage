@@ -157,7 +157,6 @@ module.exports = {
       phone: "uk",
       className: "phone slide",
       textClass: "slide-text uk",
-      flagExceptPrint: true,
       relMe: {},
     },
     {
@@ -312,7 +311,7 @@ module.exports = {
         },
         spaceAfterLogo: true,
         bullets: [
-          `React, Redux, React Hooks, REST, Coffee Script\n                        <span class="except-print">☕</span>`,
+          `React, Redux, React Hooks, REST, Coffee Script\n                        <span class="emoji">☕</span>`,
           "rewriting code from coffee script to React",
         ],
       },
@@ -351,7 +350,7 @@ module.exports = {
           },
         },
         bullets: [
-          `built, tested, and deployed to Web applications\n                        <span class="except-print">🌽</span> written with\n                        ASP.Net, SQL, Leaflet and Vanilla JS`,
+          `built, tested, and deployed to Web applications\n                        <span class="emoji">🌽</span> written with\n                        ASP.Net, SQL, Leaflet and Vanilla JS`,
         ],
       },
       {
@@ -390,9 +389,9 @@ module.exports = {
           },
         ],
         bullets: [
-          `managed computers network\n                        <span class="except-print">👨‍💻</span> and servers\n                        <span class="except-print">💻</span> (DHCP, DNS, proxy,\n                        ACLs)`,
-          `managed peripheral\n                        <span class="except-print">🖨️</span> devices and\n                        equipments <span class="except-print">☎️</span>`,
-          `managed video surveillance\n                        <span class="except-print">🎥</span>`,
+          `managed computers network\n                        <span class="emoji">👨‍💻</span> and servers\n                        <span class="emoji">💻</span> (DHCP, DNS, proxy,\n                        ACLs)`,
+          `managed peripheral\n                        <span class="emoji">🖨️</span> devices and\n                        equipments <span class="emoji">☎️</span>`,
+          `managed video surveillance\n                        <span class="emoji">🎥</span>`,
         ],
       },
       { kind: "graduation", period: "20<sup>th</sup> June 2004" },
@@ -461,7 +460,7 @@ module.exports = {
         { tag: "AWS" },
         { tag: "CI/CD" },
         { tag: "🎐 SASS", className: "tag except-print" },
-        { color: "deeppink", label: "DEEPPINK", exceptPrint: true },
+        { color: "deeppink", label: "DEEPPINK" },
       ],
     },
     {

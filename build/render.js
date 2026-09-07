@@ -161,9 +161,7 @@ function contact(c) {
   const textClass = c.textClass || "slide-text";
 
   const flag = phone
-    ? `\n                          <${c.flagWrapper || "span"} class="phone-flag${
-        c.flagExceptPrint ? " except-print" : ""
-      }">${phone.flag}</${c.flagWrapper || "span"}>`
+    ? `\n                          <${c.flagWrapper || "span"} class="phone-flag">${phone.flag}</${c.flagWrapper || "span"}>`
     : "";
 
   // The source glued the span wrappers together and spaced the div ones.
@@ -242,11 +240,11 @@ function project(p, index) {
   // renumbering the others.
   const id = `project-${index + 1}`;
   const logo = p.logo
-    ? `\n                            <img alt="${p.logo.alt}" class="logo except-print" src="${p.logo.src}" height="${p.logo.height}" width="${p.logo.width}" />`
+    ? `\n                            <img alt="${p.logo.alt}" class="logo" src="${p.logo.src}" height="${p.logo.height}" width="${p.logo.width}" />`
     : "";
 
   const name = p.productUrl
-    ? `<strong><a rel="external" target="_blank" href="${p.productUrl}">${p.product} <span class="except-print">${p.productEmoji}</span></a></strong>`
+    ? `<strong><a rel="external" target="_blank" href="${p.productUrl}">${p.product} <span class="emoji">${p.productEmoji}</span></a></strong>`
     : `<strong>${p.product}${logo}</strong>`;
 
   const extra = p.bullets
@@ -318,7 +316,7 @@ function job(e) {
                     <p>
                       <strong>${e.role}</strong> at
                       <strong><a href="${e.employer.url}" rel="external" target="_blank">${e.employer.name}
-                          <img alt="${l.alt}" class="logo except-print" src="${l.src}" height="${l.height}" width="${l.width}" />${gap}</a></strong>
+                          <img alt="${l.alt}" class="logo" src="${l.src}" height="${l.height}" width="${l.width}" />${gap}</a></strong>
                     </p>
                     <ul>
                       ${e.bullets.map((b) => `<li>${b}</li>`).join("\n                      ")}
@@ -329,13 +327,13 @@ function job(e) {
 function sysadmin(e) {
   const company = (c) =>
     `<a href="${c.url}" target="_blank" rel="external">${c.name}
-                        <img width="${c.logo.width}" src="${c.logo.src}" alt="${c.name}" class="except-print" /></a>`;
+                        <img width="${c.logo.width}" src="${c.logo.src}" alt="${c.name}" class="logo" /></a>`;
 
   return `<li>
                     <p><em>${e.period}</em></p>
                     <p>
                       <strong>${e.role}</strong> at different
-                      companies (like state committee<span class="except-print"> 🏢</span>, communal enterprise<span class="except-print"> 📠</span>,
+                      companies (like state committee<span class="emoji"> 🏢</span>, communal enterprise<span class="emoji"> 📠</span>,
                       ${company(e.companies[0])},
                       ${company(e.companies[1])}, ets.)
                     </p>
@@ -442,7 +440,7 @@ function badHabits() {
 function tagItem(item) {
   if (item.badHabits) return badHabits();
   if (item.color) {
-    const cls = `color ${item.color}${item.exceptPrint ? " except-print" : ""}`;
+    const cls = `color ${item.color}`;
     return `<button data-color="${item.color}" class="${cls}">${item.label}</button>`;
   }
   if (item.link) {
@@ -472,12 +470,12 @@ function tagSection(section) {
 }
 
 const SCHOOL_NAMES = {
-  webAcademy: `<strong>Web<span class="except-print">🕸</span>
+  webAcademy: `<strong>Web<span class="emoji">🕸</span>
                             Academy</strong>`,
   kpi: `<strong>Igor Sikorsky
-                            <span class="except-print">🚁</span> Kyiv
+                            <span class="emoji">🚁</span> Kyiv
                             Polytechnic Institute
-                            <span class="except-print">👨‍🎓🎈</span></strong>`,
+                            <span class="emoji">👨‍🎓🎈</span></strong>`,
 };
 
 function schoolLink(school) {
@@ -485,7 +483,7 @@ function schoolLink(school) {
     SCHOOL_NAMES[school.name] ||
     (school.emoji
       ? `<strong>${school.name}
-                            <span class="except-print">${school.emoji}</span></strong>`
+                            <span class="emoji">${school.emoji}</span></strong>`
       : `<strong>${school.name}</strong>`);
   return `<a href="${school.url}" rel="external" target="_blank">${name}</a>`;
 }
@@ -540,7 +538,7 @@ function educationEntry(e) {
 
   const title = e.titleEmoji
     ? `<strong>${e.title}
-                          <span class="except-print">${e.titleEmoji}</span></strong>
+                          <span class="emoji">${e.titleEmoji}</span></strong>
                         at`
     : `<strong>${e.title}</strong> at`;
 
@@ -557,7 +555,7 @@ function educationEntry(e) {
 
 function education() {
   return `<section>
-                  <h3>Education <span class="except-print">🏫</span></h3>
+                  <h3>Education <span class="emoji">🏫</span></h3>
                   <ul class="timeline">
                     ${platforms()}
                     ${cv.education
@@ -570,13 +568,13 @@ function education() {
 function reports() {
   const items = cv.reports.map(
     (r) => `<a href="${r.href}" rel="external" class="report" target="_blank">
-                    <img src="${r.logo.src}" class="except-print" height="${r.logo.height}" width="${r.logo.width}" />
+                    <img src="${r.logo.src}" class="logo" height="${r.logo.height}" width="${r.logo.width}" />
                     <strong>${r.title}</strong>
                   </a>`
   );
 
   return `<section>
-                  <h3>Reports <span class="except-print">📑</span></h3>
+                  <h3>Reports <span class="emoji">📑</span></h3>
                   ${items.join("\n                  ")}
                 </section>
                 <section class="except-print">
