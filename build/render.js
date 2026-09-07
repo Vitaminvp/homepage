@@ -111,12 +111,26 @@ function head() {
 
 // ----------------------------------------------------------- lightboxes ----
 
+// Each lightbox states which anchor opens it, so the trigger and the dialog
+// are paired in one place; the education entries and the gallery milestone
+// look the pair up rather than restating it.
+const lightboxes = new Map(cv.lightboxes.map((box) => [box.id, box]));
+
+function lightboxTrigger(id, className, inner) {
+  const box = lightboxes.get(id);
+  if (!box) {
+    throw new Error(`no lightbox named ${id}`);
+  }
+  const classes = className ? ` class="${className}"` : "";
+  return `<a id="${box.trigger}" href="#${box.id}" title="${box.openTitle}"${classes}>${inner}</a>`;
+}
+
 function lightbox(box) {
   const photos = box.photos
     .map((p) => `<img src="${p.src}" alt="${p.alt}" />`)
     .join("\n          ");
   return `<dialog id="${box.id}">
-      <a href="${box.close.href}" title="${box.close.title}" class="close">Close</a>
+      <a href="#${box.trigger}" title="${box.closeTitle}" class="close">Close</a>
       <div class="photos">
         <noscript>
           ${photos}
@@ -335,14 +349,15 @@ function milestone(e) {
   if (e.kind === "spacer") return `<li></li>`;
 
   if (e.kind === "gallery-trigger") {
-    return `<li class="except-print">
-                    <a id="resume" href="#childhood" title="Show childhood photos">
+    const dots = `
                       <span class="dots">
                         <span class="dot"></span>
                         <span class="dot"></span>
                         <span class="dot"></span>
                       </span>
-                    </a>
+                    `;
+    return `<li class="except-print">
+                    ${lightboxTrigger(e.lightbox, null, dots)}
                   </li>`;
   }
 
@@ -477,7 +492,7 @@ function schoolLink(school) {
 
 function diplomaLink(d) {
   const inner = d.spaced ? `\n                          📜\n                        ` : "📜";
-  return `<a id="${d.id}" href="#${d.dialog}" title="${d.title}" class="except-print">${inner}</a>`;
+  return lightboxTrigger(d.ref, "except-print", inner);
 }
 
 function platforms() {
