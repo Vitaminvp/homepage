@@ -13,14 +13,10 @@
 // is, warts included.
 
 // URL per technology, referenced by key from project stacks. Some point at
-// mirrors that now redirect (ReactTraining/react-router, reactjs/redux,
-// mzabriskie/axios); they still name the right technology, so they stand.
+// mirrors that now redirect (ReactTraining/react-router, reactjs/redux); they
+// still name the right technology, so they stand.
 const links = {
   react: { text: "react", url: "https://github.com/facebook/react" },
-  reactHooks: {
-    text: "react hooks",
-    url: "https://reactjs.org/docs/hooks-intro.html",
-  },
   reselect: { text: "reselect", url: "https://github.com/reduxjs/reselect" },
   reactRouter: {
     text: "react-router",
@@ -30,56 +26,45 @@ const links = {
     text: "react-redux",
     url: "https://github.com/reactjs/react-redux",
   },
-  reduxPersist: {
-    text: "redux-persist",
-    url: "https://github.com/rt2zz/redux-persist",
-  },
   nextjs: { text: "Next.js", url: "https://nextjs.org/" },
   redux: { text: "redux", url: "https://github.com/reactjs/redux" },
   reduxSaga: { text: "redux-saga", url: "https://redux-saga.js.org/" },
-  styledComponents: {
-    text: "styled components",
-    url: "https://github.com/styled-components/styled-components",
-  },
   typescript: { text: "typescript", url: "https://www.typescriptlang.org/" },
   graphql: { text: "graphql", url: "https://graphql.org/" },
-  jest: { text: "jest", url: "https://jestjs.io/" },
   tailwindcss: { text: "tailwindcss", url: "https://tailwindcss.com/" },
-  axios: { text: "axios", url: "https://github.com/mzabriskie/axios" },
-  angular: { text: "angular", url: "https://github.com/angular/angular" },
-  reduxThunk: {
-    text: "redux-thunk",
-    url: "https://github.com/gaearon/redux-thunk",
+  tanstackQuery: {
+    text: "TanStack Query",
+    url: "https://tanstack.com/query/latest",
   },
-  reduxActions: {
-    text: "redux-actions",
-    url: "https://github.com/redux-utilities/redux-actions",
-  },
-  reduxDuck: {
-    text: "redux-duck",
-    url: "https://github.com/PlatziDev/redux-duck",
-  },
-  socketio: { text: "socket.io", url: "https://github.com/socketio/socket.io" },
+  zod: { text: "zod", url: "https://zod.dev/" },
+  playwright: { text: "playwright", url: "https://playwright.dev/" },
+  vitest: { text: "vitest", url: "https://vitest.dev/" },
+  storybook: { text: "storybook", url: "https://storybook.js.org/" },
+  turborepo: { text: "turborepo", url: "https://turborepo.com/" },
+  aws: { text: "AWS", url: "https://aws.amazon.com/" },
 };
 
+// The UK number is the only one shown. The Ukrainian one is kept as a fact but
+// carries `hidden` on its contact, so it reaches neither the screen nor print.
 const phones = {
   ua: { tel: "+380675070150", display: "+38 067 5070150", flag: "🇺🇦" },
   uk: { tel: "+447445569501", display: "+44 7445 569501", flag: "🇬🇧" },
-  pl: { tel: "+48786674206", display: "+48 78 66 74206", flag: "🇵🇱" },
 };
 
 module.exports = {
   identity: {
     name: "Vitalii Ovcharenko",
+    title: "Senior Frontend Engineer",
     email: "vitamin@ukr.net",
     site: "https://vitaminvp.github.io/homepage/",
     siteLabel: "https://vitaminvp.github.io/",
+    // UK recruiters filter on this before anything else, and an unstated
+    // status is read as the worse answer. Printed with the contacts.
+    rightToWork: "Requires UK visa sponsorship",
   },
 
-  // What the site is called when installed to a home screen. The generated
-  // manifest kept the name the hand-written one had; "App" is almost certainly
-  // not what it should say, but renaming it is a content decision.
-  manifestName: "App",
+  // What the site is called when installed to a home screen.
+  manifestName: "Vitalii Ovcharenko — CV",
 
   meta: {
     title: "Vitalii Ovcharenko &mdash; Résumé",
@@ -88,7 +73,7 @@ module.exports = {
     // {{experience}} is filled in by the renderer from dates.experienceStart,
     // so the years are counted in one place and never drift from the intro.
     ogDescription:
-      "&mdash; Hello! I’m a skilled frontend developer with {{experience}} of experience in application development. I strive to craft precise, responsive, fast, easy-to-use environments with both strong purpose and great looks.",
+      "&mdash; Senior frontend engineer, UK-based, with {{experience}} in production React &mdash; nearly four of them at Altrata, a B2B data-intelligence business serving 3,300+ enterprise clients. Second most active engineer of ~40 on a 25,000-commit Turborepo monorepo of 16 Next.js apps and 57 shared packages.",
     themeColor: "#ffffff",
     tileColor: "#ffffff",
     accent: "midnightblue",
@@ -118,6 +103,9 @@ module.exports = {
       href: "https://www.facebook.com/vitaliy.ovcharenko.98",
       className: "facebook slide",
       text: "facebook.com/vitaliy.ovcharenko.98",
+      // Stays on the site, off the printed CV: a personal profile is not
+      // something a UK hiring manager should be reading.
+      exceptPrint: true,
       relMe: { type: "text/html" },
     },
     // href and link text both come from identity.email.
@@ -135,21 +123,13 @@ module.exports = {
       text: "linkedin.com/in/vitaliiovcharenko",
     },
     {
-      icon: "skype",
-      href: "skype:vitaminvp",
-      className: "skype slide",
-      text: "vitaminvp",
-      wrapper: "div",
-      relMe: {},
-    },
-    {
       icon: "phone",
       phone: "ua",
       className: "phone slide",
       wrapper: "div",
       flagWrapper: "div",
       textClass: "slide-text ua",
-      exceptPrint: true,
+      hidden: true,
       relMe: {},
     },
     {
@@ -159,20 +139,31 @@ module.exports = {
       textClass: "slide-text uk",
       relMe: {},
     },
-    {
-      icon: "phone",
-      phone: "pl",
-      className: "phone slide",
-      textClass: "slide-text pl",
-      exceptPrint: true,
-    },
     { icon: "website", kind: "website", className: "website print-only" },
   ],
 
   intro: {
-    // The visible span is replaced at runtime by the flip clock counting from
-    // dates.experienceStart; its text only shows with JS off. Both it and
-    // meta.ogDescription take their years from that same date.
+    // The personal statement. A UK CV is read top-down in about eight seconds
+    // and this is what gets read, so unlike the old intro it prints.
+    // {{experience}} is filled in by the renderer from dates.experienceStart,
+    // so the years are counted in one place and never drift; the visible span
+    // is replaced at runtime by the flip clock, and its text only shows with
+    // JS off.
+    statement: `Senior frontend engineer, UK-based, with {{experience}} in
+                      production React &mdash; nearly four of them at
+                      <strong>Altrata</strong>, a B2B data-intelligence business
+                      serving 3,300+ enterprise clients. Second most active
+                      engineer of ~40 on a 25,000-commit Turborepo monorepo of
+                      16 Next.js apps and 57 shared packages, where I own a
+                      published graph-visualisation package outright and wrote
+                      the data-layer convention the codebase now follows. I set
+                      front-end architecture and standards, work the full width
+                      of a feature &mdash; GraphQL schema, typed queries,
+                      accessible React UI, Playwright and visual-regression
+                      coverage &mdash; and introduced the agent-instruction
+                      architecture the team codes against.`,
+    // Kept on screen only: it is the character of the site, but on a CV it
+    // blurs the positioning.
     footnote: {
       href: "https://css-tricks.com/the-great-divide/",
       text: "The Great Divide",
@@ -181,39 +172,86 @@ module.exports = {
 
   experience: {
     recent: {
-      period: "01<sup>st</sup> December 2022 – present",
-      role: "Front-End Developer",
-      employer: { name: "Euromoney", url: "https://www.euromoneyplc.com/" },
+      period: "2022 &ndash; present",
+      role: "Senior Frontend Engineer",
+      // Euromoney People Intelligence rebranded as Altrata in 2022, and the
+      // parent renamed itself Delinian. Naming both is what lets a recruiter
+      // connect this line to the company they have heard of.
+      employer: { name: "Altrata", url: "https://altrata.com/" },
+      employerNote:
+        "formerly Euromoney Institutional Investor",
       introLetter: { href: "./", text: "don't have one yet " },
       projects: [
         {
-          role: "Front-End Developer",
-          product: "Euromoney",
+          // The engagement above already states this role and employer.
+          sameAsEngagement: true,
+          role: "Senior Frontend Engineer",
+          product: "Altrata",
           logo: {
             src: "assets/images/euromoney.png",
-            alt: "Euromoney",
+            alt: "Altrata",
             height: 16,
             width: 30,
           },
           summary:
-            "React, Next.js, React Hooks, TypeScript, tailwindcss, unit/e2e testing",
+            "TypeScript, React, Next.js App Router, GraphQL, Tailwind, Playwright, WCAG 2.1 AA",
           stack: [
-            "react",
-            "reactHooks",
-            "reselect",
-            "reactRouter",
-            "reactRedux",
-            "reduxPersist",
-            "nextjs",
-            "redux",
-            "reduxSaga",
-            "styledComponents",
             "typescript",
+            "react",
+            "nextjs",
             "graphql",
-            "jest",
+            "tanstackQuery",
+            "zod",
             "tailwindcss",
+            "storybook",
+            "vitest",
+            "playwright",
+            "turborepo",
+            "aws",
           ],
-          bullets: ["AWS, CI/CD, Chromatic, Storybook"],
+          bullets: [
+            `Own <strong>pathfinder-charts</strong>, a published
+                          graph-visualisation package of ~900 TypeScript files
+                          &mdash; roughly 70% of its commit history is mine.
+                          Built the SVG chart, table and widget layer for
+                          people-and-organisation relationship graphs, up to
+                          third-degree paths, across the web UI and generated
+                          reports. Also built the product's advanced search.`,
+            `<strong>2,757 commits &mdash; ~11% of a 25,000-commit
+                          monorepo, second most active of ~40 engineers.</strong>`,
+            `Set front-end architecture: authored the repo-wide
+                          <strong>fetch-seam</strong> data-layer convention and
+                          its documentation, created two shared workspace
+                          packages, and am the third-largest contributor to the
+                          internal design system.`,
+            `Accessibility to <strong>WCAG 2.1 AA</strong> &mdash; keyboard
+                          navigation, focus management and focus restoration
+                          across search and profile flows, enforced by axe-core
+                          in CI.`,
+            `Test infrastructure: Vitest unit suites, Playwright e2e against
+                          both mocked and real APIs, Chromatic visual baselines,
+                          cross-browser on BrowserStack.`,
+            `Led framework modernisation &mdash; Tailwind 4, Vite, Vitest and
+                          Storybook majors &mdash; plus GraphQL schema V2
+                          migrations, and extended CI with path-based test
+                          selection.`,
+            `Introduced the <strong>AGENTS.md</strong> working principles the
+                          team codes against and the audit script that keeps
+                          per-workspace agent docs in sync; ship production
+                          pull requests through <strong>Claude Code</strong>.
+                          My own monthly commit throughput went from ~50 to
+                          ~123 in the three months that followed.`,
+            `Prototyped <em>Explain this connection</em> on
+                          <strong>Vercel AI SDK v6</strong> &mdash; a streaming
+                          route handler with a Zod-typed structured response,
+                          feature-flagged, unit-tested, and degrading to a
+                          canned stream without a gateway key so e2e stays
+                          deterministic. Wrote the technical evaluation of three
+                          candidate LLM features, including natural
+                          language&nbsp;&rarr;&nbsp;search-filter mapping.`,
+            `Mentor and code reviewer throughout, for up to five engineers
+                          at a time.`,
+          ],
         },
         {
           role: "Mentor",
@@ -222,18 +260,12 @@ module.exports = {
           productEmoji: "😺",
           summary: "diversity and new frontend trends",
           stack: [
-            "axios",
             "react",
-            "angular",
-            "reactRedux",
             "reactRouter",
+            "reactRedux",
             "redux",
             "reduxSaga",
-            "reduxThunk",
             "reselect",
-            "reduxActions",
-            "reduxDuck",
-            "socketio",
           ],
           bullets: [],
         },
@@ -251,10 +283,15 @@ module.exports = {
 
     // The "Back then" timeline. `kind` says which shape renders: most are
     // jobs, the tail is a handful of one-off milestones.
+    //
+    // Job periods carry the year only. The months were what made the ordinary
+    // spaces between one job and the next read as gaps needing an explanation;
+    // the milestones below keep their full dates, since they are dates rather
+    // than spans.
     past: [
       {
         kind: "job",
-        period: "November 2021 &ndash; January 2022",
+        period: "2021 &ndash; 2022",
         role: "Front-End Developer",
         employer: {
           name: "Wix",
@@ -276,7 +313,7 @@ module.exports = {
       },
       {
         kind: "job",
-        period: "February 2021 &ndash; October 2021",
+        period: "2021",
         role: "Front-End Developer",
         employer: {
           name: "GlobalLogic",
@@ -297,7 +334,7 @@ module.exports = {
       },
       {
         kind: "job",
-        period: "November 2019 &ndash; January 2021",
+        period: "2019 &ndash; 2021",
         role: "Front-End Developer",
         employer: {
           name: "PDFFiller",
@@ -317,7 +354,7 @@ module.exports = {
       },
       {
         kind: "job",
-        period: "March 2019 &ndash; August 2019",
+        period: "2019",
         role: "Front-End Developer",
         employer: {
           name: "LiveStories",
@@ -330,14 +367,14 @@ module.exports = {
           },
         },
         bullets: [
-          "React, Redux, Next.JS, TypeScript, CSS(next-css),\n                        server-side rendering, Jest, Enzyme, react testing\n                        library",
+          "React, Redux, Next.JS, TypeScript, server-side\n                        rendering, Jest, react testing library",
           "rewriting code from Python to TS (Next.JS)",
           "writing tests Jest, React-test-library",
         ],
       },
       {
         kind: "job",
-        period: "November 2018 &ndash; February 2019",
+        period: "2018 &ndash; 2019",
         role: "Front-End Developer",
         employer: {
           name: "AgriChain",
@@ -355,7 +392,7 @@ module.exports = {
       },
       {
         kind: "job",
-        period: "February 2018 &ndash; October 2018",
+        period: "2018",
         role: "Web developer",
         employer: {
           name: "Softcom",
@@ -374,7 +411,7 @@ module.exports = {
       },
       {
         kind: "sysadmin",
-        period: "February 2004 &ndash; December 2017",
+        period: "2004 &ndash; 2017",
         role: "System administrator",
         companies: [
           {
@@ -438,29 +475,62 @@ module.exports = {
   // whitespace before the item — the source ran some tags together and spaced
   // others, and that spacing renders.
   tagSections: [
+    // Four printed sections rather than one flat run of chips: a UK recruiter
+    // scans for the group that matches the role, and "REDUX / THUNK / SAGA"
+    // sitting next to "TYPESCRIPT" told them nothing about which is current.
     {
-      title: "Skills",
+      title: "Core",
       items: [
-        { tag: "REACT" },
-        { tag: "HOOKS" },
-        { tag: "SSR" },
-        { tag: "REDUX" },
-        { tag: "THUNK" },
-        { tag: "GraphQL" },
-        { tag: "MobX" },
-        { tag: "SAGA" },
         { tag: "TYPESCRIPT" },
-        { tag: "UNIT/E2E TESTING" },
-        { tag: "Jest/Enzyme/Puppeteer" },
-        { tag: "HTML5/CSS3" },
-        { tag: "Webpack/Gulp/Grunt" },
-        { tag: "Docker" },
+        { tag: "REACT" },
+        { tag: "Next.js (App Router, RSC)", className: "nowrap tag" },
         { tag: "NodeJS" },
-        { tag: "Git" },
-        { tag: "AWS" },
-        { tag: "CI/CD" },
+        { tag: "HTML5/CSS3" },
+        { tag: "Tailwind CSS", className: "nowrap tag" },
         { tag: "🎐 SASS", className: "tag except-print" },
+      ],
+    },
+    {
+      title: "Data &amp; state",
+      items: [
+        { tag: "TanStack Query", className: "nowrap tag" },
+        { tag: "React Hook Form", className: "nowrap tag" },
+        { tag: "Zod" },
+        { tag: "nuqs" },
+        { tag: "GraphQL" },
+        { tag: "REST" },
         { color: "deeppink", label: "DEEPPINK" },
+      ],
+    },
+    {
+      title: "Quality",
+      items: [
+        { tag: "Vitest" },
+        { tag: "Playwright" },
+        { tag: "Testing Library", className: "nowrap tag" },
+        { tag: "MSW" },
+        { tag: "Storybook" },
+        { tag: "Chromatic" },
+        { tag: "WCAG 2.1 AA", className: "nowrap tag" },
+        { tag: "Core Web Vitals", className: "nowrap tag" },
+      ],
+    },
+    {
+      title: "Platform &amp; AI",
+      items: [
+        { tag: "Turborepo" },
+        { tag: "pnpm" },
+        { tag: "AWS (CDK, Cognito)", className: "nowrap tag" },
+        { tag: "Vercel" },
+        { tag: "CI/CD" },
+        { tag: "LaunchDarkly" },
+        { tag: "Git" },
+        { tag: "Claude Code", className: "nowrap tag" },
+        { tag: "AGENTS.md / context engineering", className: "nowrap tag" },
+        { tag: "MCP" },
+        { tag: "GitHub Copilot", className: "nowrap tag" },
+        { tag: "Cursor" },
+        { tag: "Vercel AI SDK", className: "nowrap tag" },
       ],
     },
     {
@@ -539,27 +609,69 @@ module.exports = {
     "royalblue",
   ],
 
+  // The gamified beginner sites (SoloLearn, Enki, Codecombat, Codechef,
+  // Skillotron) were dropped: at this level they read as a junior profile.
   learningPlatforms: [
     { name: "Front-End Front", url: "https://frontendfront.com/" },
     { name: "CodeWars", url: "https://www.codewars.com" },
     { name: "egghead.io", url: "https://egghead.io/" },
     { name: "Udemy", url: "https://www.udemy.com" },
-    { name: "SoloLearn", url: "https://www.sololearn.com/" },
-    { name: "Enki", url: "https://www.enki.com/" },
     {
       name: "Codecademy",
       url: "https://www.codecademy.com/learn/introduction-to-javascript",
     },
     { name: "Exercism", url: "https://exercism.io/" },
     { name: "Codingame", url: "https://www.codingame.com/" },
-    { name: "Codecombat", url: "https://codecombat.com/" },
-    { name: "Codechef", url: "https://www.codechef.com/" },
     { name: "Hackerrank", url: "https://www.hackerrank.com/" },
-    { name: "Skillotron", url: "https://skillotron.com/" },
     { name: "Leetcode", url: "https://leetcode.com/" },
   ],
 
+  // Newest first. The six workshops taken during the Altrata years carry the
+  // year only: the Total TypeScript date is the invoice, the AI Coding one is
+  // when the material was worked through, the rest are approximate.
   education: [
+    {
+      kind: "course",
+      dates: "2026",
+      title: "AI Coding Crash Course",
+      school: {
+        name: "AI Hero",
+        url: "https://www.aihero.dev/workshops/ai-coding-crash-course",
+      },
+    },
+    {
+      kind: "course",
+      dates: "2026",
+      title: "AI SDK v6 Crash Course",
+      school: {
+        name: "AI Hero",
+        url: "https://www.aihero.dev/workshops/ai-sdk-v6-crash-course",
+      },
+    },
+    {
+      kind: "course",
+      dates: "2025",
+      title: "Epic Web Dev",
+      school: { name: "Kent C. Dodds", url: "https://www.epicweb.dev/" },
+    },
+    {
+      kind: "course",
+      dates: "2024",
+      title: "Epic React",
+      school: { name: "Kent C. Dodds", url: "https://www.epicreact.dev/" },
+    },
+    {
+      kind: "course",
+      dates: "2023",
+      title: "CSS for JavaScript Developers",
+      school: { name: "Josh W. Comeau", url: "https://css-for-js.dev/" },
+    },
+    {
+      kind: "course",
+      dates: "2023",
+      title: "Total TypeScript",
+      school: { name: "Matt Pocock", url: "https://www.totaltypescript.com/" },
+    },
     {
       kind: "course",
       dates: "1<sup>st</sup> May 2019 &ndash; 31<sup>th</sup> August 2019",
@@ -631,6 +743,20 @@ module.exports = {
   ],
 
   reports: [
+    // No href and no logo: an internal talk has neither a public recording
+    // nor a logo to hang on it, so the renderer treats both as optional.
+    {
+      title: "Working with Claude Code",
+      note: "internal, ~15 engineers, Altrata, July 2026",
+    },
+    {
+      title: "Epic React",
+      note: "internal, Altrata, 2025",
+    },
+    {
+      title: "Functional-Light JavaScript",
+      note: "internal, Altrata, 2024",
+    },
     {
       href: "https://youtu.be/Ja13H4j5iuY",
       title: "React Patterns",
