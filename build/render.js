@@ -215,10 +215,12 @@ function label(key) {
   return `<a rel="external" class="label" href="${url}" target="_blank">${text}</a>`;
 }
 
-function project(p, index, total) {
-  // Checkbox ids run backwards through the list, the way the hand-written
-  // markup numbered them: the last project is project-1.
-  const id = `project-${total - index}`;
+function project(p, index) {
+  // The id only ever pairs with the label's `for`, and both are generated
+  // here, so numbering follows document order. The hand-written markup
+  // numbered them backwards, which is why adding a project used to mean
+  // renumbering the others.
+  const id = `project-${index + 1}`;
   const logo = p.logo
     ? `\n                            <img alt="${p.logo.alt}" class="logo except-print" src="${p.logo.src}" height="${p.logo.height}" width="${p.logo.width}" />`
     : "";
@@ -251,7 +253,7 @@ function project(p, index, total) {
 function recentExperience() {
   const r = cv.experience.recent;
   const projects = r.projects
-    .map((p, i) => project(p, i, r.projects.length))
+    .map(project)
     .join("\n                      ");
 
   const other = `<li class="details">
