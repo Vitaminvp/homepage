@@ -830,6 +830,11 @@ li.bordered > ul > details > div {
 }
 
 /* Print */
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
 @media print {
   #logo {
     padding: 0 1.5rem;
@@ -848,6 +853,67 @@ li.bordered > ul > details > div {
   .phone-flag,
   .color {
     display: none !important;
+  }
+  /* The years are a sentence on paper, not a row of flipping cards. */
+  .experience-print {
+    display: inline !important;
+  }
+  .flip-clock {
+    display: none !important;
+  }
+  /* A photograph belongs to the site, not to a UK CV. Hiding the object
+     leaves an empty column, so the whole cell goes. */
+  #logo {
+    display: none !important;
+  }
+  /* A disclosure widget cannot be operated on paper: the summary line is the
+     content, the checkbox is the mechanism. */
+  .details > input,
+  li.details > input {
+    display: none !important;
+  }
+  li.details {
+    margin-left: -1.5em;
+  }
+  /* Numbering two engagements in black badges reads as a UI artefact. */
+  ol.inverted > li:before {
+    display: none !important;
+  }
+  /* The grey panel marks the current engagement on screen. On paper it is the
+     one box tall enough to cross a page boundary, and a filled box does not
+     fragment: keeping it pushed the whole engagement to the next sheet and
+     cost a third page. Without it the document breaks where it should. */
+  li.highlighted {
+    background: none;
+    padding: 0;
+  }
+  /* Vertical rhythm, tightened. The screen can afford to breathe; paper is
+     charged by the page, and the document sat a few per cent over two. Type
+     size and line height are left alone — a cramped CV reads worse than a
+     long one. */
+  .grid > .row > .column,
+  section {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  section h3 {
+    margin-bottom: 0.5rem;
+  }
+  /* The screen centres the article in the viewport with generous margins.
+     On paper the sheet already has margins, and these add 71px of nothing. */
+  article {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .timeline:not(:last-child) {
+    margin-bottom: 0.5em;
+  }
+  .timeline > li:not(:last-child) {
+    margin-bottom: 0.4em;
+  }
+  ul.timeline > li {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
   }
   .flip-box {
     display: none;
@@ -980,10 +1046,12 @@ button.audio svg {
 #resume .dots .dot:not(:last-child) {
   margin-right: 0.2142857em;
 }
-a.report,
-span.report {
+a.report {
   display: flex;
   align-items: center;
+}
+span.report {
+  display: block;
 }
 a.report img {
     margin-right: 5px;
@@ -1122,6 +1190,10 @@ footer {
   z-index: 1;
 }
 .print-only {
+  display: none;
+}
+/* Added by scripts.js once the clock is mounted; absent when it is not. */
+.experience-print {
   display: none;
 }
 @media only screen and (max-width: 767px) {
