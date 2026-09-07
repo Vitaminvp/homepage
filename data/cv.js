@@ -91,7 +91,7 @@ module.exports = {
       "&mdash; Hello! I’m a skilled frontend developer with {{experience}} of experience in application development. I strive to craft precise, responsive, fast, easy-to-use environments with both strong purpose and great looks.",
     themeColor: "#ffffff",
     tileColor: "#ffffff",
-    borderColor: "midnightblue",
+    accent: "midnightblue",
   },
 
   // Consumed by runtime JS through data attributes on <body>, not by the

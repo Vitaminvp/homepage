@@ -29,6 +29,15 @@ h1,
 h2,
 h3,
 h4,
+h5,
+h6 {
+  color: var(--accent);
+}
+
+h1,
+h2,
+h3,
+h4,
 h5 {
   line-height: 1.28571429em;
   margin: 0 0 1rem 0;
@@ -142,7 +151,7 @@ ol.inverted > li:before {
   margin-top: calc(0.4285rem / 2);
 }
 a {
-  color: blue;
+  color: var(--accent);
   background-color: transparent;
   text-decoration: none;
 }
@@ -265,15 +274,12 @@ article {
 /* Page */
 .page {
   position: relative;
-  padding: 3em;
+  padding: 4.5em;
   background: white;
   box-shadow: 0 10px 100px 0 rgba(34, 36, 38, 0.1);
   transition: box-shadow 0.2s linear;
 }
-.page[style^="border-color"] {
-  padding: 4.5em;
-}
-.page[style^="border-color"]:before {
+.page:before {
   content: " ";
   display: block;
   position: absolute;
@@ -281,7 +287,7 @@ article {
   top: 2em;
   right: 2em;
   bottom: 2em;
-  border-color: inherit;
+  border-color: var(--accent);
   border-width: 1em;
   border-style: solid;
   pointer-events: none;
@@ -293,11 +299,10 @@ article {
   }
 }
 @media only screen and (max-width: 767px) {
-  .page,
-  .page[style^="border-color"] {
+  .page {
     padding: 0;
   }
-  .page[style^="border-color"]:before {
+  .page:before {
     display: none;
   }
 }
@@ -522,7 +527,7 @@ article {
 
 /* Divider */
 .divider {
-  border-top: 1px solid rgba(222, 222, 222, 1);
+  border-top: 1px solid var(--accent);
 }
 .divider.fat {
   border-top: 0.3571428571428571em solid rgba(10, 10, 10, 1);
@@ -858,8 +863,7 @@ li.bordered > ul > details > div {
   .flip-box {
     display: none;
   }
-  .page,
-  .page[style] {
+  .page {
     padding: 0;
     box-shadow: none;
     border-color: transparent !important;
@@ -1205,6 +1209,7 @@ footer {
   margin: 0 3px;
 }
 .flip-clock__slot {
+  color: var(--accent);
   position: absolute;
   font-size: 0.65vw;
   line-height: 1;
@@ -1222,12 +1227,12 @@ footer {
 }
 
 .card__back {
-  --dynamic-background: #222;
+  --dynamic-background: var(--accent);
 }
 
 .card__top,
 .card__bottom {
-  background-color: #222;
+  background-color: var(--accent);
 }
 
 .card__top,
@@ -1255,7 +1260,7 @@ footer {
   top: 50%;
   left: 0;
   border-top: solid 1px #000;
-  background: #393939;
+  background: var(--accent);
   border-radius: 0 0 0.15em 0.15em;
   pointer-events: none;
   overflow: hidden;

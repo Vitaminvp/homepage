@@ -30,13 +30,19 @@ function yearsSince(iso) {
 
 const experiencePhrase = `more than ${yearsSince(cv.dates.experienceStart)} years`;
 
-// Phone numbers reach CSS through custom properties: base.css reveals them on
-// hover with `content`, and this keeps that text from being a second copy.
-// The separating space stays in the stylesheet — data holds the number.
-function phoneProperties() {
-  const declarations = Object.entries(cv.phones)
-    .map(([key, phone]) => `      --phone-${key}: "${phone.display}";`)
-    .join("\n");
+// The custom properties the stylesheet reads. --accent is the theme colour,
+// which base.css applies to headings, links, the page frame, the dividers and
+// the flip clock; clicking a swatch sets this one property. The phone numbers
+// are here because base.css reveals them on hover with `content`, and that
+// text would otherwise be a second copy of the number. The separating space
+// stays in the stylesheet — data holds the number.
+function rootProperties() {
+  const declarations = [
+    `      --accent: ${cv.meta.accent};`,
+    ...Object.entries(cv.phones).map(
+      ([key, phone]) => `      --phone-${key}: "${phone.display}";`
+    ),
+  ].join("\n");
   return `<style>
     :root {
 ${declarations}
@@ -99,7 +105,7 @@ function head() {
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     ${relMeLinks()}
     <link rel="stylesheet" href="./assets/styles/base.css" />
-    ${phoneProperties()}
+    ${rootProperties()}
   </head>`;
 }
 
@@ -347,7 +353,7 @@ function milestone(e) {
                     </p>
                     <p>
                       <strong>Graduated 🎓 University 🏛
-                        <button id="red" class="color red">RED</button>
+                        <button data-color="red" class="color red">RED</button>
                         📕</strong>
                     </p>
                   </li>`;
@@ -422,7 +428,7 @@ function tagItem(item) {
   if (item.badHabits) return badHabits();
   if (item.color) {
     const cls = `color ${item.color}${item.exceptPrint ? " except-print" : ""}`;
-    return `<button id="${item.color}" class="${cls}">${item.label}</button>`;
+    return `<button data-color="${item.color}" class="${cls}">${item.label}</button>`;
   }
   if (item.link) {
     return `<a href="${item.link.href}" rel="external" target="_blank">${item.link.text}</a>`;
@@ -576,7 +582,7 @@ function document() {
     ${cv.lightboxes.map(lightbox).join("\n    ")}
     <main>
       <article>
-        <div class="page" style="border-color: ${cv.meta.borderColor}">
+        <div class="page">
           <div class="stackable grid">
             ${header()}
             <div class="row">
