@@ -99,87 +99,42 @@ function replaceNoscript(noscript) {
     });
   parent.removeChild(noscript);
 }
-function callFuncOnCollection(collection, func) {
-  Array.prototype.slice.call(collection).map(function(item) {
-    func(item);
-  });
+// A lightbox is an <a href="#some-dialog"> pointing at a <dialog> whose photos
+// wait inside <noscript> until they are wanted. That relationship is already
+// written in the markup, so this reads it from there rather than restating
+// each dialog id, trigger id and hash in a block of its own. Adding a gallery
+// is now markup only.
+function dialogFor(hash) {
+  if (!hash || hash.length < 2) {
+    return null;
+  }
+  const target = document.querySelector(hash);
+  return target && target.tagName === "DIALOG" ? target : null;
 }
-const childhoodPhotos = document
-  .getElementById("childhood")
-  .getElementsByClassName("photos")[0];
-document.getElementById("resume").addEventListener("click", function() {
-  callFuncOnCollection(
-    childhoodPhotos.getElementsByTagName("NOSCRIPT"),
-    replaceNoscript
-  );
+
+function revealPhotos(dialog) {
+  const photos = dialog.querySelector(".photos");
+  if (!photos) {
+    return;
+  }
+  Array.prototype.slice
+    .call(photos.getElementsByTagName("NOSCRIPT"))
+    .forEach(replaceNoscript);
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(function(trigger) {
+  const dialog = dialogFor(trigger.getAttribute("href"));
+  if (dialog) {
+    trigger.addEventListener("click", function() {
+      revealPhotos(dialog);
+    });
+  }
 });
-if (window.location.hash === "#childhood") {
-  callFuncOnCollection(
-    childhoodPhotos.getElementsByTagName("NOSCRIPT"),
-    replaceNoscript
-  );
-}
-const diplomaKPI = document
-  .getElementById("diploma-kpi")
-  .getElementsByClassName("photos")[0];
-document
-  .getElementById("diploma-university")
-  .addEventListener("click", function() {
-    callFuncOnCollection(
-      diplomaKPI.getElementsByTagName("NOSCRIPT"),
-      replaceNoscript
-    );
-  });
-if (window.location.hash === "#diploma-kpi") {
-  callFuncOnCollection(
-    diplomaKPI.getElementsByTagName("NOSCRIPT"),
-    replaceNoscript
-  );
-}
-const diplomaEnglish = document
-  .getElementById("diploma-english")
-  .getElementsByClassName("photos")[0];
-document.getElementById("diploma-eng").addEventListener("click", function() {
-  callFuncOnCollection(
-    diplomaEnglish.getElementsByTagName("NOSCRIPT"),
-    replaceNoscript
-  );
-});
-if (window.location.hash === "#diploma-english") {
-  callFuncOnCollection(
-    diplomaEnglish.getElementsByTagName("NOSCRIPT"),
-    replaceNoscript
-  );
-}
-const diplomaEasyCode = document
-  .getElementById("diploma-EasyCode")
-  .getElementsByClassName("photos")[0];
-document.getElementById("diploma-EC").addEventListener("click", function() {
-  callFuncOnCollection(
-    diplomaEasyCode.getElementsByTagName("NOSCRIPT"),
-    replaceNoscript
-  );
-});
-if (window.location.hash === "#diploma-EasyCode") {
-  callFuncOnCollection(
-    diplomaEasyCode.getElementsByTagName("NOSCRIPT"),
-    replaceNoscript
-  );
-}
-const diplomaWebAcademy = document
-  .getElementById("diploma-WebAcademy")
-  .getElementsByClassName("photos")[0];
-document.getElementById("diploma-WA").addEventListener("click", function() {
-  callFuncOnCollection(
-    diplomaWebAcademy.getElementsByTagName("NOSCRIPT"),
-    replaceNoscript
-  );
-});
-if (window.location.hash === "#diploma-WebAcademy") {
-  callFuncOnCollection(
-    diplomaWebAcademy.getElementsByTagName("NOSCRIPT"),
-    replaceNoscript
-  );
+
+// Landing on a gallery's hash opens it without a click, so fill it too.
+const openedDialog = dialogFor(window.location.hash);
+if (openedDialog) {
+  revealPhotos(openedDialog);
 }
 
 
