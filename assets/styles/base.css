@@ -866,7 +866,13 @@ li.bordered > ul > details > div {
   .page {
     padding: 0;
     box-shadow: none;
-    border-color: transparent !important;
+  }
+  /* The frame is inset 2em, but print drops the page padding, so it would sit
+     on top of the text. It was hidden by inheriting a transparent border from
+     .page; the frame now takes its colour straight from --accent, so it has to
+     be hidden outright. */
+  .page:before {
+    display: none;
   }
   .grid > .row {
     padding-top: 0;
