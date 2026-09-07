@@ -30,18 +30,31 @@ function yearsSince(iso) {
 
 const experiencePhrase = `more than ${yearsSince(cv.dates.experienceStart)} years`;
 
+// The statement carries the years in the same {{experience}} placeholder
+// og:description uses. Here it becomes the span scripts.js swaps for the flip
+// clock; with JS off the written phrase is what shows.
+const statement = cv.intro.statement.replace(
+  "{{experience}}",
+  `<span id="experience">${experiencePhrase} </span>`
+);
+
 // The custom properties the stylesheet reads. --accent is the theme colour,
 // which base.css applies to headings, links, the page frame, the dividers and
 // the flip clock; clicking a swatch sets this one property. The phone numbers
 // are here because base.css reveals them on hover with `content`, and that
 // text would otherwise be a second copy of the number. The separating space
 // stays in the stylesheet — data holds the number.
+// Only the phones of contacts that actually render: a hidden contact must not
+// leave its number behind in the stylesheet.
+const visibleContacts = cv.contacts.filter((c) => !c.hidden);
+
 function rootProperties() {
+  const shown = new Set(visibleContacts.map((c) => c.phone).filter(Boolean));
   const declarations = [
     `      --accent: ${cv.meta.accent};`,
-    ...Object.entries(cv.phones).map(
-      ([key, phone]) => `      --phone-${key}: "${phone.display}";`
-    ),
+    ...Object.entries(cv.phones)
+      .filter(([key]) => shown.has(key))
+      .map(([key, phone]) => `      --phone-${key}: "${phone.display}";`),
   ].join("\n");
   return `<style>
     :root {
@@ -66,7 +79,7 @@ function iconLinks() {
 }
 
 function relMeLinks() {
-  return cv.contacts
+  return visibleContacts
     .filter((c) => c.relMe)
     .map((c) => {
       const href =
@@ -189,8 +202,9 @@ function header() {
                 <div class="stackable grid">
                   <div class="sixteen wide column">
                     <h1 class="name">${cv.identity.name}</h1>
+                    <p class="role">${cv.identity.title} &middot; ${cv.identity.rightToWork}</p>
                     <ul class="contacts">
-                      ${cv.contacts.map(contact).join("\n                      ")}
+                      ${visibleContacts.map(contact).join("\n                      ")}
                     </ul>
                   </div>
                   <div class="sixteen wide mobile only column">
@@ -206,14 +220,12 @@ function header() {
                       </div>
                     </div>
                   </div>
-                  <div class="sixteen wide column except-print">
+                  <div class="sixteen wide column">
                     <p>
-                      &mdash; Hello! I’m a frontend developer<strong style="margin-left: 0.0625em">*</strong>
-                      with <span id="experience">${experiencePhrase} </span> of
-                      application development. I strive to craft precise,
-                      responsive, fast, easy-to-use environments with both
-                      strong purpose and great looks.
+                      ${statement}<strong style="margin-left: 0.0625em" class="except-print">*</strong>
                     </p>
+                  </div>
+                  <div class="sixteen wide column except-print">
                     <p style="opacity: 0.75">
                       <strong style="margin-right: 0.0625em">*</strong>I feel
                       like it's 40-60 by
@@ -251,11 +263,18 @@ function project(p, index) {
     .map((b) => `\n                          <li>${b}</li>`)
     .join("");
 
-  return `<li>
+  // The first project of an engagement repeats the role and employer the
+  // engagement itself already states. `sameAsEngagement` drops that line so
+  // the printed CV does not say it twice in a row.
+  const heading = p.sameAsEngagement
+    ? ""
+    : `
                         <p>
                           <strong>${p.role}</strong> at
                           ${name}
-                        </p>
+                        </p>`;
+
+  return `<li>${heading}
                         <ul>
                           <li class="details">
                             <input type="checkbox" id="${id}" />
@@ -293,7 +312,7 @@ function recentExperience() {
                     </p>
                     <p>
                       <strong>${r.role}</strong> at
-                      <strong><a href="${r.employer.url}" rel="external" target="_blank">${r.employer.name}</a></strong><br /><sup style="display: none"><em>(here's my introduction letter
+                      <strong><a href="${r.employer.url}" rel="external" target="_blank">${r.employer.name}</a></strong>${r.employerNote ? ` <em>(${r.employerNote})</em>` : ""}<br /><sup style="display: none"><em>(here's my introduction letter
                           <a href="${r.introLetter.href}" rel="external"><strong>${r.introLetter.text}</strong> </a>)
                           <span class="pig">🐷<audio preload="auto">
                               <source src="${cv.sounds.pig}" type="audio/mpeg" /></audio></span> </em></sup>
@@ -566,12 +585,22 @@ function education() {
 }
 
 function reports() {
-  const items = cv.reports.map(
-    (r) => `<a href="${r.href}" rel="external" class="report" target="_blank">
-                    <img src="${r.logo.src}" class="logo" height="${r.logo.height}" width="${r.logo.width}" />
-                    <strong>${r.title}</strong>
+  // A talk with no public recording has neither an href nor a logo, so it
+  // renders as a span rather than a link.
+  const items = cv.reports.map((r) => {
+    const logo = r.logo
+      ? `\n                    <img src="${r.logo.src}" class="logo" height="${r.logo.height}" width="${r.logo.width}" />`
+      : "";
+    const note = r.note ? ` <em>(${r.note})</em>` : "";
+    const inner = `${logo}
+                    <strong>${r.title}</strong>${note}`;
+
+    return r.href
+      ? `<a href="${r.href}" rel="external" class="report" target="_blank">${inner}
                   </a>`
-  );
+      : `<span class="report">${inner}
+                  </span>`;
+  });
 
   return `<section>
                   <h3>Reports <span class="emoji">📑</span></h3>
