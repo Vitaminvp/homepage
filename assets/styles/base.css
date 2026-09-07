@@ -29,6 +29,15 @@ h1,
 h2,
 h3,
 h4,
+h5,
+h6 {
+  color: var(--accent);
+}
+
+h1,
+h2,
+h3,
+h4,
 h5 {
   line-height: 1.28571429em;
   margin: 0 0 1rem 0;
@@ -142,7 +151,7 @@ ol.inverted > li:before {
   margin-top: calc(0.4285rem / 2);
 }
 a {
-  color: blue;
+  color: var(--accent);
   background-color: transparent;
   text-decoration: none;
 }
@@ -265,15 +274,12 @@ article {
 /* Page */
 .page {
   position: relative;
-  padding: 3em;
+  padding: 4.5em;
   background: white;
   box-shadow: 0 10px 100px 0 rgba(34, 36, 38, 0.1);
   transition: box-shadow 0.2s linear;
 }
-.page[style^="border-color"] {
-  padding: 4.5em;
-}
-.page[style^="border-color"]:before {
+.page:before {
   content: " ";
   display: block;
   position: absolute;
@@ -281,7 +287,7 @@ article {
   top: 2em;
   right: 2em;
   bottom: 2em;
-  border-color: inherit;
+  border-color: var(--accent);
   border-width: 1em;
   border-style: solid;
   pointer-events: none;
@@ -293,11 +299,10 @@ article {
   }
 }
 @media only screen and (max-width: 767px) {
-  .page,
-  .page[style^="border-color"] {
+  .page {
     padding: 0;
   }
-  .page[style^="border-color"]:before {
+  .page:before {
     display: none;
   }
 }
@@ -522,7 +527,7 @@ article {
 
 /* Divider */
 .divider {
-  border-top: 1px solid rgba(222, 222, 222, 1);
+  border-top: 1px solid var(--accent);
 }
 .divider.fat {
   border-top: 0.3571428571428571em solid rgba(10, 10, 10, 1);
@@ -622,14 +627,14 @@ article {
   transition: all 0.4s linear;
 }
 .contacts li a.phone:hover .slide-text.ua:before {
-  content: " +38 067 5070150";
+  content: " " var(--phone-ua);
   height: 50%;
   position: absolute;
   color: blue;
   overflow: hidden;
 }
 .contacts li a.phone:hover .slide-text.pl:before {
-  content: " +48 78 66 74206";
+  content: " " var(--phone-pl);
   height: 50%;
   position: absolute;
   color: #dddddd;
@@ -855,14 +860,28 @@ li.bordered > ul > details > div {
   .except-print {
     display: none !important;
   }
+  /* Decorations carry no information on paper: logos, emoji, the phone flags
+     and the colour swatches. The markup names what a thing is; this decides
+     whether it prints. */
+  .logo,
+  .emoji,
+  .phone-flag,
+  .color {
+    display: none !important;
+  }
   .flip-box {
     display: none;
   }
-  .page,
-  .page[style] {
+  .page {
     padding: 0;
     box-shadow: none;
-    border-color: transparent !important;
+  }
+  /* The frame is inset 2em, but print drops the page padding, so it would sit
+     on top of the text. It was hidden by inheriting a transparent border from
+     .page; the frame now takes its colour straight from --accent, so it has to
+     be hidden outright. */
+  .page:before {
+    display: none;
   }
   .grid > .row {
     padding-top: 0;
@@ -1205,6 +1224,7 @@ footer {
   margin: 0 3px;
 }
 .flip-clock__slot {
+  color: var(--accent);
   position: absolute;
   font-size: 0.65vw;
   line-height: 1;
@@ -1222,12 +1242,12 @@ footer {
 }
 
 .card__back {
-  --dynamic-background: #222;
+  --dynamic-background: var(--accent);
 }
 
 .card__top,
 .card__bottom {
-  background-color: #222;
+  background-color: var(--accent);
 }
 
 .card__top,
@@ -1255,7 +1275,7 @@ footer {
   top: 50%;
   left: 0;
   border-top: solid 1px #000;
-  background: #393939;
+  background: var(--accent);
   border-radius: 0 0 0.15em 0.15em;
   pointer-events: none;
   overflow: hidden;
