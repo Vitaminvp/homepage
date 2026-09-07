@@ -182,11 +182,6 @@ if (window.location.hash === "#diploma-WebAcademy") {
   );
 }
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
-    navigator.serviceWorker.register("/sw.js");
-  });
-}
 
 function CountdownTracker(label, value) {
   const el = document.createElement("span");
