@@ -30,6 +30,20 @@ function yearsSince(iso) {
 
 const experiencePhrase = `more than ${yearsSince(cv.dates.experienceStart)} years`;
 
+// Phone numbers reach CSS through custom properties: base.css reveals them on
+// hover with `content`, and this keeps that text from being a second copy.
+// The separating space stays in the stylesheet — data holds the number.
+function phoneProperties() {
+  const declarations = Object.entries(cv.phones)
+    .map(([key, phone]) => `      --phone-${key}: "${phone.display}";`)
+    .join("\n");
+  return `<style>
+    :root {
+${declarations}
+    }
+    </style>`;
+}
+
 // ---------------------------------------------------------------- head ----
 
 function iconLinks() {
@@ -85,6 +99,7 @@ function head() {
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     ${relMeLinks()}
     <link rel="stylesheet" href="./assets/styles/base.css" />
+    ${phoneProperties()}
   </head>`;
 }
 

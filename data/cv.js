@@ -65,9 +65,7 @@ const links = {
 const phones = {
   ua: { tel: "+380675070150", display: "+38 067 5070150", flag: "🇺🇦" },
   uk: { tel: "+447445569501", display: "+44 7445 569501", flag: "🇬🇧" },
-  // The leading space is real: it is inside the <span> and inside the CSS
-  // hover reveal, so it renders.
-  pl: { tel: "+48786674206", display: " +48 78 66 74206", flag: "🇵🇱" },
+  pl: { tel: "+48786674206", display: "+48 78 66 74206", flag: "🇵🇱" },
 };
 
 module.exports = {
