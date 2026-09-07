@@ -860,6 +860,15 @@ li.bordered > ul > details > div {
   .except-print {
     display: none !important;
   }
+  /* Decorations carry no information on paper: logos, emoji, the phone flags
+     and the colour swatches. The markup names what a thing is; this decides
+     whether it prints. */
+  .logo,
+  .emoji,
+  .phone-flag,
+  .color {
+    display: none !important;
+  }
   .flip-box {
     display: none;
   }
