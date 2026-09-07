@@ -1,6 +1,6 @@
-const kyivRelocationDate = new Date("1998-08-01");
+const kyivRelocationDate = new Date(document.body.dataset.kyivRelocation);
 const todaysDate = new Date();
-const experienceStartDate = new Date("2018-02-01");
+const experienceStartDate = new Date(document.body.dataset.experienceStart);
 const experienceNode = document.getElementById("experience");
 
 const monthsLivingInKyiv =
@@ -11,7 +11,7 @@ document.getElementById("kyiv-rent-months").innerHTML =
     monthsLivingInKyiv +
   " month" +
   (monthsLivingInKyiv === 1 ? "" : "s") +
-  " a native of Kiev";
+  " a native of Kyiv";
 
 function switchToColor(color) {
   try {
@@ -182,11 +182,6 @@ if (window.location.hash === "#diploma-WebAcademy") {
   );
 }
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
-    navigator.serviceWorker.register("/sw.js");
-  });
-}
 
 function CountdownTracker(label, value) {
   const el = document.createElement("span");

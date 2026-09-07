@@ -1,0 +1,10 @@
+{
+  "name": "homepage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "My very own personal website. Basically this is just a résumé.",
+  "scripts": {
+    "build": "node build/render.js",
+    "verify": "node build/verify.js"
+  }
+}
