@@ -405,7 +405,7 @@ module.exports = {
         },
       },
       { kind: "spacer" },
-      { kind: "gallery-trigger" },
+      { kind: "gallery-trigger", lightbox: "childhood" },
       {
         kind: "born",
         period: "27<sup>th</sup> May 1981",
@@ -595,12 +595,7 @@ module.exports = {
         name: "EasyCode",
         url: "https://www.easycode.school/courses/course-javascript-react-advanced",
       },
-      diploma: {
-        id: "diploma-EC",
-        dialog: "diploma-EasyCode",
-        title: "Show EasyCode diploma",
-        spaced: true,
-      },
+      diploma: { ref: "diploma-EasyCode", spaced: true },
     },
     {
       kind: "course",
@@ -611,11 +606,7 @@ module.exports = {
         name: "webAcademy",
         url: "https://web-academy.com.ua/study/web/html-css-javascript",
       },
-      diploma: {
-        id: "diploma-WA",
-        dialog: "diploma-WebAcademy",
-        title: "Show WebAcademy diploma",
-      },
+      diploma: { ref: "diploma-WebAcademy" },
     },
     {
       kind: "course",
@@ -628,22 +619,14 @@ module.exports = {
       kind: "certificate",
       dates: "25<sup>th</sup> May 2010",
       title: "Cambridge ESOL Level 1 Certificate",
-      diploma: {
-        id: "diploma-eng",
-        dialog: "diploma-english",
-        title: "Show english diplomas",
-      },
+      diploma: { ref: "diploma-english" },
     },
     {
       kind: "degree",
       dates: "1<sup>st</sup> September 1998 &ndash; 1<sup>st</sup> July 2004",
       title: "Master's degree ",
       field: "electronics",
-      diploma: {
-        id: "diploma-university",
-        dialog: "diploma-kpi",
-        title: "Show university diplomas",
-      },
+      diploma: { ref: "diploma-kpi" },
       school: { name: "kpi", url: "https://kpi.ua/en" },
     },
   ],
@@ -666,7 +649,9 @@ module.exports = {
   lightboxes: [
     {
       id: "childhood",
-      close: { href: "#resume", title: "Hide childhood photos" },
+      trigger: "resume",
+      openTitle: "Show childhood photos",
+      closeTitle: "Hide childhood photos",
       photos: [
         { src: "./assets/photos/1.jpg", alt: "Me as a baby" },
         { src: "./assets/photos/2.jpg", alt: "Me like girl" },
@@ -686,19 +671,21 @@ module.exports = {
     },
     {
       id: "diploma-kpi",
-      close: { href: "#diploma-university", title: "Hide university diplomas" },
-      closeWrapped: true,
+      trigger: "diploma-university",
+      openTitle: "Show university diplomas",
+      closeTitle: "Hide university diplomas",
       photos: [
         {
           src: "./assets/photos/diploma-university.jpg",
           alt: "University diplomas",
-          wrapped: true,
         },
       ],
     },
     {
       id: "diploma-english",
-      close: { href: "#diploma-eng", title: "Hide english diplomas" },
+      trigger: "diploma-eng",
+      openTitle: "Show english diplomas",
+      closeTitle: "Hide english diplomas",
       photos: [
         { src: "./assets/photos/en.jpg", alt: "English diploma" },
         { src: "./assets/photos/en2.jpg", alt: "English diploma" },
@@ -709,23 +696,25 @@ module.exports = {
     },
     {
       id: "diploma-EasyCode",
-      close: { href: "#diploma-EC", title: "Hide EasyCode diplomas" },
+      trigger: "diploma-EC",
+      openTitle: "Show EasyCode diploma",
+      closeTitle: "Hide EasyCode diplomas",
       photos: [
         {
           src: "assets/photos/diploma-EasyCode.jpg",
           alt: "EasyCode diploma",
-          wrapped: true,
         },
       ],
     },
     {
       id: "diploma-WebAcademy",
-      close: { href: "#diploma-WA", title: "Hide WebAcademy diplomas" },
+      trigger: "diploma-WA",
+      openTitle: "Show WebAcademy diploma",
+      closeTitle: "Hide WebAcademy diplomas",
       photos: [
         {
           src: "assets/photos/diploma-WebAcademy.jpg",
           alt: "WebAcademy diploma",
-          wrapped: true,
         },
       ],
     },
