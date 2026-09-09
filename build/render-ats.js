@@ -196,7 +196,9 @@ function talks() {
 // positioning, no columns — and no `content`, because text in CSS is invisible
 // to a parser. assertAts() below enforces all of that.
 const STYLES = `
-      @page { size: A4; margin: 15mm }
+      /* 12mm rather than 15: this document has no header, footer or page
+         furniture competing for the edge, and the 6mm reclaimed is a page. */
+      @page { size: A4; margin: 12mm }
       body {
         font: 10pt/1.3 Arial, Helvetica, sans-serif;
         color: #000;
