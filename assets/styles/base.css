@@ -1153,6 +1153,10 @@ button.audio svg {
 #resume .dots .dot:not(:last-child) {
   margin-right: 0.2142857em;
 }
+/* One talk per line. The line break is what separates them, which is why
+   reports() emits no separator character: it used to join the items with
+   "; ", and a separator sitting between two block boxes gets a line box of
+   its own — that is where the semicolons on their own line came from. */
 a.report {
   display: flex;
   align-items: center;

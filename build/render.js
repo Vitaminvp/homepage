@@ -596,10 +596,26 @@ function education() {
   const qualifications = cv.education.filter((e) => !isCourse(e));
   const courses = cv.education.filter(isCourse);
 
-  const course = (e) => {
+  // The separator belongs inside the item, not between items. A course can be
+  // `hidden` or `except-print`, and a semicolon sitting outside the span it
+  // separates stays behind when that span goes — which is why the list ended
+  // in a run of six semicolons on paper and two on screen. Leading rather
+  // than trailing, so the item after a break carries it and nothing dangles
+  // at the end of a list whose tail is hidden.
+  //
+  // That works because the first course carries no separator, so the first
+  // course must be visible in both media. Asserted rather than assumed.
+  if (courses.length && (courses[0].hidden || courses[0].exceptPrint)) {
+    throw new Error(
+      "the first course must be visible everywhere: the courses after it carry the list separators"
+    );
+  }
+
+  const course = (e, i) => {
     const cls = e.hidden ? "hidden" : e.exceptPrint ? "except-print" : "";
     const attrs = cls ? ` class="${cls}"` : "";
-    return `<span${attrs}><strong>${e.title}</strong> &mdash; ${schoolLink(e.school)} (${e.dates})</span>`;
+    return `<span${attrs}>${i === 0 ? "" : ";"}
+                    <strong>${e.title}</strong> &mdash; ${schoolLink(e.school)} (${e.dates})</span>`;
   };
 
   return `<section>
@@ -612,7 +628,7 @@ function education() {
                   </ul>
                   <h4 class="minor">Professional development</h4>
                   <p class="courses">
-                    ${courses.map(course).join(";\n                    ")}
+                    ${courses.map(course).join("")}
                   </p>
                 </section>`;
 }
@@ -628,21 +644,19 @@ function reports() {
     const inner = `${logo}
                     <strong>${r.title}</strong>${note}`;
 
-    // The closing tag butts against the last word on purpose. With a newline
-    // between them the paragraph could break there, and the separating
-    // semicolon — which follows the tag — started the next line on its own.
     return r.href
       ? `<a href="${r.href}" rel="external" class="report" target="_blank">${inner}</a>`
       : `<span class="report">${inner}</span>`;
   });
 
-  // One paragraph, not five blocks. The Experience bullet already says these
-  // talks happen and to how many people; this is the list, and a list belongs
-  // on one line.
+  // One paragraph, one line per talk — the line break separates them, so
+  // there is no separator character that could end up orphaned on a line of
+  // its own. The Experience bullet already says these talks happen and to how
+  // many people; this is the list.
   return `<section>
                   <h3>Reports <span class="emoji">📑</span></h3>
                   <p class="courses">
-                    ${items.join(";\n                    ")}
+                    ${items.join("\n                    ")}
                   </p>
                 </section>`;
 }
