@@ -519,6 +519,12 @@ article {
 /* Avatar */
 .avatar {
   position: relative;
+  /* An <object> is a replaced element with no intrinsic size until its
+     document loads, so the column it sits in had no height to give the row —
+     everything beside it shifted down the moment the avatar arrived. The ratio
+     is avatar.svg's own viewBox, so the box reserved is exactly the box that
+     ends up there. */
+  aspect-ratio: 99.1 / 127.4;
   max-width: 15rem;
   display: block;
   flex: 1 0 auto;
