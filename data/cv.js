@@ -197,12 +197,6 @@ module.exports = {
           sameAsEngagement: true,
           role: "Senior Frontend Engineer",
           product: "Altrata",
-          logo: {
-            src: "assets/images/euromoney.png",
-            alt: "Altrata",
-            height: 16,
-            width: 30,
-          },
           summary:
             "TypeScript, React, Next.js App Router, GraphQL, Tailwind, Playwright, WCAG 2.1 AA",
           stack: [
@@ -236,8 +230,10 @@ module.exports = {
                           its documentation, created two shared workspace
                           packages, and am the third-largest contributor to the
                           internal design system.`,
-            // The figures are the owner's own, from either side of the
-            // August 2026 rollout. Three of the five he has are here, and the
+            // The figures are the owner's own, for these three applications
+            // either side of the August 2026 rollout. No tool is named: an
+            // earlier version of this comment guessed one and guessed wrong.
+            // Three of the five figures he has are here, and the
             // choice is deliberate: TTFB is the technique's signature win
             // and LCP is the Core Web Vital a reader recognises. FCP (-33%)
             // says the same thing as TTFB, and the document-route cache figure
@@ -578,10 +574,7 @@ module.exports = {
         { tag: "Storybook" },
         { tag: "Chromatic" },
         { tag: "WCAG 2.1 AA", className: "nowrap tag" },
-        // "Core Web Vitals" named three specific measured metrics. The figures
-        // that would have backed it could not be attributed to this work, so
-        // the broader claim is the honest one.
-        { tag: "Performance optimisation", className: "nowrap tag" },
+        { tag: "Core Web Vitals", className: "nowrap tag" },
       ],
     },
     {
