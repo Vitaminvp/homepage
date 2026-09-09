@@ -747,7 +747,7 @@ module.exports = {
     {
       exceptPrint: true,
       kind: "course",
-      dates: "18<sup>th</sup> December 2018 &ndash; 30<sup>th</sup> February 2019",
+      dates: "18<sup>th</sup> December 2018 &ndash; 28<sup>th</sup> February 2019",
       title: "React for front-end Dev.",
       school: {
         key: "webAcademy",

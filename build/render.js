@@ -26,27 +26,19 @@ const statement = fill(
   `<span id="experience">${phrase} </span>`
 );
 
-// The custom properties the stylesheet reads. --accent is the theme colour,
+// The one custom property the stylesheet reads: --accent is the theme colour,
 // which base.css applies to headings, links, the page frame, the dividers and
-// the flip clock; clicking a swatch sets this one property. The phone numbers
-// are here because base.css reveals them on hover with `content`, and that
-// text would otherwise be a second copy of the number. The separating space
-// stays in the stylesheet — data holds the number.
-// Only the phones of contacts that actually render: a hidden contact must not
-// leave its number behind in the stylesheet.
+// the flip clock. Clicking a swatch sets this property and nothing else.
+//
+// The phone numbers used to be here too, because a `content` rule revealed them
+// on hover. That rule is gone and the number is plain text in the markup, so
+// emitting --phone-* was a promise the stylesheet no longer keeps.
 const visibleContacts = cv.contacts.filter((c) => !c.hidden);
 
 function rootProperties() {
-  const shown = new Set(visibleContacts.map((c) => c.phone).filter(Boolean));
-  const declarations = [
-    `      --accent: ${cv.meta.accent};`,
-    ...Object.entries(cv.phones)
-      .filter(([key]) => shown.has(key))
-      .map(([key, phone]) => `      --phone-${key}: "${phone.display}";`),
-  ].join("\n");
   return `<style>
     :root {
-${declarations}
+      --accent: ${cv.meta.accent};
     }
     </style>`;
 }

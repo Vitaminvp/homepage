@@ -964,9 +964,6 @@ li.bordered > ul > details > div {
   .contacts {
     margin-top: 1em;
   }
-  .credits {
-    display: none;
-  }
   .contacts li a.slide .slide-wrapper {
     width: auto;
   }
@@ -1224,21 +1221,7 @@ img.logo {
   transform: rotate(-45deg);
 }
 
-/* Credits */
-.credits {
-  text-align: right;
-  padding: 0.5em;
-  line-height: 1em;
-  opacity: 0.75;
-  transition: opacity 0.2s linear;
-}
-.credits:hover {
-  opacity: 1;
-}
 @media only screen and (max-width: 767px) {
-  .credits {
-    display: none;
-  }
   .contacts li a.slide .slide-wrapper {
     width: auto;
   }
@@ -1247,71 +1230,19 @@ img.logo {
   }
 }
 
-/* Hide header, reveal footer */
-header {
-  position: fixed;
-  z-index: 1;
-  background: white;
-  top: 0;
-  left: 0;
-  height: 2em;
-  width: 100%;
-}
-header + main {
-  margin-top: 2em;
-}
+/* <header> and <footer> were part of an earlier shape of this page. The
+   generated document has had neither for some time, so the rules that
+   positioned them, the mobile block that adjusted them and the second
+   @media print block that hid them were all describing elements that do not
+   exist. `main` stays: dialog:target ~ * needs it to paint over the page. */
 main {
   overflow: auto;
   z-index: 2;
   background: white;
   position: relative;
 }
-main:nth-last-child(3) {
-  margin-bottom: 50vh;
-}
-footer {
-  height: 50vh;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: whitesmoke;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
 .print-only {
   display: none;
-}
-@media only screen and (max-width: 767px) {
-  header {
-    height: auto;
-    position: relative;
-  }
-  header + main {
-    margin-top: 0;
-  }
-  main:nth-last-child(3) {
-    margin-bottom: 0;
-  }
-  footer {
-    height: auto;
-    position: relative;
-    padding: 1em;
-  }
-}
-@media print {
-  header,
-  footer {
-    display: none;
-  }
-  header + main {
-    margin-top: 0;
-  }
-  main:nth-last-child(3) {
-    margin-bottom: 0;
-  }
 }
 
 /* Flip me */
