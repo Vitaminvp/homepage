@@ -108,12 +108,23 @@ certainly why the last deployment failed, and deleting the file removes the
 error: the CLI now starts here where it previously would not. Whether a project
 is still linked on Vercel's side is a question only the dashboard answers.
 
-If one is, it now builds zero-config: no `vercel.json`, no framework detected, a
-`build` script in `package.json`. Vercel will run `npm run build` and then look
-for a `public/` directory; there isn't one, so it should serve the repository
-root, where the generator writes `index.html`. That is the expectation, not a
-tested fact — the one thing likely to need a `vercel.json` is the output
-directory.
+One is: `vitalii-ovcharenkos-projects/homepage-rgsa`, which builds every push
+and posts the result as a check. It failed on four consecutive commits, and
+deleting `now.json` did not change that — two of those four had the file already
+gone, so `now.json` blocked the CLI without ever being what broke the build.
+
+What broke it is output detection. No framework is detected and `package.json`
+carries a `build` script, so Vercel runs the build and then goes looking for an
+output directory — and this generator writes to the repository root, not to
+`public/`. `vercel.json` states that outright: no framework, `npm run build`,
+output from `.`.
+
+Note the two hosts disagree about the root. Pages serves the site from
+`/homepage/`, so the absolute `/assets/icons/…` and `/manifest.json` links in
+`<head>` resolve above it and 404 there, while on Vercel they would resolve. The
+relative `./assets/styles/base.css` works on both. That predates all of this and
+nothing here depends on it, but it is the reason the two deploys are not
+interchangeable.
 
 **S3 is retired and its buckets should be deleted.** `.travis.yml` described a
 deploy to `vitaminvp-staging` / `vitaminvp-production`; Travis stopped running,
