@@ -96,27 +96,35 @@ self-satisfying once the rebuilt files are committed.
 
 ## Deploy
 
-**GitHub Pages, from the `develop` branch at the repository root.** That is the
-whole of it — confirmed against the Pages API, which reports
-`source: {branch: "develop", path: "/"}`. Nothing else is real, and nothing else
-is described here any more.
+**GitHub Pages, from the `develop` branch at the repository root** — confirmed
+against the Pages API, which reports `source: {branch: "develop", path: "/"}`.
+That is the one deploy target this repository knows it has.
 
-Two configs used to say otherwise and both are gone. `.travis.yml` described an
-S3 deploy to `vitaminvp-staging` / `vitaminvp-production`; Travis stopped
-running, so the buckets froze. `now.json` named a Vercel project using a `name`
-field Vercel deprecated years ago — deprecated hard enough that the modern CLI
-refuses to run in a directory containing the file at all, which is the likeliest
-reason the last Vercel deployment failed.
+**Vercel may or may not still be connected, and this repository cannot tell.**
+`now.json` named a project using a `name` field Vercel deprecated years ago —
+deprecated hard enough that the CLI refuses to run in a directory containing the
+file at all, erroring before it even reaches authentication. That is almost
+certainly why the last deployment failed, and deleting the file removes the
+error: the CLI now starts here where it previously would not. Whether a project
+is still linked on Vercel's side is a question only the dashboard answers.
 
-**The S3 buckets are still serving, and they still need turning off.** Both
+If one is, it now builds zero-config: no `vercel.json`, no framework detected, a
+`build` script in `package.json`. Vercel will run `npm run build` and then look
+for a `public/` directory; there isn't one, so it should serve the repository
+root, where the generator writes `index.html`. That is the expectation, not a
+tested fact — the one thing likely to need a `vercel.json` is the output
+directory.
+
+**S3 is retired and its buckets should be deleted.** `.travis.yml` described a
+deploy to `vitaminvp-staging` / `vitaminvp-production`; Travis stopped running,
+the buckets froze, and the config is now gone, so nothing can push to them
+again. They are still serving, though — both
 `http://vitaminvp-production.s3-website.eu-central-1.amazonaws.com` and
 `http://vitaminvp-staging.s3-website.eu-central-1.amazonaws.com` answer 200 with
 a copy from before May 2023: "more than 3 years", "I'm a frontend developer",
 and two Ukrainian phone numbers where the current document has one UK number.
-That copy is what a recruiter finds if it is what a search engine indexed, and
-no change in this repository can fix it — website hosting has to be disabled in
-the AWS console. `<link rel="canonical">` in `<head>` is the mitigation until
-then.
+No commit can reach them; they have to go in the AWS console.
+`<link rel="canonical">` in `<head>` is the mitigation until they do.
 
 The service worker has been retired. `sw.js` is now a tombstone that clears
 caches and unregisters itself; delete it once it has been live long enough for
