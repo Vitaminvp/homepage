@@ -237,9 +237,9 @@ module.exports = {
                           its documentation, created two shared workspace
                           packages, and am the third-largest contributor to the
                           internal design system.`,
-            // The figures are the owner's own, from the Speed Insights p75
-            // for these routes either side of the August 2026 rollout. Two of
-            // the five he has are here: TTFB is the technique's signature win
+            // The figures are the owner's own, from either side of the
+            // August 2026 rollout. Three of the five he has are here, and the
+            // choice is deliberate: TTFB is the technique's signature win
             // and LCP is the Core Web Vital a reader recognises. FCP (-33%)
             // says the same thing as TTFB, and the document-route cache figure
             // (-50%) is jargon on a CV — both are interview material instead.
