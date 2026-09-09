@@ -485,23 +485,11 @@ module.exports = {
     ],
   },
 
-  languages: [
-    {
-      code: "uk",
-      href: "/uk-ua",
-      flag: "&#x1f1fa;&#x1f1e6;",
-      name: "УКРАЇНСЬКА",
-      hidden: true,
-    },
-    {
-      code: "ru",
-      href: "/ru-ru",
-      flag: "&#x1f1f7;&#x1f1fa;",
-      name: "РУССКИЙ",
-      hidden: true,
-    },
-    { code: "en", flag: "&#x1f1fa;&#x1f1f8;", name: "ENGLISH", current: true },
-  ],
+  // The two other entries here were `rel="alternate"` links to /uk-ua and
+  // /ru-ru, routes that have never existed in this repository — hidden with
+  // inline styles, and absolute, so they also pointed above the site on Pages.
+  // What is left is a statement, not a switcher.
+  languages: [{ code: "en", flag: "&#x1f1fa;&#x1f1f8;", name: "ENGLISH" }],
 
   // Each section is an ordered list of items. `glued: true` means no
   // whitespace before the item — the source ran some tags together and spaced

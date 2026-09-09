@@ -45,15 +45,21 @@ function rootProperties() {
 
 // ---------------------------------------------------------------- head ----
 
+// Every generated path is document-relative, and it has to be: the two hosts
+// disagree about where the root is. GitHub Pages serves this repository under
+// /homepage/, so an absolute /assets/icons/… resolves above the site and 404s —
+// which is exactly what every icon, the favicons and the manifest used to do
+// there. Vercel serves from the domain root, where the same absolute paths
+// happen to work. Relative paths are correct on both.
 function iconLinks() {
   const apple = cv.icons.apple.map(
     (n) =>
-      `<link rel="apple-touch-icon" sizes="${size(n)}" href="/assets/icons/apple-icon-${size(n)}.png" />`
+      `<link rel="apple-touch-icon" sizes="${size(n)}" href="./assets/icons/apple-icon-${size(n)}.png" />`
   );
-  const android = `<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/android-icon-192x192.png" />`;
+  const android = `<link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/android-icon-192x192.png" />`;
   const favicons = cv.icons.favicons.map(
     (n) =>
-      `<link rel="icon" type="image/png" sizes="${size(n)}" href="/favicon-${size(n)}.png" />`
+      `<link rel="icon" type="image/png" sizes="${size(n)}" href="./favicon-${size(n)}.png" />`
   );
   return [...apple, android, ...favicons].join("\n    ");
 }
@@ -87,9 +93,9 @@ function head() {
     <meta property="og:description" content="${fill(cv.meta.ogDescription)}" />
     ${iconLinks()}
     <link rel="canonical" href="${cv.identity.site}" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
     <meta name="msapplication-TileColor" content="${cv.meta.tileColor}" />
-    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png" />
+    <meta name="msapplication-TileImage" content="./assets/icons/ms-icon-144x144.png" />
     <!--    <base href="https://vitaminvp.github.io/homepage/" />-->
     <title>${cv.meta.title}</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
@@ -436,10 +442,8 @@ function pastExperience() {
 // -------------------------------------------------------------- sidebar ----
 
 function languages() {
-  const items = cv.languages.map((l) =>
-    l.current
-      ? `<span class="language" lang="${l.code}">${l.flag} ${l.name}</span>`
-      : `<a href="${l.href}" hreflang="${l.code}" rel="alternate" class="language" lang="${l.code}" style="display: none">${l.flag} <span>${l.name}</span></a>`
+  const items = cv.languages.map(
+    (l) => `<span class="language" lang="${l.code}">${l.flag} ${l.name}</span>`
   );
 
   return `<section class="except-print personal">
@@ -689,7 +693,7 @@ function document() {
 
 function manifest() {
   const icons = cv.icons.android.map((n) => ({
-    src: `/assets/icons/android-icon-${size(n)}.png`,
+    src: `./assets/icons/android-icon-${size(n)}.png`,
     sizes: size(n),
     type: "image/png",
     // The convention these were written with: 48px is density 1.0.
@@ -700,7 +704,7 @@ function manifest() {
 
 function browserconfig() {
   const logo = (n) =>
-    `<square${size(n)}logo src="/assets/icons/ms-icon-${size(n)}.png"/>`;
+    `<square${size(n)}logo src="./assets/icons/ms-icon-${size(n)}.png"/>`;
   return `<?xml version="1.0" encoding="utf-8"?>
 <browserconfig><msapplication><tile>${logo(70)}${logo(150)}${logo(
     310
@@ -708,6 +712,53 @@ function browserconfig() {
 `;
 }
 
-fs.writeFileSync(path.join(root, "index.html"), document());
-fs.writeFileSync(path.join(root, "manifest.json"), manifest());
-fs.writeFileSync(path.join(root, "browserconfig.xml"), browserconfig());
+// Every asset the generated documents point at has to exist, and the paths have
+// to stay relative. Both halves matter and neither was true: the icons and the
+// manifest were absolute, so on GitHub Pages — which serves this repository
+// under /homepage/ — all of them 404ed while the files sat right there on disk.
+// The renderer already refuses to name a lightbox that does not exist; this is
+// the same idea for files.
+function assertPaths(documents) {
+  const refs = new Set();
+  documents.forEach((text) => {
+    // href/src/content/data, either "./x" or a bare "assets/x".
+    const pattern = /(?:href|src|content|data)="(\.\/[^"]+|assets\/[^"]+)"/g;
+    let m;
+    while ((m = pattern.exec(text)) !== null) {
+      refs.add(m[1].replace(/^\.\//, ""));
+    }
+    // The manifest is JSON, so its icon srcs are not attributes.
+    const json = /"src":\s*"(\.\/[^"]+|assets\/[^"]+)"/g;
+    while ((m = json.exec(text)) !== null) {
+      refs.add(m[1].replace(/^\.\//, ""));
+    }
+  });
+
+  const absolute = documents
+    .join("")
+    .match(/(?:href|src|content)="\/(?:assets|favicon|manifest)[^"]*"/g);
+  if (absolute) {
+    throw new Error(
+      `absolute asset path would 404 on GitHub Pages: ${absolute[0]}`
+    );
+  }
+
+  const missing = [...refs].filter(
+    (r) => !fs.existsSync(path.join(root, r))
+  );
+  if (missing.length) {
+    throw new Error(`referenced but not on disk: ${missing.join(", ")}`);
+  }
+}
+
+const documents = {
+  "index.html": document(),
+  "manifest.json": manifest(),
+  "browserconfig.xml": browserconfig(),
+};
+
+assertPaths(Object.values(documents));
+
+Object.entries(documents).forEach(([name, text]) => {
+  fs.writeFileSync(path.join(root, name), text);
+});

@@ -55,7 +55,16 @@ and the renderer does not escape them.
 **Render module** (`build/render.js`) — owns the shape of the document. Writing
 `index.html`, `manifest.json` and `browserconfig.xml` is the whole of its
 interface. All three take their icon list from `cv.icons`, which is why the
-paths cannot drift apart again.
+paths cannot drift apart again, and all three write **document-relative** paths.
+
+That last part is a rule, not a preference, and `assertPaths()` enforces it
+before anything is written: an absolute `/assets/…`, `/favicon…` or
+`/manifest.json` throws, and so does a path pointing at a file that is not on
+disk. Both had gone wrong at once. Pages serves this repository under
+`/homepage/`, so every icon link, every favicon and the manifest resolved above
+the site and 404ed there — while the files sat exactly where the markup said
+they were. Vercel serves from the domain root, where the same absolute paths
+happened to work, which is what let it go unnoticed.
 
 **ATS render module** (`build/render-ats.js`) — owns the shape of the stripped
 variant. Writing `cv.html` is the whole of its interface. It filters on
@@ -113,18 +122,24 @@ and posts the result as a check. It failed on four consecutive commits, and
 deleting `now.json` did not change that — two of those four had the file already
 gone, so `now.json` blocked the CLI without ever being what broke the build.
 
-What broke it is output detection. No framework is detected and `package.json`
-carries a `build` script, so Vercel runs the build and then goes looking for an
-output directory — and this generator writes to the repository root, not to
-`public/`. `vercel.json` states that outright: no framework, `npm run build`,
-output from `.`.
+What broke it is the Node version. The build log stops immediately after
+cloning: *"Found invalid or discontinued Node.js Version: 18.x."* The project
+was set up in the Node 18 era — the deleted `.travis.yml` pinned `18.16.0` — and
+Vercel has since discontinued it, so the build died before running a single
+command. `package.json` now declares `engines.node: "24.x"`, which is what this
+generator is developed against. The Project Settings toggle in the Vercel
+dashboard is the other half of that switch, and only the account owner can move
+it.
 
-Note the two hosts disagree about the root. Pages serves the site from
-`/homepage/`, so the absolute `/assets/icons/…` and `/manifest.json` links in
-`<head>` resolve above it and 404 there, while on Vercel they would resolve. The
-relative `./assets/styles/base.css` works on both. That predates all of this and
-nothing here depends on it, but it is the reason the two deploys are not
-interchangeable.
+`vercel.json` carries the other half: no framework detected, `npm run build`,
+and output taken from the repository root rather than from the `public/` Vercel
+would otherwise look for. With both in place a preview deployment succeeds and
+serves `/`, `/cv.html`, `/manifest.json` and `/assets/styles/base.css` — so this
+configuration is exercised, not assumed.
+
+The two hosts disagree about where the root is — Vercel serves from the domain
+root, Pages from `/homepage/` — which is why every generated path is relative
+and why `assertPaths()` refuses to let an absolute one through.
 
 **S3 is retired and its buckets should be deleted.** `.travis.yml` described a
 deploy to `vitaminvp-staging` / `vitaminvp-production`; Travis stopped running,
