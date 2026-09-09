@@ -291,6 +291,10 @@ module.exports = {
           role: "Mentor",
           product: "Kottans",
           productUrl: "https://kottans.org",
+          // Listed under the Altrata engagement, but not bounded by it: the
+          // mentoring started three years before that job. A project may carry
+          // its own period; without one it inherits the engagement's.
+          period: "2019 &ndash; present",
           productEmoji: "😺",
           // The stack here was the 2019 curriculum — Redux, Saga, reselect,
           // react-router — which dated the entry rather than the mentoring.

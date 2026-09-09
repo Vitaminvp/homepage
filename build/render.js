@@ -277,12 +277,16 @@ function project(p, index) {
   // The first project of an engagement repeats the role and employer the
   // engagement itself already states. `sameAsEngagement` drops that line so
   // the printed CV does not say it twice in a row.
+  // A project may carry its own period when it is not bounded by the
+  // engagement it sits under — the Kottans mentoring began three years before
+  // Altrata. Same idiom as the employer note on the engagement line.
+  const when = p.period ? ` <em>(${p.period})</em>` : "";
   const heading = p.sameAsEngagement
     ? ""
     : `
                         <p>
                           <strong>${p.role}</strong> at
-                          ${name}
+                          ${name}${when}
                         </p>`;
 
   return `<li>${heading}
