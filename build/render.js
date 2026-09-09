@@ -323,10 +323,7 @@ function recentExperience() {
                     </p>
                     <p>
                       <strong>${r.role}</strong> at
-                      <strong><a href="${r.employer.url}" rel="external" target="_blank">${r.employer.name}</a></strong>${r.employerNote ? ` <em>(${r.employerNote})</em>` : ""}<br /><sup style="display: none"><em>(here's my introduction letter
-                          <a href="${r.introLetter.href}" rel="external"><strong>${r.introLetter.text}</strong> </a>)
-                          <span class="pig">🐷<audio preload="none">
-                              <source src="${cv.sounds.pig}" type="audio/mpeg" /></audio></span> </em></sup>
+                      <strong><a href="${r.employer.url}" rel="external" target="_blank">${r.employer.name}</a></strong>${r.employerNote ? ` <em>(${r.employerNote})</em>` : ""}
                     </p>
                     <ol class="inverted">
                       ${projects}
@@ -631,11 +628,12 @@ function reports() {
     const inner = `${logo}
                     <strong>${r.title}</strong>${note}`;
 
+    // The closing tag butts against the last word on purpose. With a newline
+    // between them the paragraph could break there, and the separating
+    // semicolon — which follows the tag — started the next line on its own.
     return r.href
-      ? `<a href="${r.href}" rel="external" class="report" target="_blank">${inner}
-                  </a>`
-      : `<span class="report">${inner}
-                  </span>`;
+      ? `<a href="${r.href}" rel="external" class="report" target="_blank">${inner}</a>`
+      : `<span class="report">${inner}</span>`;
   });
 
   // One paragraph, not five blocks. The Experience bullet already says these
