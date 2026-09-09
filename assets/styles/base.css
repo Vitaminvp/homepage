@@ -37,7 +37,7 @@ h6 {
 h1,
 h2,
 h3,
-h4,
+h4:not(.minor),
 h5 {
   line-height: 1.28571429em;
   margin: 0 0 1rem 0;
@@ -47,7 +47,7 @@ h5 {
 h1:last-child,
 h2:last-child,
 h3:last-child,
-h4:last-child,
+h4:not(.minor):last-child,
 h5:last-child {
   margin-bottom: 0;
 }
@@ -76,13 +76,14 @@ h3 {
   font-size: 1.25rem;
   letter-spacing: 0.15em;
 }
-h4 {
+h4:not(.minor) {
   font-size: 1.125rem;
 }
 h5 {
   font-size: 1rem;
 }
-h6 {
+h6,
+h4.minor {
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -154,6 +155,10 @@ a {
   color: var(--accent);
   background-color: transparent;
   text-decoration: none;
+}
+a[rel="external"]:not([class]),
+a.report {
+  text-decoration: underline;
 }
 a[rel="external"]:not(.label):hover,
 a.language:hover span {
@@ -940,6 +945,19 @@ li.bordered > ul > details > div {
   .timeline > li:not(:last-child) {
     margin-bottom: 0.4em;
   }
+  /* The period and the role are one heading, not two paragraphs. On paper
+     every past role spent a whole line on "2021 – 2022" by itself, in the one
+     column that overflows — eight roles, eight lines. The pair fits one line.
+     Scoped to the Experience column: the sidebar has room, and its entries
+     are narrower. Only the first two paragraphs; the sysadmin entry's third
+     paragraph is its summary and stays a block. */
+  .ten.wide.column .timeline > li > p:nth-child(1),
+  .ten.wide.column .timeline > li > p:nth-child(2) {
+    display: inline;
+  }
+  .ten.wide.column .timeline > li > p:nth-child(1) {
+    margin-right: 0.6em;
+  }
   ul.timeline > li {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
@@ -1148,6 +1166,10 @@ button.audio svg {
 #resume .dots .dot:not(:last-child) {
   margin-right: 0.2142857em;
 }
+/* One talk per line. The line break is what separates them, which is why
+   reports() emits no separator character: it used to join the items with
+   "; ", and a separator sitting between two block boxes gets a line box of
+   its own — that is where the semicolons on their own line came from. */
 a.report {
   display: flex;
   align-items: center;

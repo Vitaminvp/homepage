@@ -41,7 +41,7 @@ module.exports = {
   identity: {
     name: "Vitalii Ovcharenko",
     title: "Senior Frontend Engineer",
-    email: "vitamin@ukr.net",
+    email: "vitaliiov4arenko@gmail.com",
     site: "https://vitaminvp.github.io/homepage/",
     siteLabel: "https://vitaminvp.github.io/",
     // A UK CV states where the person is and how they will work. The statement
@@ -108,8 +108,19 @@ module.exports = {
       personal: true,
       relMe: { type: "text/html" },
     },
-    // href and link text both come from identity.email.
+    // href and link text both come from identity.email — the address a UK
+    // reader sees on paper and in the ATS document.
     { icon: "mail", kind: "email", className: "mail slide", relMe: {} },
+    // The older address still works and people still have it. It carries its
+    // own value rather than reading identity.email, and stays off the paper:
+    // one address on a CV, and it is the professional-looking one.
+    {
+      icon: "mail",
+      kind: "email",
+      email: "vitamin@ukr.net",
+      className: "mail slide",
+      exceptPrint: true,
+    },
     {
       icon: "github",
       href: "https://github.com/Vitaminvp",
@@ -163,8 +174,9 @@ module.exports = {
                       TypeScript. I own front-end architecture and standards,
                       and take features from technical discovery through
                       implementation, testing and deployment to production
-                      support. I own and maintain a published
-                      graph-visualisation package.`,
+                      support. My work spans data visualisation, performance,
+                      accessibility, testing, design systems and AI-assisted
+                      development.`,
     // Kept behind the personal toggle: it is the character of the site, but on
     // a CV — and on the page a recruiter opens — it blurs the positioning.
     footnote: {
@@ -197,12 +209,6 @@ module.exports = {
           sameAsEngagement: true,
           role: "Senior Frontend Engineer",
           product: "Altrata",
-          logo: {
-            src: "assets/images/euromoney.png",
-            alt: "Altrata",
-            height: 16,
-            width: 30,
-          },
           summary:
             "TypeScript, React, Next.js App Router, GraphQL, Tailwind, Playwright, WCAG 2.1 AA",
           stack: [
@@ -223,21 +229,26 @@ module.exports = {
             `Own <strong>pathfinder-charts</strong>, the reusable package
                           that renders people-and-organisation relationship
                           graphs &mdash; up to third-degree paths &mdash; across
-                          the web UI and generated reports. ~900 TypeScript
+                          the web UI and generated reports; re-engineered from
+                          SVG to <strong>pure CSS</strong> with an approach of
+                          my own. ~900 TypeScript
                           files, roughly 70% of its history mine. Also built the
                           product's advanced search.`,
             `Own features end to end &mdash; technical discovery and
                           architecture, implementation, testing, deployment and
                           production support &mdash; working with Product,
-                          Design and backend engineers to turn business
-                          requirements into scalable front-end solutions.`,
+                          Design and backend engineers to challenge
+                          requirements, weigh trade-offs and choose pragmatic
+                          solutions.`,
             `Set front-end architecture: authored the repo-wide
                           <strong>fetch-seam</strong> data-layer convention and
                           its documentation, created two shared workspace
                           packages, and am the third-largest contributor to the
                           internal design system.`,
-            // The figures are the owner's own, from either side of the
-            // August 2026 rollout. Three of the five he has are here, and the
+            // The figures are the owner's own, for these three applications
+            // either side of the August 2026 rollout. No tool is named: an
+            // earlier version of this comment guessed one and guessed wrong.
+            // Three of the five figures he has are here, and the
             // choice is deliberate: TTFB is the technique's signature win
             // and LCP is the Core Web Vital a reader recognises. FCP (-33%)
             // says the same thing as TTFB, and the document-route cache figure
@@ -272,9 +283,9 @@ module.exports = {
                           including natural
                           language&nbsp;&rarr;&nbsp;search-filter mapping.`,
             `Mentor and code reviewer for up to five engineers at a time,
-                          and present front-end topics internally &mdash; Claude
-                          Code, React patterns, functional JavaScript &mdash; to
-                          groups of up to 15 engineers.`,
+                          and give front-end talks &mdash; Claude Code, React
+                          patterns, functional JavaScript &mdash; to audiences
+                          of 20 to 50 engineers.`,
             // The scale evidence. Screen only: a commit count is not an
             // achievement, and the printed page is worth more spent on what
             // was owned and delivered. Anyone who wants the measure of
@@ -293,12 +304,17 @@ module.exports = {
           role: "Mentor",
           product: "Kottans",
           productUrl: "https://kottans.org",
+          // Listed under the Altrata engagement, but not bounded by it: the
+          // mentoring started three years before that job. A project may carry
+          // its own period; without one it inherits the engagement's.
+          period: "2019 &ndash; present",
           productEmoji: "😺",
           // The stack here was the 2019 curriculum — Redux, Saga, reselect,
           // react-router — which dated the entry rather than the mentoring.
           // Stated now as what is actually taught, and it matches the stack the
           // rest of this CV claims.
-          summary: "diversity in tech, and modern React practice",
+          summary:
+            "diversity in tech; teaching React internals by building a React-like framework in plain JavaScript",
           stack: [
             "typescript",
             "react",
@@ -333,7 +349,7 @@ module.exports = {
       {
         kind: "job",
         period: "2021 &ndash; 2022",
-        role: "Front-End Developer",
+        role: "Senior Front-End Developer",
         employer: {
           name: "Wix",
           url: "https://www.wix.com/",
@@ -357,7 +373,7 @@ module.exports = {
       {
         kind: "job",
         period: "2021",
-        role: "Front-End Developer",
+        role: "Senior Front-End Developer",
         employer: {
           name: "GlobalLogic",
           url: "https://www.globallogic.com/ua/",
@@ -389,8 +405,7 @@ module.exports = {
         },
         spaceAfterLogo: true,
         bullets: [
-          `Migrated a CoffeeScript\n                        <span class="emoji">☕</span> front end to React over two\n                        years, against REST APIs &mdash; the longest engagement\n                        before Altrata`,
-          "React, Redux, React Hooks, REST",
+          `Migrated a CoffeeScript\n                        <span class="emoji">☕</span> front end to React, Redux and\n                        Hooks over two years, against REST APIs &mdash; the\n                        longest engagement before Altrata`,
         ],
       },
       {
@@ -484,7 +499,7 @@ module.exports = {
         // with the React work. The site keeps the bullets, one click away;
         // `summary` is the one line the printed CV and the ATS document state.
         summary:
-          "Network, server and IT infrastructure administration &mdash; DHCP, DNS, proxying, ACLs, peripherals and video surveillance &mdash; for public-sector and retail organisations.",
+          "Network, server and IT infrastructure administration for public-sector and retail organisations.",
         bullets: [
           `managed computers network\n                        <span class="emoji">👨‍💻</span> and servers\n                        <span class="emoji">💻</span> (DHCP, DNS, proxy,\n                        ACLs)`,
           `managed peripheral\n                        <span class="emoji">🖨️</span> devices and\n                        equipments <span class="emoji">☎️</span>`,
@@ -549,6 +564,7 @@ module.exports = {
         { tag: "Frontend architecture", className: "nowrap tag" },
         { tag: "Design systems", className: "nowrap tag" },
         { tag: "Component libraries", className: "nowrap tag" },
+        { tag: "Data visualisation", className: "nowrap tag" },
         { tag: "State management", className: "nowrap tag" },
         { tag: "Cache Components (PPR)", className: "nowrap tag" },
         { tag: "Monorepo" },
@@ -578,10 +594,7 @@ module.exports = {
         { tag: "Storybook" },
         { tag: "Chromatic" },
         { tag: "WCAG 2.1 AA", className: "nowrap tag" },
-        // "Core Web Vitals" named three specific measured metrics. The figures
-        // that would have backed it could not be attributed to this work, so
-        // the broader claim is the honest one.
-        { tag: "Performance optimisation", className: "nowrap tag" },
+        { tag: "Core Web Vitals", className: "nowrap tag" },
       ],
     },
     {
@@ -829,7 +842,7 @@ module.exports = {
     // nor a logo to hang on it, so the renderer treats both as optional.
     {
       title: "Working with Claude Code",
-      note: "internal, ~15 engineers, Altrata, July 2026",
+      note: "internal, 20+ engineers, Altrata, July 2026",
     },
     {
       title: "Epic React",
@@ -842,11 +855,13 @@ module.exports = {
     {
       href: "https://youtu.be/Ja13H4j5iuY",
       title: "React Patterns",
+      note: "Kottans, ~50 attendees, 2020",
       logo: { src: "assets/images/react.png", height: 17, width: 20 },
     },
     {
       href: "https://youtu.be/pw-I9SNLhcA",
       title: "Events, state, hooks implementation",
+      note: "Kottans, ~50 attendees, 2021",
       logo: { src: "assets/images/hooks.png", height: 18, width: 20 },
     },
   ],
