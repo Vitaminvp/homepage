@@ -875,6 +875,15 @@ li.bordered > ul > details > div {
   #logo {
     display: none !important;
   }
+  /* The stack chips are a screen affordance — each one links to the
+     technology's own site, which is not something paper can offer. They also
+     say what the page has already said: seven of the twelve repeat the summary
+     line directly above them, and every one of the rest appears in the skills
+     sections in the sidebar. So nothing is lost on paper, and it buys back the
+     lines the achievement bullets need. */
+  .details > div.labels {
+    display: none !important;
+  }
   /* A disclosure widget cannot be operated on paper: the summary line is the
      content, the checkbox is the mechanism. */
   .details > input,
@@ -899,14 +908,19 @@ li.bordered > ul > details > div {
   /* Vertical rhythm, tightened. The screen can afford to breathe; paper is
      charged by the page, and the document sat a few per cent over two. Type
      size and line height are left alone — a cramped CV reads worse than a
-     long one. */
+     long one.
+
+     Tightened again once the achievement bullets replaced the technology
+     lists: stating what a job was takes more words than naming its stack, and
+     the document went back over by under three per cent. Space between
+     sections is the cheapest thing on the page to give up. */
   .grid > .row > .column,
   section {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
   }
   section h3 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
   }
   /* The screen centres the article in the viewport with generous margins.
      On paper the sheet already has margins, and these add 71px of nothing. */
@@ -960,6 +974,69 @@ li.bordered > ul > details > div {
     background-image: initial;
     color: initial;
   }
+}
+
+/* Screen policy — the mirror of the print block above.
+
+   What a stranger opens is the CV. The personal homepage this page used to be
+   is one click away and nothing was deleted to get there: `personal` is to the
+   screen what `except-print` is to the paper.
+
+   Two things here are load-bearing. First, the gate hides rather than shows:
+   when revealed *no rule applies* and each element keeps whatever display it
+   naturally had. Showing instead — .personal{display:none} plus a
+   :checked{display:revert} — would discard every author declaration for
+   display, including .grid > .row > .column's inline-block, and break the
+   footnote column. Second, the block is @media only screen, which is what makes
+   print independent of the toggle: reveal the personal page, press print, and
+   the paper is unchanged.
+
+   .emoji and .color are reused exactly as the print block treats them — as
+   decoration the markup already names. .logo and .phone-flag are not: employer
+   logos help a reader recognise Wix and GlobalLogic, and the flag beside the
+   number reinforces the right-to-work line. */
+@media only screen {
+  #personal:not(:checked) ~ * .personal,
+  #personal:not(:checked) ~ * .emoji,
+  #personal:not(:checked) ~ * .color {
+    display: none !important;
+  }
+  #personal:checked ~ * .except-personal {
+    display: none !important;
+  }
+  /* Added by scripts.js once the clock is mounted. A row of flipping cards mid
+     sentence is a flourish, so the written phrase is what shows until the
+     personal page is revealed — and on paper, always. */
+  #personal:checked ~ * .experience-print {
+    display: none !important;
+  }
+}
+
+/* The toggle carries the state and nothing else: it is the li.details checkbox
+   with its label moved across the document by `for`. Visually hidden rather
+   than display:none, so it stays keyboard-operable. */
+#personal {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.personal-toggle {
+  opacity: 0.6;
+  font-size: 0.9em;
+}
+.personal-toggle label {
+  cursor: pointer;
+}
+.personal-toggle label:hover {
+  color: var(--accent);
+}
+#personal:focus-visible ~ * .personal-toggle label {
+  outline: 1px dotted var(--accent);
 }
 
 /* Color */
@@ -1199,10 +1276,6 @@ footer {
   z-index: 1;
 }
 .print-only {
-  display: none;
-}
-/* Added by scripts.js once the clock is mounted; absent when it is not. */
-.experience-print {
   display: none;
 }
 @media only screen and (max-width: 767px) {

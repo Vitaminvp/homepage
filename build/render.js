@@ -140,7 +140,8 @@ function lightbox(box) {
 // --------------------------------------------------------------- header ----
 
 function contact(c) {
-  const li = c.exceptPrint ? `<li class="except-print">` : `<li>`;
+  const cls = policy(c);
+  const li = cls ? `<li class="${cls}">` : `<li>`;
 
   if (c.kind === "website") {
     return `${li}
@@ -196,7 +197,7 @@ function header() {
                   <div class="sixteen wide mobile only column">
                     <div class="divider"></div>
                   </div>
-                  <div class="flip-box">
+                  <div class="flip-box personal">
                     <div class="flip-box-inner">
                       <div class="flip-box-front">
                         <h2>Résumé</h2>
@@ -208,10 +209,10 @@ function header() {
                   </div>
                   <div class="sixteen wide column">
                     <p>
-                      ${statement}<strong style="margin-left: 0.0625em" class="except-print">*</strong>
+                      ${statement}<strong style="margin-left: 0.0625em" class="except-print personal">*</strong>
                     </p>
                   </div>
-                  <div class="sixteen wide column except-print">
+                  <div class="sixteen wide column except-print personal">
                     <p style="opacity: 0.75">
                       <strong style="margin-right: 0.0625em">*</strong>I feel
                       like it's 40-60 by
@@ -231,8 +232,20 @@ function header() {
 // leave an empty row behind.
 function bullet(b, indent) {
   const html = typeof b === "string" ? b : b.html;
-  const cls = typeof b === "string" || !b.exceptPrint ? "" : ` class="except-print"`;
+  const classes = typeof b === "string" ? "" : policy(b);
+  const cls = classes ? ` class="${classes}"` : "";
   return `<li${cls}>${html}</li>`;
+}
+
+// Screen and paper each exclude some material, and the two policies are
+// independent: `exceptPrint` keeps a thing off the paper, `personal` keeps it
+// off the screen until the reader asks for it. Returns a class list rather than
+// an attribute, so each caller keeps its own shape — and returns "" for an
+// unflagged item, so untouched markup stays byte-identical.
+function policy(item) {
+  return [item.exceptPrint ? "except-print" : "", item.personal ? "personal" : ""]
+    .filter(Boolean)
+    .join(" ");
 }
 
 function label(key) {
@@ -315,7 +328,7 @@ function recentExperience() {
                     <ol class="inverted">
                       ${projects}
                     </ol>
-                    <ul style="border-top: 1px dotted #aaaaaa; margin-top: 0.25em; padding-top: 0.25em;" class="except-print">
+                    <ul style="border-top: 1px dotted #aaaaaa; margin-top: 0.25em; padding-top: 0.25em;" class="except-print personal">
                       ${other}
                     </ul>
                   </li>
@@ -351,14 +364,14 @@ function sysadmin(e) {
                       ${company(e.companies[0])},
                       ${company(e.companies[1])}, etc.)
                     </p>
-                    <ul class="except-print">
+                    <ul class="except-print personal">
                       ${e.bullets.map(bullet).join("\n                      ")}
                     </ul>
                   </li>`;
 }
 
 function milestone(e) {
-  if (e.kind === "spacer") return `<li></li>`;
+  if (e.kind === "spacer") return `<li class="except-print personal"></li>`;
 
   if (e.kind === "gallery-trigger") {
     const dots = `
@@ -368,13 +381,13 @@ function milestone(e) {
                         <span class="dot"></span>
                       </span>
                     `;
-    return `<li class="except-print">
+    return `<li class="except-print personal">
                     ${lightboxTrigger(e.lightbox, null, dots)}
                   </li>`;
   }
 
   if (e.kind === "graduation") {
-    return `<li class="except-print">
+    return `<li class="except-print personal">
                     <p>
                       <em>${e.period}</em>
                     </p>
@@ -387,7 +400,7 @@ function milestone(e) {
   }
 
   if (e.kind === "school") {
-    return `<li class="except-print">
+    return `<li class="except-print personal">
                     <p>
                       <em>${e.period}</em> &#127890;
                     </p>
@@ -399,7 +412,7 @@ function milestone(e) {
                   </li>`;
   }
 
-  return `<li class="except-print">
+  return `<li class="except-print personal">
                     <p>
                       <em>${e.period}</em>
                     </p>
@@ -432,7 +445,7 @@ function languages() {
       : `<a href="${l.href}" hreflang="${l.code}" rel="alternate" class="language" lang="${l.code}" style="display: none">${l.flag} <span>${l.name}</span></a>`
   );
 
-  return `<section class="except-print">
+  return `<section class="except-print personal">
                   <h3>Languages</h3>
                   <p class="tags small">
                     ${items.join("\n                    ")}
@@ -464,7 +477,8 @@ function tagItem(item) {
 }
 
 function tagSection(section) {
-  const attrs = section.exceptPrint ? ` class="except-print"` : "";
+  const classes = policy(section);
+  const attrs = classes ? ` class="${classes}"` : "";
   // A glued item carries no whitespace before it: the source ran some tags
   // together, and that absence of a space renders.
   const items = section.items
@@ -516,7 +530,7 @@ function platforms() {
     (p) =>
       `<span class="tag"><a href="${p.url}" rel="external" target="_blank"><strong>${p.name}</strong></a></span>`
   );
-  return `<li class="except-print">
+  return `<li class="except-print personal">
                       <div><em>Every day</em></div>
                       <p class="tags bulleted">
                         ${items.join("")}
@@ -610,6 +624,21 @@ function reports() {
                 </section>`;
 }
 
+// Two labels rather than one: a disclosure you cannot close is worse than one
+// you cannot open. The show-label carries `except-personal`, the hide-label
+// `personal`, so exactly one of them is visible in either state. The row is
+// `except-print` — on paper there is nothing to reveal.
+function personalToggle() {
+  return `<div class="row">
+              <div class="sixteen wide column except-print">
+                <p class="personal-toggle">
+                  <label for="personal" class="except-personal">${cv.personalToggle.show}</label>
+                  <label for="personal" class="personal">${cv.personalToggle.hide}</label>
+                </p>
+              </div>
+            </div>`;
+}
+
 // ------------------------------------------------------------- document ----
 
 function document() {
@@ -617,6 +646,7 @@ function document() {
 <html lang="en">
   ${head()}
   <body data-experience-start="${cv.dates.experienceStart}" data-kyiv-relocation="${cv.dates.kyivRelocation}">
+    <input type="checkbox" id="personal" class="except-print" />
     ${cv.lightboxes.map(lightbox).join("\n    ")}
     <main>
       <article>
@@ -643,6 +673,7 @@ function document() {
                 ${reports()}
               </div>
             </div>
+            ${personalToggle()}
           </div>
         </div>
       </article>

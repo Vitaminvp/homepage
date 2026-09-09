@@ -28,6 +28,7 @@ const NAMED = {
   "&ndash;": "–",
   "&nbsp;": " ",
   "&rarr;": "→",
+  "&larr;": "←",
   "&middot;": "·",
 };
 

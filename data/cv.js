@@ -11,23 +11,10 @@
 // readable when a date changes. The source spelled "31th"; that is corrected
 // now the document is being read by strangers rather than reproduced.
 
-// URL per technology, referenced by key from project stacks. Some point at
-// mirrors that now redirect (ReactTraining/react-router, reactjs/redux); they
-// still name the right technology, so they stand.
+// URL per technology, referenced by key from project stacks.
 const links = {
   react: { text: "react", url: "https://github.com/facebook/react" },
-  reselect: { text: "reselect", url: "https://github.com/reduxjs/reselect" },
-  reactRouter: {
-    text: "react-router",
-    url: "https://github.com/ReactTraining/react-router",
-  },
-  reactRedux: {
-    text: "react-redux",
-    url: "https://github.com/reactjs/react-redux",
-  },
   nextjs: { text: "Next.js", url: "https://nextjs.org/" },
-  redux: { text: "redux", url: "https://github.com/reactjs/redux" },
-  reduxSaga: { text: "redux-saga", url: "https://redux-saga.js.org/" },
   typescript: { text: "typescript", url: "https://www.typescriptlang.org/" },
   graphql: { text: "graphql", url: "https://graphql.org/" },
   tailwindcss: { text: "tailwindcss", url: "https://tailwindcss.com/" },
@@ -114,9 +101,11 @@ module.exports = {
       href: "https://www.facebook.com/vitaliy.ovcharenko.98",
       className: "facebook slide",
       text: "facebook.com/vitaliy.ovcharenko.98",
-      // Stays on the site, off the printed CV: a personal profile is not
-      // something a UK hiring manager should be reading.
+      // A personal profile is not something a UK hiring manager should be
+      // reading, so it stays off the paper — and off the screen until the
+      // personal half of the page is opened.
       exceptPrint: true,
+      personal: true,
       relMe: { type: "text/html" },
     },
     // href and link text both come from identity.email.
@@ -173,12 +162,20 @@ module.exports = {
                       accessible React UI, Playwright and visual-regression
                       coverage &mdash; and introduced the agent-instruction
                       architecture the team codes against.`,
-    // Kept on screen only: it is the character of the site, but on a CV it
-    // blurs the positioning.
+    // Kept behind the personal toggle: it is the character of the site, but on
+    // a CV — and on the page a recruiter opens — it blurs the positioning.
     footnote: {
       href: "https://css-tricks.com/the-great-divide/",
       text: "The Great Divide",
     },
+  },
+
+  // The personal homepage this document used to be. Nothing was deleted to make
+  // the CV read first: it sits behind one CSS-only toggle — the same checkbox
+  // the project disclosures use — so it works with JavaScript off.
+  personalToggle: {
+    show: "Also &mdash; the personal version of this page &rarr;",
+    hide: "&larr; Back to the CV",
   },
 
   experience: {
@@ -269,14 +266,19 @@ module.exports = {
           product: "Kottans",
           productUrl: "https://kottans.org",
           productEmoji: "😺",
-          summary: "diversity and new frontend trends",
+          // The stack here was the 2019 curriculum — Redux, Saga, reselect,
+          // react-router — which dated the entry rather than the mentoring.
+          // Stated now as what is actually taught, and it matches the stack the
+          // rest of this CV claims.
+          summary: "diversity in tech, and modern React practice",
           stack: [
+            "typescript",
             "react",
-            "reactRouter",
-            "reactRedux",
-            "redux",
-            "reduxSaga",
-            "reselect",
+            "nextjs",
+            "tailwindcss",
+            "vitest",
+            "playwright",
+            "storybook",
           ],
           bullets: [],
         },
@@ -421,6 +423,7 @@ module.exports = {
           "Built internal applications supporting a manufacturing\n                        process in PHP, MySQL, JavaScript, HTML and CSS",
           {
             exceptPrint: true,
+            personal: true,
             html: `CMS Joomla, WordPress, Bitrix
                         <span class="pig"
                           >🐷<audio preload="auto">
@@ -565,6 +568,7 @@ module.exports = {
     {
       title: "Character",
       exceptPrint: true,
+      personal: true,
       items: [
         { tag: "EXPLORER" },
         { tag: "STRAIGHTFORWARD" },
@@ -589,6 +593,7 @@ module.exports = {
     {
       title: "Likes&#x1f603;",
       exceptPrint: true,
+      personal: true,
       items: [
         { tag: "HUMOUR 🤗" },
         { tag: "DOGS 🐕" },
@@ -603,6 +608,7 @@ module.exports = {
     {
       title: "Dislikes&#x1f61e;",
       exceptPrint: true,
+      personal: true,
       items: [
         { badHabits: true },
         { tag: "ASS-KISSERS 💩" },
@@ -614,6 +620,7 @@ module.exports = {
     {
       title: "Wants🙏",
       exceptPrint: true,
+      personal: true,
       items: [
         { tag: "TO BE FIT AND HEALTHY" },
         { tag: "TO FIND PERFECT JOB", glued: true },
