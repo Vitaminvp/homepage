@@ -84,17 +84,17 @@ function head() {
   return `<head>
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="description" content="${cv.meta.description}" />
+    <meta name="description" content="${fill(cv.meta.description)}" />
     <meta name="google" content="nositelinkssearchbox" />
     <meta name="google" content="notranslate" />
     <meta name="googlebot" content="index,follow" />
     <meta name="robots" content="index,follow" />
     <meta name="subject" content="${cv.meta.subject}" />
-    <meta name="twitter:card" content="summary_large_image" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="${cv.meta.themeColor}" />
     <meta property="og:description" content="${fill(cv.meta.ogDescription)}" />
     ${iconLinks()}
+    <link rel="canonical" href="${cv.identity.site}" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="msapplication-TileColor" content="${cv.meta.tileColor}" />
     <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png" />
@@ -187,7 +187,8 @@ function header() {
                 <div class="stackable grid">
                   <div class="sixteen wide column">
                     <h1 class="name">${cv.identity.name}</h1>
-                    <p class="role">${cv.identity.title} &middot; ${cv.identity.rightToWork}</p>
+                    <p class="role">${cv.identity.title} &middot; ${cv.identity.location}</p>
+                    <p class="role-note">${cv.identity.rightToWork}</p>
                     <ul class="contacts">
                       ${visibleContacts.map(contact).join("\n                      ")}
                     </ul>
@@ -606,12 +607,6 @@ function reports() {
   return `<section>
                   <h3>Reports <span class="emoji">📑</span></h3>
                   ${items.join("\n                  ")}
-                </section>
-                <section class="except-print">
-                  <h3>Articles</h3>
-                  <p>
-                    None published <sup><em>yet</em></sup>
-                  </p>
                 </section>`;
 }
 

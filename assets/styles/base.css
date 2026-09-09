@@ -670,10 +670,19 @@ article {
   color: var(--accent);
   font-weight: bold;
 }
+/* The right-to-work statement. It belongs in the header — a UK screener filters
+   on it — but not crammed onto the role line, which then said "UK" twice and ran
+   to three clauses. Its own line, quieter than the role above it. */
+.role-note {
+  margin: -0.4em 0 0.5em;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
 
 @media only screen and (max-width: 767px) {
   .name,
   .role,
+  .role-note,
   .job,
   .contacts {
     flex-direction: column;

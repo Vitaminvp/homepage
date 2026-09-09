@@ -57,18 +57,30 @@ module.exports = {
     email: "vitamin@ukr.net",
     site: "https://vitaminvp.github.io/homepage/",
     siteLabel: "https://vitaminvp.github.io/",
-    // UK recruiters filter on this before anything else, and an unstated
-    // status is read as the worse answer. Printed with the contacts.
-    rightToWork: "Requires UK visa sponsorship",
+    // A UK CV states where the person is and how they will work. The statement
+    // says "UK-based" in prose; this is the same fact where a reader scanning
+    // the header will find it.
+    location: "UK &middot; open to hybrid &amp; remote",
+    // UK recruiters filter on this before anything else, and an unstated status
+    // is read as the worse answer — so it is stated, and it prints. Worded as
+    // availability rather than as a requirement the reader has to satisfy:
+    // "Requires UK visa sponsorship" reads like a rejection notice for
+    // something that is simply a fact about paperwork.
+    rightToWork: "eligible to work in the UK with sponsorship",
   },
 
   // What the site is called when installed to a home screen.
   manifestName: "Vitalii Ovcharenko — CV",
 
   meta: {
-    title: "Vitalii Ovcharenko &mdash; Résumé",
-    description: "My very own personal website.",
-    subject: "This is just a résumé.",
+    // A recruiter searching the name reads this title in the results list and
+    // in the browser tab, so it carries the role rather than the word for what
+    // kind of document it is. Likewise the description: {{experience}} is
+    // filled in by the renderer, so no number here can drift from the intro.
+    title: "Vitalii Ovcharenko &mdash; Senior Frontend Engineer",
+    description:
+      "Senior frontend engineer, UK-based, with {{experience}} in production React &mdash; TypeScript, Next.js App Router, GraphQL, frontend architecture, accessibility and test infrastructure.",
+    subject: "Senior Frontend Engineer CV",
     // {{experience}} is filled in by the renderer from dates.experienceStart,
     // so the years are counted in one place and never drift from the intro.
     ogDescription:
@@ -305,9 +317,11 @@ module.exports = {
         // The source put a space between the logo and </a> in some entries
         // and not others. It renders, so step 1 reproduces it.
         spaceAfterLogo: true,
+        // The bullets below state what the work was, not only what it was
+        // written in. The stack stays named — a reader filtering on keywords
+        // needs it — but a list of technologies is not a description of a job.
         bullets: [
-          "React, Redux, React Hooks, TypeScript, e2e testing",
-          "Wix Editor platform",
+          "Built features for the <strong>Wix Editor</strong> platform in React, Redux and TypeScript, covered by end-to-end tests",
         ],
       },
       {
@@ -326,9 +340,7 @@ module.exports = {
         },
         spaceAfterLogo: true,
         bullets: [
-          "React, Redux, React Hooks, Redux Saga, TypeScript",
-          "develop video streaming platform",
-          "100% unit tests coverage",
+          "Built a video-streaming platform front end in React, Redux Saga and TypeScript, held at <strong>100% unit-test coverage</strong>",
         ],
       },
       {
@@ -347,8 +359,8 @@ module.exports = {
         },
         spaceAfterLogo: true,
         bullets: [
-          `React, Redux, React Hooks, REST, Coffee Script\n                        <span class="emoji">☕</span>`,
-          "rewriting code from coffee script to React",
+          `Migrated a CoffeeScript\n                        <span class="emoji">☕</span> front end to React over two\n                        years, against REST APIs &mdash; the longest engagement\n                        before Altrata`,
+          "React, Redux, React Hooks, REST",
         ],
       },
       {
@@ -366,11 +378,10 @@ module.exports = {
           },
         },
         bullets: [
-          "React, Redux, Next.JS, TypeScript, server-side\n                        rendering, Jest, react testing library",
-          "rewriting code from Python to TS (Next.JS)",
+          "Replaced a Python-rendered front end with a server-side-rendered\n                        <strong>Next.js</strong> and TypeScript application, tested\n                        with Jest and React Testing Library",
           {
             exceptPrint: true,
-            html: "writing tests Jest, React-test-library",
+            html: "React, Redux, Next.js, TypeScript, server-side rendering",
           },
         ],
       },
@@ -389,7 +400,7 @@ module.exports = {
           },
         },
         bullets: [
-          `built, tested, and deployed to Web applications\n                        <span class="emoji">🌽</span> written with\n                        ASP.Net, SQL, Leaflet and Vanilla JS`,
+          `Built, tested and deployed web applications\n                        <span class="emoji">🌽</span> end to end &mdash; ASP.NET,\n                        SQL, Leaflet and vanilla JavaScript`,
         ],
       },
       {
@@ -407,7 +418,7 @@ module.exports = {
           },
         },
         bullets: [
-          "built simple apps to assist in manufacturing process\n                        using HTML, CSS, JavaScript, PHP, mySQL",
+          "Built internal applications supporting a manufacturing\n                        process in PHP, MySQL, JavaScript, HTML and CSS",
           {
             exceptPrint: true,
             html: `CMS Joomla, WordPress, Bitrix
@@ -438,6 +449,11 @@ module.exports = {
             logo: { src: "assets/images/atb.svg", width: 45 },
           },
         ],
+        // Thirteen years of IT administration should not compete for space
+        // with the React work. The site keeps the bullets, one click away;
+        // `summary` is the one line the printed CV and the ATS document state.
+        summary:
+          "Network, server and IT infrastructure administration &mdash; DHCP, DNS, proxying, ACLs, peripherals and video surveillance &mdash; for public-sector and retail organisations.",
         bullets: [
           `managed computers network\n                        <span class="emoji">👨‍💻</span> and servers\n                        <span class="emoji">💻</span> (DHCP, DNS, proxy,\n                        ACLs)`,
           `managed peripheral\n                        <span class="emoji">🖨️</span> devices and\n                        equipments <span class="emoji">☎️</span>`,
