@@ -37,7 +37,7 @@ h6 {
 h1,
 h2,
 h3,
-h4,
+h4:not(.minor),
 h5 {
   line-height: 1.28571429em;
   margin: 0 0 1rem 0;
@@ -47,7 +47,7 @@ h5 {
 h1:last-child,
 h2:last-child,
 h3:last-child,
-h4:last-child,
+h4:not(.minor):last-child,
 h5:last-child {
   margin-bottom: 0;
 }
@@ -76,13 +76,14 @@ h3 {
   font-size: 1.25rem;
   letter-spacing: 0.15em;
 }
-h4 {
+h4:not(.minor) {
   font-size: 1.125rem;
 }
 h5 {
   font-size: 1rem;
 }
-h6 {
+h6,
+h4.minor {
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -154,6 +155,10 @@ a {
   color: var(--accent);
   background-color: transparent;
   text-decoration: none;
+}
+a[rel="external"]:not([class]),
+a.report {
+  text-decoration: underline;
 }
 a[rel="external"]:not(.label):hover,
 a.language:hover span {

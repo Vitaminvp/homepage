@@ -610,7 +610,7 @@ function education() {
                       .map(educationEntry)
                       .join("\n                    ")}
                   </ul>
-                  <h6>Professional development</h6>
+                  <h4 class="minor">Professional development</h4>
                   <p class="courses">
                     ${courses.map(course).join(";\n                    ")}
                   </p>
@@ -622,7 +622,7 @@ function reports() {
   // renders as a span rather than a link.
   const items = cv.reports.map((r) => {
     const logo = r.logo
-      ? `\n                    <img src="${r.logo.src}" class="logo" height="${r.logo.height}" width="${r.logo.width}" />`
+      ? `\n                    <img src="${r.logo.src}" alt="" class="logo" height="${r.logo.height}" width="${r.logo.width}" />`
       : "";
     const note = r.note ? ` <em>(${r.note})</em>` : "";
     const inner = `${logo}
@@ -684,9 +684,9 @@ function document() {
             <div class="row">
               <div class="ten wide column">
                 <h3>Experience</h3>
-                <h6 class="except-print">Recent</h6>
+                <h4 class="minor except-print">Recent</h4>
                 ${recentExperience()}
-                <h6 class="except-print">Back then</h6>
+                <h4 class="minor except-print">Back then</h4>
                 ${pastExperience()}
               </div>
               <div class="six wide column">
