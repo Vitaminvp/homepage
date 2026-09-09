@@ -159,12 +159,12 @@ module.exports = {
     statement: `Senior frontend engineer, UK-based, with {{experience}} in
                       production React. Nearly four of them at
                       <strong>Altrata</strong>, a B2B data-intelligence
-                      business, on a 25,000-commit Turborepo monorepo of Next.js
-                      and TypeScript. I own front-end architecture and
-                      standards, and take features from technical discovery
-                      through implementation, testing and deployment to
-                      production support &mdash; including a published
-                      graph-visualisation package I own outright.`,
+                      business, on a Turborepo monorepo of Next.js and
+                      TypeScript. I own front-end architecture and standards,
+                      and take features from technical discovery through
+                      implementation, testing and deployment to production
+                      support. I own and maintain a published
+                      graph-visualisation package.`,
     // Kept behind the personal toggle: it is the character of the site, but on
     // a CV — and on the page a recruiter opens — it blurs the positioning.
     footnote: {
@@ -191,7 +191,6 @@ module.exports = {
       employer: { name: "Altrata", url: "https://altrata.com/" },
       employerNote:
         "formerly Euromoney Institutional Investor",
-      introLetter: { href: "./", text: "don't have one yet " },
       projects: [
         {
           // The engagement above already states this role and employer.
@@ -530,8 +529,9 @@ module.exports = {
     {
       title: "Core",
       items: [
-        { tag: "TYPESCRIPT" },
         { tag: "REACT" },
+        { tag: "TYPESCRIPT" },
+        { tag: "JAVASCRIPT" },
         { tag: "Next.js (App Router, RSC)", className: "nowrap tag" },
         { tag: "HTML5/CSS3" },
         { tag: "Tailwind CSS", className: "nowrap tag" },
@@ -550,6 +550,7 @@ module.exports = {
         { tag: "Design systems", className: "nowrap tag" },
         { tag: "Component libraries", className: "nowrap tag" },
         { tag: "State management", className: "nowrap tag" },
+        { tag: "Cache Components (PPR)", className: "nowrap tag" },
         { tag: "Monorepo" },
         { tag: "Code review", className: "nowrap tag" },
         { tag: "Mentoring" },
@@ -577,8 +578,10 @@ module.exports = {
         { tag: "Storybook" },
         { tag: "Chromatic" },
         { tag: "WCAG 2.1 AA", className: "nowrap tag" },
-        { tag: "Cache Components (PPR)", className: "nowrap tag" },
-        { tag: "Core Web Vitals", className: "nowrap tag" },
+        // "Core Web Vitals" named three specific measured metrics. The figures
+        // that would have backed it could not be attributed to this work, so
+        // the broader claim is the honest one.
+        { tag: "Performance optimisation", className: "nowrap tag" },
       ],
     },
     {
@@ -926,7 +929,6 @@ module.exports = {
 
   sounds: {
     logo: "assets/sounds/likeabos.mp3",
-    pig: "assets/sounds/all-folks.mp3",
     meh: "assets/sounds/meh.mp3",
   },
 
