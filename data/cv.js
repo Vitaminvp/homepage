@@ -41,7 +41,7 @@ module.exports = {
   identity: {
     name: "Vitalii Ovcharenko",
     title: "Senior Frontend Engineer",
-    email: "vitamin@ukr.net",
+    email: "vitaliiov4arenko@gmail.com",
     site: "https://vitaminvp.github.io/homepage/",
     siteLabel: "https://vitaminvp.github.io/",
     // A UK CV states where the person is and how they will work. The statement
@@ -108,8 +108,19 @@ module.exports = {
       personal: true,
       relMe: { type: "text/html" },
     },
-    // href and link text both come from identity.email.
+    // href and link text both come from identity.email — the address a UK
+    // reader sees on paper and in the ATS document.
     { icon: "mail", kind: "email", className: "mail slide", relMe: {} },
+    // The older address still works and people still have it. It carries its
+    // own value rather than reading identity.email, and stays off the paper:
+    // one address on a CV, and it is the professional-looking one.
+    {
+      icon: "mail",
+      kind: "email",
+      email: "vitamin@ukr.net",
+      className: "mail slide",
+      exceptPrint: true,
+    },
     {
       icon: "github",
       href: "https://github.com/Vitaminvp",

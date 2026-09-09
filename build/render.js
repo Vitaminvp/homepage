@@ -151,7 +151,8 @@ function contact(c) {
   }
 
   const phone = c.phone ? cv.phones[c.phone] : null;
-  const email = c.kind === "email" ? cv.identity.email : null;
+  // A contact may carry its own address; the primary one reads identity.email.
+  const email = c.kind === "email" ? c.email || cv.identity.email : null;
   const href = phone ? `tel:${phone.tel}` : email ? `mailto:${email}` : c.href;
   const text = phone ? phone.display : email || c.text;
   const wrap = c.wrapper || "span";

@@ -47,7 +47,7 @@ function contactLines() {
       if (!label) return;
       const value =
         c.kind === "email"
-          ? cv.identity.email
+          ? c.email || cv.identity.email
           : c.kind === "website"
             ? cv.identity.siteLabel
             : c.phone
