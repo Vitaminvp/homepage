@@ -76,7 +76,15 @@
     if (!audio) {
       return;
     }
+    // CSS can hide a thing but it cannot silence one, and the avatar is the
+    // only flourish still on screen once the personal page is closed. Read the
+    // toggle inside the handler rather than at mount, so it reflects the state
+    // the reader is actually in.
+    const toggle = document.getElementById("personal");
     logo.addEventListener("mouseover", function() {
+      if (toggle && !toggle.checked) {
+        return;
+      }
       audio.play().catch(function() {
         audio.pause();
       });
@@ -315,7 +323,13 @@
     // paper a row of flipping cards is not a number of years, so print shows
     // the words and hides the clock. With this script off, no class is added
     // and the words show everywhere.
+    //
+    // It is also a flourish, so it carries `personal`: the CV a stranger opens
+    // reads the phrase as a sentence, and the clock appears with the rest of
+    // the personal page. The stylesheet hides the phrase only when the clock is
+    // actually showing.
     node.classList.add("experience-print");
+    clock.el.classList.add("personal");
     node.after(clock.el);
   }
 

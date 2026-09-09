@@ -11,23 +11,10 @@
 // readable when a date changes. The source spelled "31th"; that is corrected
 // now the document is being read by strangers rather than reproduced.
 
-// URL per technology, referenced by key from project stacks. Some point at
-// mirrors that now redirect (ReactTraining/react-router, reactjs/redux); they
-// still name the right technology, so they stand.
+// URL per technology, referenced by key from project stacks.
 const links = {
   react: { text: "react", url: "https://github.com/facebook/react" },
-  reselect: { text: "reselect", url: "https://github.com/reduxjs/reselect" },
-  reactRouter: {
-    text: "react-router",
-    url: "https://github.com/ReactTraining/react-router",
-  },
-  reactRedux: {
-    text: "react-redux",
-    url: "https://github.com/reactjs/react-redux",
-  },
   nextjs: { text: "Next.js", url: "https://nextjs.org/" },
-  redux: { text: "redux", url: "https://github.com/reactjs/redux" },
-  reduxSaga: { text: "redux-saga", url: "https://redux-saga.js.org/" },
   typescript: { text: "typescript", url: "https://www.typescriptlang.org/" },
   graphql: { text: "graphql", url: "https://graphql.org/" },
   tailwindcss: { text: "tailwindcss", url: "https://tailwindcss.com/" },
@@ -57,18 +44,30 @@ module.exports = {
     email: "vitamin@ukr.net",
     site: "https://vitaminvp.github.io/homepage/",
     siteLabel: "https://vitaminvp.github.io/",
-    // UK recruiters filter on this before anything else, and an unstated
-    // status is read as the worse answer. Printed with the contacts.
-    rightToWork: "Requires UK visa sponsorship",
+    // A UK CV states where the person is and how they will work. The statement
+    // says "UK-based" in prose; this is the same fact where a reader scanning
+    // the header will find it.
+    location: "UK &middot; open to hybrid &amp; remote",
+    // UK recruiters filter on this before anything else, and an unstated status
+    // is read as the worse answer — so it is stated, and it prints. Worded as
+    // availability rather than as a requirement the reader has to satisfy:
+    // "Requires UK visa sponsorship" reads like a rejection notice for
+    // something that is simply a fact about paperwork.
+    rightToWork: "eligible to work in the UK with sponsorship",
   },
 
   // What the site is called when installed to a home screen.
   manifestName: "Vitalii Ovcharenko — CV",
 
   meta: {
-    title: "Vitalii Ovcharenko &mdash; Résumé",
-    description: "My very own personal website.",
-    subject: "This is just a résumé.",
+    // A recruiter searching the name reads this title in the results list and
+    // in the browser tab, so it carries the role rather than the word for what
+    // kind of document it is. Likewise the description: {{experience}} is
+    // filled in by the renderer, so no number here can drift from the intro.
+    title: "Vitalii Ovcharenko &mdash; Senior Frontend Engineer",
+    description:
+      "Senior frontend engineer, UK-based, with {{experience}} in production React &mdash; TypeScript, Next.js App Router, GraphQL, frontend architecture, accessibility and test infrastructure.",
+    subject: "Senior Frontend Engineer CV",
     // {{experience}} is filled in by the renderer from dates.experienceStart,
     // so the years are counted in one place and never drift from the intro.
     ogDescription:
@@ -102,9 +101,11 @@ module.exports = {
       href: "https://www.facebook.com/vitaliy.ovcharenko.98",
       className: "facebook slide",
       text: "facebook.com/vitaliy.ovcharenko.98",
-      // Stays on the site, off the printed CV: a personal profile is not
-      // something a UK hiring manager should be reading.
+      // A personal profile is not something a UK hiring manager should be
+      // reading, so it stays off the paper — and off the screen until the
+      // personal half of the page is opened.
       exceptPrint: true,
+      personal: true,
       relMe: { type: "text/html" },
     },
     // href and link text both come from identity.email.
@@ -161,12 +162,20 @@ module.exports = {
                       accessible React UI, Playwright and visual-regression
                       coverage &mdash; and introduced the agent-instruction
                       architecture the team codes against.`,
-    // Kept on screen only: it is the character of the site, but on a CV it
-    // blurs the positioning.
+    // Kept behind the personal toggle: it is the character of the site, but on
+    // a CV — and on the page a recruiter opens — it blurs the positioning.
     footnote: {
       href: "https://css-tricks.com/the-great-divide/",
       text: "The Great Divide",
     },
+  },
+
+  // The personal homepage this document used to be. Nothing was deleted to make
+  // the CV read first: it sits behind one CSS-only toggle — the same checkbox
+  // the project disclosures use — so it works with JavaScript off.
+  personalToggle: {
+    show: "Also &mdash; the personal version of this page &rarr;",
+    hide: "&larr; Back to the CV",
   },
 
   experience: {
@@ -257,14 +266,19 @@ module.exports = {
           product: "Kottans",
           productUrl: "https://kottans.org",
           productEmoji: "😺",
-          summary: "diversity and new frontend trends",
+          // The stack here was the 2019 curriculum — Redux, Saga, reselect,
+          // react-router — which dated the entry rather than the mentoring.
+          // Stated now as what is actually taught, and it matches the stack the
+          // rest of this CV claims.
+          summary: "diversity in tech, and modern React practice",
           stack: [
+            "typescript",
             "react",
-            "reactRouter",
-            "reactRedux",
-            "redux",
-            "reduxSaga",
-            "reselect",
+            "nextjs",
+            "tailwindcss",
+            "vitest",
+            "playwright",
+            "storybook",
           ],
           bullets: [],
         },
@@ -305,9 +319,11 @@ module.exports = {
         // The source put a space between the logo and </a> in some entries
         // and not others. It renders, so step 1 reproduces it.
         spaceAfterLogo: true,
+        // The bullets below state what the work was, not only what it was
+        // written in. The stack stays named — a reader filtering on keywords
+        // needs it — but a list of technologies is not a description of a job.
         bullets: [
-          "React, Redux, React Hooks, TypeScript, e2e testing",
-          "Wix Editor platform",
+          "Built features for the <strong>Wix Editor</strong> platform in React, Redux and TypeScript, covered by end-to-end tests",
         ],
       },
       {
@@ -326,9 +342,7 @@ module.exports = {
         },
         spaceAfterLogo: true,
         bullets: [
-          "React, Redux, React Hooks, Redux Saga, TypeScript",
-          "develop video streaming platform",
-          "100% unit tests coverage",
+          "Built a video-streaming platform front end in React, Redux Saga and TypeScript, held at <strong>100% unit-test coverage</strong>",
         ],
       },
       {
@@ -347,8 +361,8 @@ module.exports = {
         },
         spaceAfterLogo: true,
         bullets: [
-          `React, Redux, React Hooks, REST, Coffee Script\n                        <span class="emoji">☕</span>`,
-          "rewriting code from coffee script to React",
+          `Migrated a CoffeeScript\n                        <span class="emoji">☕</span> front end to React over two\n                        years, against REST APIs &mdash; the longest engagement\n                        before Altrata`,
+          "React, Redux, React Hooks, REST",
         ],
       },
       {
@@ -366,11 +380,10 @@ module.exports = {
           },
         },
         bullets: [
-          "React, Redux, Next.JS, TypeScript, server-side\n                        rendering, Jest, react testing library",
-          "rewriting code from Python to TS (Next.JS)",
+          "Replaced a Python-rendered front end with a server-side-rendered\n                        <strong>Next.js</strong> and TypeScript application, tested\n                        with Jest and React Testing Library",
           {
             exceptPrint: true,
-            html: "writing tests Jest, React-test-library",
+            html: "React, Redux, Next.js, TypeScript, server-side rendering",
           },
         ],
       },
@@ -389,7 +402,7 @@ module.exports = {
           },
         },
         bullets: [
-          `built, tested, and deployed to Web applications\n                        <span class="emoji">🌽</span> written with\n                        ASP.Net, SQL, Leaflet and Vanilla JS`,
+          `Built, tested and deployed web applications\n                        <span class="emoji">🌽</span> end to end &mdash; ASP.NET,\n                        SQL, Leaflet and vanilla JavaScript`,
         ],
       },
       {
@@ -407,9 +420,10 @@ module.exports = {
           },
         },
         bullets: [
-          "built simple apps to assist in manufacturing process\n                        using HTML, CSS, JavaScript, PHP, mySQL",
+          "Built internal applications supporting a manufacturing\n                        process in PHP, MySQL, JavaScript, HTML and CSS",
           {
             exceptPrint: true,
+            personal: true,
             html: `CMS Joomla, WordPress, Bitrix
                         <span class="pig"
                           >🐷<audio preload="auto">
@@ -438,6 +452,11 @@ module.exports = {
             logo: { src: "assets/images/atb.svg", width: 45 },
           },
         ],
+        // Thirteen years of IT administration should not compete for space
+        // with the React work. The site keeps the bullets, one click away;
+        // `summary` is the one line the printed CV and the ATS document state.
+        summary:
+          "Network, server and IT infrastructure administration &mdash; DHCP, DNS, proxying, ACLs, peripherals and video surveillance &mdash; for public-sector and retail organisations.",
         bullets: [
           `managed computers network\n                        <span class="emoji">👨‍💻</span> and servers\n                        <span class="emoji">💻</span> (DHCP, DNS, proxy,\n                        ACLs)`,
           `managed peripheral\n                        <span class="emoji">🖨️</span> devices and\n                        equipments <span class="emoji">☎️</span>`,
@@ -466,23 +485,11 @@ module.exports = {
     ],
   },
 
-  languages: [
-    {
-      code: "uk",
-      href: "/uk-ua",
-      flag: "&#x1f1fa;&#x1f1e6;",
-      name: "УКРАЇНСЬКА",
-      hidden: true,
-    },
-    {
-      code: "ru",
-      href: "/ru-ru",
-      flag: "&#x1f1f7;&#x1f1fa;",
-      name: "РУССКИЙ",
-      hidden: true,
-    },
-    { code: "en", flag: "&#x1f1fa;&#x1f1f8;", name: "ENGLISH", current: true },
-  ],
+  // The two other entries here were `rel="alternate"` links to /uk-ua and
+  // /ru-ru, routes that have never existed in this repository — hidden with
+  // inline styles, and absolute, so they also pointed above the site on Pages.
+  // What is left is a statement, not a switcher.
+  languages: [{ code: "en", flag: "&#x1f1fa;&#x1f1f8;", name: "ENGLISH" }],
 
   // Each section is an ordered list of items. `glued: true` means no
   // whitespace before the item — the source ran some tags together and spaced
@@ -500,7 +507,24 @@ module.exports = {
         { tag: "NodeJS" },
         { tag: "HTML5/CSS3" },
         { tag: "Tailwind CSS", className: "nowrap tag" },
-        { tag: "🎐 SASS", className: "tag except-print" },
+      ],
+    },
+    // The vocabulary job adverts screen on — "frontend architecture", "design
+    // systems", "state management" — existed in this CV only inside the Altrata
+    // prose. A reader scanning the skills blocks, and any keyword matcher
+    // weighted towards them, missed all of it. Accessibility and performance
+    // are not repeated here: Quality already names them specifically, as
+    // WCAG 2.1 AA and Core Web Vitals.
+    {
+      title: "Architecture",
+      items: [
+        { tag: "Frontend architecture", className: "nowrap tag" },
+        { tag: "Design systems", className: "nowrap tag" },
+        { tag: "Component libraries", className: "nowrap tag" },
+        { tag: "State management", className: "nowrap tag" },
+        { tag: "Monorepo" },
+        { tag: "Code review", className: "nowrap tag" },
+        { tag: "Mentoring" },
       ],
     },
     {
@@ -549,6 +573,7 @@ module.exports = {
     {
       title: "Character",
       exceptPrint: true,
+      personal: true,
       items: [
         { tag: "EXPLORER" },
         { tag: "STRAIGHTFORWARD" },
@@ -573,6 +598,7 @@ module.exports = {
     {
       title: "Likes&#x1f603;",
       exceptPrint: true,
+      personal: true,
       items: [
         { tag: "HUMOUR 🤗" },
         { tag: "DOGS 🐕" },
@@ -587,6 +613,7 @@ module.exports = {
     {
       title: "Dislikes&#x1f61e;",
       exceptPrint: true,
+      personal: true,
       items: [
         { badHabits: true },
         { tag: "ASS-KISSERS 💩" },
@@ -598,6 +625,7 @@ module.exports = {
     {
       title: "Wants🙏",
       exceptPrint: true,
+      personal: true,
       items: [
         { tag: "TO BE FIT AND HEALTHY" },
         { tag: "TO FIND PERFECT JOB", glued: true },
@@ -664,14 +692,14 @@ module.exports = {
     {
       kind: "course",
       dates: "2025",
-      title: "Epic Web Dev",
-      school: { name: "Kent C. Dodds", url: "https://www.epicweb.dev/" },
+      title: "Epic React",
+      school: { name: "Kent C. Dodds", url: "https://www.epicreact.dev/" },
     },
     {
       kind: "course",
       dates: "2024",
-      title: "Epic React",
-      school: { name: "Kent C. Dodds", url: "https://www.epicreact.dev/" },
+      title: "Epic Web Dev",
+      school: { name: "Kent C. Dodds", url: "https://www.epicweb.dev/" },
     },
     {
       kind: "course",
@@ -707,10 +735,11 @@ module.exports = {
     {
       exceptPrint: true,
       kind: "course",
-      dates: "18<sup>th</sup> December 2018 &ndash; 30<sup>th</sup> February 2019",
+      dates: "18<sup>th</sup> December 2018 &ndash; 28<sup>th</sup> February 2019",
       title: "React for front-end Dev.",
       school: {
-        name: "webAcademy",
+        key: "webAcademy",
+        name: "Web Academy",
         url: "https://web-academy.com.ua/study/online-live/kurs-react",
       },
     },
@@ -731,7 +760,8 @@ module.exports = {
       dates: "1<sup>st</sup> July 2018 &ndash; 4<sup>th</sup> August 2018",
       title: "Front-end",
       school: {
-        name: "webAcademy",
+        key: "webAcademy",
+        name: "Web Academy",
         url: "https://web-academy.com.ua/study/web/html-css-javascript",
       },
       diploma: { ref: "diploma-WebAcademy" },
@@ -755,7 +785,11 @@ module.exports = {
       title: "Master's degree ",
       field: "electronics",
       diploma: { ref: "diploma-kpi" },
-      school: { name: "kpi", url: "https://kpi.ua/en" },
+      school: {
+        key: "kpi",
+        name: "Igor Sikorsky Kyiv Polytechnic Institute",
+        url: "https://kpi.ua/en",
+      },
     },
   ],
 

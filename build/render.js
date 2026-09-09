@@ -12,68 +12,54 @@ const fs = require("fs");
 const path = require("path");
 const cv = require("../data/cv");
 const svg = require("./svg");
+const { phrase, fill } = require("./experience");
 
 const root = path.join(__dirname, "..");
 const size = (n) => `${n}x${n}`;
 
-// Whole years since a date. The one place the years of experience are counted:
-// both the intro copy and og:description take their phrasing from here, so
-// they cannot drift apart the way three hand-written numbers did.
-function yearsSince(iso) {
-  const start = new Date(iso);
-  const now = new Date();
-  let years = now.getFullYear() - start.getFullYear();
-  const months = now.getMonth() - start.getMonth();
-  if (months < 0 || (months === 0 && now.getDate() < start.getDate())) years--;
-  return years;
-}
-
-const experiencePhrase = `more than ${yearsSince(cv.dates.experienceStart)} years`;
-
 // The statement carries the years in the same {{experience}} placeholder
-// og:description uses. Here it becomes the span scripts.js swaps for the flip
-// clock; with JS off the written phrase is what shows.
-const statement = cv.intro.statement.replace(
-  "{{experience}}",
-  `<span id="experience">${experiencePhrase} </span>`
+// og:description and the meta description use. Here it becomes the span
+// scripts.js swaps for the flip clock; with JS off the written phrase is what
+// shows.
+const statement = fill(
+  cv.intro.statement,
+  `<span id="experience">${phrase} </span>`
 );
 
-// The custom properties the stylesheet reads. --accent is the theme colour,
+// The one custom property the stylesheet reads: --accent is the theme colour,
 // which base.css applies to headings, links, the page frame, the dividers and
-// the flip clock; clicking a swatch sets this one property. The phone numbers
-// are here because base.css reveals them on hover with `content`, and that
-// text would otherwise be a second copy of the number. The separating space
-// stays in the stylesheet — data holds the number.
-// Only the phones of contacts that actually render: a hidden contact must not
-// leave its number behind in the stylesheet.
+// the flip clock. Clicking a swatch sets this property and nothing else.
+//
+// The phone numbers used to be here too, because a `content` rule revealed them
+// on hover. That rule is gone and the number is plain text in the markup, so
+// emitting --phone-* was a promise the stylesheet no longer keeps.
 const visibleContacts = cv.contacts.filter((c) => !c.hidden);
 
 function rootProperties() {
-  const shown = new Set(visibleContacts.map((c) => c.phone).filter(Boolean));
-  const declarations = [
-    `      --accent: ${cv.meta.accent};`,
-    ...Object.entries(cv.phones)
-      .filter(([key]) => shown.has(key))
-      .map(([key, phone]) => `      --phone-${key}: "${phone.display}";`),
-  ].join("\n");
   return `<style>
     :root {
-${declarations}
+      --accent: ${cv.meta.accent};
     }
     </style>`;
 }
 
 // ---------------------------------------------------------------- head ----
 
+// Every generated path is document-relative, and it has to be: the two hosts
+// disagree about where the root is. GitHub Pages serves this repository under
+// /homepage/, so an absolute /assets/icons/… resolves above the site and 404s —
+// which is exactly what every icon, the favicons and the manifest used to do
+// there. Vercel serves from the domain root, where the same absolute paths
+// happen to work. Relative paths are correct on both.
 function iconLinks() {
   const apple = cv.icons.apple.map(
     (n) =>
-      `<link rel="apple-touch-icon" sizes="${size(n)}" href="/assets/icons/apple-icon-${size(n)}.png" />`
+      `<link rel="apple-touch-icon" sizes="${size(n)}" href="./assets/icons/apple-icon-${size(n)}.png" />`
   );
-  const android = `<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/android-icon-192x192.png" />`;
+  const android = `<link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/android-icon-192x192.png" />`;
   const favicons = cv.icons.favicons.map(
     (n) =>
-      `<link rel="icon" type="image/png" sizes="${size(n)}" href="/favicon-${size(n)}.png" />`
+      `<link rel="icon" type="image/png" sizes="${size(n)}" href="./favicon-${size(n)}.png" />`
   );
   return [...apple, android, ...favicons].join("\n    ");
 }
@@ -96,23 +82,20 @@ function head() {
   return `<head>
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="description" content="${cv.meta.description}" />
+    <meta name="description" content="${fill(cv.meta.description)}" />
     <meta name="google" content="nositelinkssearchbox" />
     <meta name="google" content="notranslate" />
     <meta name="googlebot" content="index,follow" />
     <meta name="robots" content="index,follow" />
     <meta name="subject" content="${cv.meta.subject}" />
-    <meta name="twitter:card" content="summary_large_image" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="${cv.meta.themeColor}" />
-    <meta property="og:description" content="${cv.meta.ogDescription.replace(
-      "{{experience}}",
-      experiencePhrase
-    )}" />
+    <meta property="og:description" content="${fill(cv.meta.ogDescription)}" />
     ${iconLinks()}
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="canonical" href="${cv.identity.site}" />
+    <link rel="manifest" href="./manifest.json" />
     <meta name="msapplication-TileColor" content="${cv.meta.tileColor}" />
-    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png" />
+    <meta name="msapplication-TileImage" content="./assets/icons/ms-icon-144x144.png" />
     <!--    <base href="https://vitaminvp.github.io/homepage/" />-->
     <title>${cv.meta.title}</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
@@ -155,7 +138,8 @@ function lightbox(box) {
 // --------------------------------------------------------------- header ----
 
 function contact(c) {
-  const li = c.exceptPrint ? `<li class="except-print">` : `<li>`;
+  const cls = policy(c);
+  const li = cls ? `<li class="${cls}">` : `<li>`;
 
   if (c.kind === "website") {
     return `${li}
@@ -202,7 +186,8 @@ function header() {
                 <div class="stackable grid">
                   <div class="sixteen wide column">
                     <h1 class="name">${cv.identity.name}</h1>
-                    <p class="role">${cv.identity.title} &middot; ${cv.identity.rightToWork}</p>
+                    <p class="role">${cv.identity.title} &middot; ${cv.identity.location}</p>
+                    <p class="role-note">${cv.identity.rightToWork}</p>
                     <ul class="contacts">
                       ${visibleContacts.map(contact).join("\n                      ")}
                     </ul>
@@ -210,7 +195,7 @@ function header() {
                   <div class="sixteen wide mobile only column">
                     <div class="divider"></div>
                   </div>
-                  <div class="flip-box">
+                  <div class="flip-box personal">
                     <div class="flip-box-inner">
                       <div class="flip-box-front">
                         <h2>Résumé</h2>
@@ -222,15 +207,20 @@ function header() {
                   </div>
                   <div class="sixteen wide column">
                     <p>
-                      ${statement}<strong style="margin-left: 0.0625em" class="except-print">*</strong>
+                      ${statement}<strong style="margin-left: 0.0625em" class="except-print personal">*</strong>
                     </p>
                   </div>
-                  <div class="sixteen wide column except-print">
+                  <div class="sixteen wide column except-print personal">
                     <p style="opacity: 0.75">
                       <strong style="margin-right: 0.0625em">*</strong>I feel
                       like it's 40-60 by
                       <a href="${cv.intro.footnote.href}" rel="external" target="_blank">${cv.intro.footnote.text}</a>
                       into JavaScript and UX engineer
+                    </p>
+                  </div>
+                  <div class="sixteen wide column except-print">
+                    <p class="plain-cv">
+                      <a href="./cv.html" rel="alternate">Plain-text CV, for applicant tracking systems</a>
                     </p>
                   </div>
                 </div>
@@ -245,8 +235,20 @@ function header() {
 // leave an empty row behind.
 function bullet(b, indent) {
   const html = typeof b === "string" ? b : b.html;
-  const cls = typeof b === "string" || !b.exceptPrint ? "" : ` class="except-print"`;
+  const classes = typeof b === "string" ? "" : policy(b);
+  const cls = classes ? ` class="${classes}"` : "";
   return `<li${cls}>${html}</li>`;
+}
+
+// Screen and paper each exclude some material, and the two policies are
+// independent: `exceptPrint` keeps a thing off the paper, `personal` keeps it
+// off the screen until the reader asks for it. Returns a class list rather than
+// an attribute, so each caller keeps its own shape — and returns "" for an
+// unflagged item, so untouched markup stays byte-identical.
+function policy(item) {
+  return [item.exceptPrint ? "except-print" : "", item.personal ? "personal" : ""]
+    .filter(Boolean)
+    .join(" ");
 }
 
 function label(key) {
@@ -329,7 +331,7 @@ function recentExperience() {
                     <ol class="inverted">
                       ${projects}
                     </ol>
-                    <ul style="border-top: 1px dotted #aaaaaa; margin-top: 0.25em; padding-top: 0.25em;" class="except-print">
+                    <ul style="border-top: 1px dotted #aaaaaa; margin-top: 0.25em; padding-top: 0.25em;" class="except-print personal">
                       ${other}
                     </ul>
                   </li>
@@ -365,14 +367,14 @@ function sysadmin(e) {
                       ${company(e.companies[0])},
                       ${company(e.companies[1])}, etc.)
                     </p>
-                    <ul class="except-print">
+                    <ul class="except-print personal">
                       ${e.bullets.map(bullet).join("\n                      ")}
                     </ul>
                   </li>`;
 }
 
 function milestone(e) {
-  if (e.kind === "spacer") return `<li></li>`;
+  if (e.kind === "spacer") return `<li class="except-print personal"></li>`;
 
   if (e.kind === "gallery-trigger") {
     const dots = `
@@ -382,13 +384,13 @@ function milestone(e) {
                         <span class="dot"></span>
                       </span>
                     `;
-    return `<li class="except-print">
+    return `<li class="except-print personal">
                     ${lightboxTrigger(e.lightbox, null, dots)}
                   </li>`;
   }
 
   if (e.kind === "graduation") {
-    return `<li class="except-print">
+    return `<li class="except-print personal">
                     <p>
                       <em>${e.period}</em>
                     </p>
@@ -401,7 +403,7 @@ function milestone(e) {
   }
 
   if (e.kind === "school") {
-    return `<li class="except-print">
+    return `<li class="except-print personal">
                     <p>
                       <em>${e.period}</em> &#127890;
                     </p>
@@ -413,7 +415,7 @@ function milestone(e) {
                   </li>`;
   }
 
-  return `<li class="except-print">
+  return `<li class="except-print personal">
                     <p>
                       <em>${e.period}</em>
                     </p>
@@ -440,13 +442,11 @@ function pastExperience() {
 // -------------------------------------------------------------- sidebar ----
 
 function languages() {
-  const items = cv.languages.map((l) =>
-    l.current
-      ? `<span class="language" lang="${l.code}">${l.flag} ${l.name}</span>`
-      : `<a href="${l.href}" hreflang="${l.code}" rel="alternate" class="language" lang="${l.code}" style="display: none">${l.flag} <span>${l.name}</span></a>`
+  const items = cv.languages.map(
+    (l) => `<span class="language" lang="${l.code}">${l.flag} ${l.name}</span>`
   );
 
-  return `<section class="except-print">
+  return `<section class="except-print personal">
                   <h3>Languages</h3>
                   <p class="tags small">
                     ${items.join("\n                    ")}
@@ -478,7 +478,8 @@ function tagItem(item) {
 }
 
 function tagSection(section) {
-  const attrs = section.exceptPrint ? ` class="except-print"` : "";
+  const classes = policy(section);
+  const attrs = classes ? ` class="${classes}"` : "";
   // A glued item carries no whitespace before it: the source ran some tags
   // together, and that absence of a space renders.
   const items = section.items
@@ -497,6 +498,10 @@ function tagSection(section) {
                 </section>`;
 }
 
+// Two schools render as markup rather than as their plain name: the emoji and
+// the line breaks are part of the typography. Keyed by `school.key`, so
+// `school.name` stays a plain name every consumer can read — which is what the
+// ATS document needs.
 const SCHOOL_NAMES = {
   webAcademy: `<strong>Web<span class="emoji">🕸</span>
                             Academy</strong>`,
@@ -508,7 +513,7 @@ const SCHOOL_NAMES = {
 
 function schoolLink(school) {
   const name =
-    SCHOOL_NAMES[school.name] ||
+    SCHOOL_NAMES[school.key] ||
     (school.emoji
       ? `<strong>${school.name}
                             <span class="emoji">${school.emoji}</span></strong>`
@@ -526,7 +531,7 @@ function platforms() {
     (p) =>
       `<span class="tag"><a href="${p.url}" rel="external" target="_blank"><strong>${p.name}</strong></a></span>`
   );
-  return `<li class="except-print">
+  return `<li class="except-print personal">
                       <div><em>Every day</em></div>
                       <p class="tags bulleted">
                         ${items.join("")}
@@ -617,13 +622,22 @@ function reports() {
   return `<section>
                   <h3>Reports <span class="emoji">📑</span></h3>
                   ${items.join("\n                  ")}
-                </section>
-                <section class="except-print">
-                  <h3>Articles</h3>
-                  <p>
-                    None published <sup><em>yet</em></sup>
-                  </p>
                 </section>`;
+}
+
+// Two labels rather than one: a disclosure you cannot close is worse than one
+// you cannot open. The show-label carries `except-personal`, the hide-label
+// `personal`, so exactly one of them is visible in either state. The row is
+// `except-print` — on paper there is nothing to reveal.
+function personalToggle() {
+  return `<div class="row">
+              <div class="sixteen wide column except-print">
+                <p class="personal-toggle">
+                  <label for="personal" class="except-personal">${cv.personalToggle.show}</label>
+                  <label for="personal" class="personal">${cv.personalToggle.hide}</label>
+                </p>
+              </div>
+            </div>`;
 }
 
 // ------------------------------------------------------------- document ----
@@ -633,6 +647,7 @@ function document() {
 <html lang="en">
   ${head()}
   <body data-experience-start="${cv.dates.experienceStart}" data-kyiv-relocation="${cv.dates.kyivRelocation}">
+    <input type="checkbox" id="personal" class="except-print" />
     ${cv.lightboxes.map(lightbox).join("\n    ")}
     <main>
       <article>
@@ -659,6 +674,7 @@ function document() {
                 ${reports()}
               </div>
             </div>
+            ${personalToggle()}
           </div>
         </div>
       </article>
@@ -677,7 +693,7 @@ function document() {
 
 function manifest() {
   const icons = cv.icons.android.map((n) => ({
-    src: `/assets/icons/android-icon-${size(n)}.png`,
+    src: `./assets/icons/android-icon-${size(n)}.png`,
     sizes: size(n),
     type: "image/png",
     // The convention these were written with: 48px is density 1.0.
@@ -688,7 +704,7 @@ function manifest() {
 
 function browserconfig() {
   const logo = (n) =>
-    `<square${size(n)}logo src="/assets/icons/ms-icon-${size(n)}.png"/>`;
+    `<square${size(n)}logo src="./assets/icons/ms-icon-${size(n)}.png"/>`;
   return `<?xml version="1.0" encoding="utf-8"?>
 <browserconfig><msapplication><tile>${logo(70)}${logo(150)}${logo(
     310
@@ -696,6 +712,53 @@ function browserconfig() {
 `;
 }
 
-fs.writeFileSync(path.join(root, "index.html"), document());
-fs.writeFileSync(path.join(root, "manifest.json"), manifest());
-fs.writeFileSync(path.join(root, "browserconfig.xml"), browserconfig());
+// Every asset the generated documents point at has to exist, and the paths have
+// to stay relative. Both halves matter and neither was true: the icons and the
+// manifest were absolute, so on GitHub Pages — which serves this repository
+// under /homepage/ — all of them 404ed while the files sat right there on disk.
+// The renderer already refuses to name a lightbox that does not exist; this is
+// the same idea for files.
+function assertPaths(documents) {
+  const refs = new Set();
+  documents.forEach((text) => {
+    // href/src/content/data, either "./x" or a bare "assets/x".
+    const pattern = /(?:href|src|content|data)="(\.\/[^"]+|assets\/[^"]+)"/g;
+    let m;
+    while ((m = pattern.exec(text)) !== null) {
+      refs.add(m[1].replace(/^\.\//, ""));
+    }
+    // The manifest is JSON, so its icon srcs are not attributes.
+    const json = /"src":\s*"(\.\/[^"]+|assets\/[^"]+)"/g;
+    while ((m = json.exec(text)) !== null) {
+      refs.add(m[1].replace(/^\.\//, ""));
+    }
+  });
+
+  const absolute = documents
+    .join("")
+    .match(/(?:href|src|content)="\/(?:assets|favicon|manifest)[^"]*"/g);
+  if (absolute) {
+    throw new Error(
+      `absolute asset path would 404 on GitHub Pages: ${absolute[0]}`
+    );
+  }
+
+  const missing = [...refs].filter(
+    (r) => !fs.existsSync(path.join(root, r))
+  );
+  if (missing.length) {
+    throw new Error(`referenced but not on disk: ${missing.join(", ")}`);
+  }
+}
+
+const documents = {
+  "index.html": document(),
+  "manifest.json": manifest(),
+  "browserconfig.xml": browserconfig(),
+};
+
+assertPaths(Object.values(documents));
+
+Object.entries(documents).forEach(([name, text]) => {
+  fs.writeFileSync(path.join(root, name), text);
+});

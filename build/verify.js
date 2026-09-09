@@ -13,20 +13,40 @@ const fs = require("fs");
 const normalize = require("./normalize");
 
 const ref = process.argv[2] || "HEAD";
-const baseline = normalize(
-  execFileSync("git", ["show", `${ref}:index.html`], { encoding: "utf8" })
-);
-const built = normalize(fs.readFileSync("index.html", "utf8"));
 
-if (baseline === built) {
-  console.log(`index.html matches ${ref}, formatting aside`);
-  process.exit(0);
+// Both generated documents, so a change to either generator has to be
+// deliberate. A file the ref does not have yet is reported rather than failing:
+// that is what a new document looks like the first time.
+const DOCUMENTS = ["index.html", "cv.html"];
+
+function check(file) {
+  let baseline;
+  try {
+    baseline = normalize(
+      execFileSync("git", ["show", `${ref}:${file}`], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      })
+    );
+  } catch {
+    console.log(`${file} is not in ${ref} — nothing to compare`);
+    return true;
+  }
+
+  const built = normalize(fs.readFileSync(file, "utf8"));
+  if (baseline === built) {
+    console.log(`${file} matches ${ref}, formatting aside`);
+    return true;
+  }
+
+  let i = 0;
+  while (i < baseline.length && baseline[i] === built[i]) i++;
+  const from = Math.max(0, i - 120);
+  console.error(`${file} differs from ${ref} at character ${i}\n`);
+  console.error(`baseline: …${baseline.slice(from, i + 120)}`);
+  console.error(`built:    …${built.slice(from, i + 120)}`);
+  return false;
 }
 
-let i = 0;
-while (i < baseline.length && baseline[i] === built[i]) i++;
-const from = Math.max(0, i - 120);
-console.error(`index.html differs from ${ref} at character ${i}\n`);
-console.error(`baseline: …${baseline.slice(from, i + 120)}`);
-console.error(`built:    …${built.slice(from, i + 120)}`);
-process.exit(1);
+const results = DOCUMENTS.map(check);
+process.exit(results.every(Boolean) ? 0 : 1);
