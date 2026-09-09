@@ -710,7 +710,8 @@ module.exports = {
       dates: "18<sup>th</sup> December 2018 &ndash; 30<sup>th</sup> February 2019",
       title: "React for front-end Dev.",
       school: {
-        name: "webAcademy",
+        key: "webAcademy",
+        name: "Web Academy",
         url: "https://web-academy.com.ua/study/online-live/kurs-react",
       },
     },
@@ -731,7 +732,8 @@ module.exports = {
       dates: "1<sup>st</sup> July 2018 &ndash; 4<sup>th</sup> August 2018",
       title: "Front-end",
       school: {
-        name: "webAcademy",
+        key: "webAcademy",
+        name: "Web Academy",
         url: "https://web-academy.com.ua/study/web/html-css-javascript",
       },
       diploma: { ref: "diploma-WebAcademy" },
@@ -755,7 +757,11 @@ module.exports = {
       title: "Master's degree ",
       field: "electronics",
       diploma: { ref: "diploma-kpi" },
-      school: { name: "kpi", url: "https://kpi.ua/en" },
+      school: {
+        key: "kpi",
+        name: "Igor Sikorsky Kyiv Polytechnic Institute",
+        url: "https://kpi.ua/en",
+      },
     },
   ],
 

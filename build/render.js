@@ -12,30 +12,18 @@ const fs = require("fs");
 const path = require("path");
 const cv = require("../data/cv");
 const svg = require("./svg");
+const { phrase, fill } = require("./experience");
 
 const root = path.join(__dirname, "..");
 const size = (n) => `${n}x${n}`;
 
-// Whole years since a date. The one place the years of experience are counted:
-// both the intro copy and og:description take their phrasing from here, so
-// they cannot drift apart the way three hand-written numbers did.
-function yearsSince(iso) {
-  const start = new Date(iso);
-  const now = new Date();
-  let years = now.getFullYear() - start.getFullYear();
-  const months = now.getMonth() - start.getMonth();
-  if (months < 0 || (months === 0 && now.getDate() < start.getDate())) years--;
-  return years;
-}
-
-const experiencePhrase = `more than ${yearsSince(cv.dates.experienceStart)} years`;
-
 // The statement carries the years in the same {{experience}} placeholder
-// og:description uses. Here it becomes the span scripts.js swaps for the flip
-// clock; with JS off the written phrase is what shows.
-const statement = cv.intro.statement.replace(
-  "{{experience}}",
-  `<span id="experience">${experiencePhrase} </span>`
+// og:description and the meta description use. Here it becomes the span
+// scripts.js swaps for the flip clock; with JS off the written phrase is what
+// shows.
+const statement = fill(
+  cv.intro.statement,
+  `<span id="experience">${phrase} </span>`
 );
 
 // The custom properties the stylesheet reads. --accent is the theme colour,
@@ -105,10 +93,7 @@ function head() {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="${cv.meta.themeColor}" />
-    <meta property="og:description" content="${cv.meta.ogDescription.replace(
-      "{{experience}}",
-      experiencePhrase
-    )}" />
+    <meta property="og:description" content="${fill(cv.meta.ogDescription)}" />
     ${iconLinks()}
     <link rel="manifest" href="/manifest.json" />
     <meta name="msapplication-TileColor" content="${cv.meta.tileColor}" />
@@ -497,6 +482,10 @@ function tagSection(section) {
                 </section>`;
 }
 
+// Two schools render as markup rather than as their plain name: the emoji and
+// the line breaks are part of the typography. Keyed by `school.key`, so
+// `school.name` stays a plain name every consumer can read — which is what the
+// ATS document needs.
 const SCHOOL_NAMES = {
   webAcademy: `<strong>Web<span class="emoji">🕸</span>
                             Academy</strong>`,
@@ -508,7 +497,7 @@ const SCHOOL_NAMES = {
 
 function schoolLink(school) {
   const name =
-    SCHOOL_NAMES[school.name] ||
+    SCHOOL_NAMES[school.key] ||
     (school.emoji
       ? `<strong>${school.name}
                             <span class="emoji">${school.emoji}</span></strong>`
