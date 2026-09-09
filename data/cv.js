@@ -217,7 +217,9 @@ module.exports = {
             `Own <strong>pathfinder-charts</strong>, the reusable package
                           that renders people-and-organisation relationship
                           graphs &mdash; up to third-degree paths &mdash; across
-                          the web UI and generated reports. ~900 TypeScript
+                          the web UI and generated reports; re-engineered from
+                          SVG to <strong>pure CSS</strong> with an approach of
+                          my own. ~900 TypeScript
                           files, roughly 70% of its history mine. Also built the
                           product's advanced search.`,
             `Own features end to end &mdash; technical discovery and
@@ -268,9 +270,9 @@ module.exports = {
                           including natural
                           language&nbsp;&rarr;&nbsp;search-filter mapping.`,
             `Mentor and code reviewer for up to five engineers at a time,
-                          and present front-end topics internally &mdash; Claude
-                          Code, React patterns, functional JavaScript &mdash; to
-                          groups of up to 15 engineers.`,
+                          and give front-end talks &mdash; Claude Code, React
+                          patterns, functional JavaScript &mdash; to audiences
+                          of 20 to 50 engineers.`,
             // The scale evidence. Screen only: a commit count is not an
             // achievement, and the printed page is worth more spent on what
             // was owned and delivered. Anyone who wants the measure of
@@ -294,7 +296,8 @@ module.exports = {
           // react-router — which dated the entry rather than the mentoring.
           // Stated now as what is actually taught, and it matches the stack the
           // rest of this CV claims.
-          summary: "diversity in tech, and modern React practice",
+          summary:
+            "diversity in tech; teaching React internals by building a React-like framework in plain JavaScript",
           stack: [
             "typescript",
             "react",
@@ -329,7 +332,7 @@ module.exports = {
       {
         kind: "job",
         period: "2021 &ndash; 2022",
-        role: "Front-End Developer",
+        role: "Senior Front-End Developer",
         employer: {
           name: "Wix",
           url: "https://www.wix.com/",
@@ -353,7 +356,7 @@ module.exports = {
       {
         kind: "job",
         period: "2021",
-        role: "Front-End Developer",
+        role: "Senior Front-End Developer",
         employer: {
           name: "GlobalLogic",
           url: "https://www.globallogic.com/ua/",
@@ -385,8 +388,7 @@ module.exports = {
         },
         spaceAfterLogo: true,
         bullets: [
-          `Migrated a CoffeeScript\n                        <span class="emoji">☕</span> front end to React over two\n                        years, against REST APIs &mdash; the longest engagement\n                        before Altrata`,
-          "React, Redux, React Hooks, REST",
+          `Migrated a CoffeeScript\n                        <span class="emoji">☕</span> front end to React, Redux and\n                        Hooks over two years, against REST APIs &mdash; the\n                        longest engagement before Altrata`,
         ],
       },
       {
@@ -480,7 +482,7 @@ module.exports = {
         // with the React work. The site keeps the bullets, one click away;
         // `summary` is the one line the printed CV and the ATS document state.
         summary:
-          "Network, server and IT infrastructure administration &mdash; DHCP, DNS, proxying, ACLs, peripherals and video surveillance &mdash; for public-sector and retail organisations.",
+          "Network, server and IT infrastructure administration for public-sector and retail organisations.",
         bullets: [
           `managed computers network\n                        <span class="emoji">👨‍💻</span> and servers\n                        <span class="emoji">💻</span> (DHCP, DNS, proxy,\n                        ACLs)`,
           `managed peripheral\n                        <span class="emoji">🖨️</span> devices and\n                        equipments <span class="emoji">☎️</span>`,
@@ -822,7 +824,7 @@ module.exports = {
     // nor a logo to hang on it, so the renderer treats both as optional.
     {
       title: "Working with Claude Code",
-      note: "internal, ~15 engineers, Altrata, July 2026",
+      note: "internal, 20+ engineers, Altrata, July 2026",
     },
     {
       title: "Epic React",
@@ -835,11 +837,13 @@ module.exports = {
     {
       href: "https://youtu.be/Ja13H4j5iuY",
       title: "React Patterns",
+      note: "Kottans, ~50 attendees, 2020",
       logo: { src: "assets/images/react.png", height: 17, width: 20 },
     },
     {
       href: "https://youtu.be/pw-I9SNLhcA",
       title: "Events, state, hooks implementation",
+      note: "Kottans, ~50 attendees, 2021",
       logo: { src: "assets/images/hooks.png", height: 18, width: 20 },
     },
   ],
