@@ -197,12 +197,6 @@ module.exports = {
           sameAsEngagement: true,
           role: "Senior Frontend Engineer",
           product: "Altrata",
-          logo: {
-            src: "assets/images/euromoney.png",
-            alt: "Altrata",
-            height: 16,
-            width: 30,
-          },
           summary:
             "TypeScript, React, Next.js App Router, GraphQL, Tailwind, Playwright, WCAG 2.1 AA",
           stack: [
