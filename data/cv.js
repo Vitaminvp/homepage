@@ -226,8 +226,9 @@ module.exports = {
             `Own features end to end &mdash; technical discovery and
                           architecture, implementation, testing, deployment and
                           production support &mdash; working with Product,
-                          Design and backend engineers to turn business
-                          requirements into scalable front-end solutions.`,
+                          Design and backend engineers to challenge
+                          requirements, weigh trade-offs and choose pragmatic
+                          solutions.`,
             `Set front-end architecture: authored the repo-wide
                           <strong>fetch-seam</strong> data-layer convention and
                           its documentation, created two shared workspace
