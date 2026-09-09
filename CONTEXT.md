@@ -55,7 +55,16 @@ and the renderer does not escape them.
 **Render module** (`build/render.js`) — owns the shape of the document. Writing
 `index.html`, `manifest.json` and `browserconfig.xml` is the whole of its
 interface. All three take their icon list from `cv.icons`, which is why the
-paths cannot drift apart again.
+paths cannot drift apart again, and all three write **document-relative** paths.
+
+That last part is a rule, not a preference, and `assertPaths()` enforces it
+before anything is written: an absolute `/assets/…`, `/favicon…` or
+`/manifest.json` throws, and so does a path pointing at a file that is not on
+disk. Both had gone wrong at once. Pages serves this repository under
+`/homepage/`, so every icon link, every favicon and the manifest resolved above
+the site and 404ed there — while the files sat exactly where the markup said
+they were. Vercel serves from the domain root, where the same absolute paths
+happened to work, which is what let it go unnoticed.
 
 **ATS render module** (`build/render-ats.js`) — owns the shape of the stripped
 variant. Writing `cv.html` is the whole of its interface. It filters on
@@ -128,11 +137,9 @@ would otherwise look for. With both in place a preview deployment succeeds and
 serves `/`, `/cv.html`, `/manifest.json` and `/assets/styles/base.css` — so this
 configuration is exercised, not assumed.
 
-Two hosts, one caveat worth remembering: `/manifest.json` and the absolute
-`/assets/icons/…` links in `<head>` resolve on Vercel, which serves from the
-domain root, and 404 on Pages, which serves from `/homepage/`. The relative
-`./assets/styles/base.css` works on both. That asymmetry predates this and is
-why the two deploys are not interchangeable.
+The two hosts disagree about where the root is — Vercel serves from the domain
+root, Pages from `/homepage/` — which is why every generated path is relative
+and why `assertPaths()` refuses to let an absolute one through.
 
 **S3 is retired and its buckets should be deleted.** `.travis.yml` described a
 deploy to `vitaminvp-staging` / `vitaminvp-production`; Travis stopped running,
