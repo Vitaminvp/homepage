@@ -220,6 +220,11 @@ function header() {
                       into JavaScript and UX engineer
                     </p>
                   </div>
+                  <div class="sixteen wide column except-print">
+                    <p class="plain-cv">
+                      <a href="./cv.html" rel="alternate">Plain-text CV, for applicant tracking systems</a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>`;

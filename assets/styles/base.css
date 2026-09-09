@@ -1025,6 +1025,12 @@ li.bordered > ul > details > div {
   overflow: hidden;
   clip-path: inset(50%);
 }
+/* On paper the printed CV is the alternative, so this link is screen-only —
+   `except-print` on the column does that. */
+.plain-cv {
+  font-size: 0.9em;
+  opacity: 0.75;
+}
 .personal-toggle {
   opacity: 0.6;
   font-size: 0.9em;

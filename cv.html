@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vitalii Ovcharenko — Senior Frontend Engineer — CV</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://vitaminvp.github.io/homepage/" />
+    <style>
+      @page { size: A4; margin: 15mm }
+      body {
+        font: 10pt/1.3 Arial, Helvetica, sans-serif;
+        color: #000;
+        background: #fff;
+        max-width: 190mm;
+        margin: 0 auto;
+        padding: 10mm;
+      }
+      h1 { font-size: 18pt; margin: 0 }
+      h2 {
+        font-size: 12pt;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        border-bottom: 1px solid #000;
+        margin: 10pt 0 4pt;
+        padding-bottom: 2pt;
+      }
+      h3 { font-size: 10.5pt; margin: 7pt 0 0 }
+      p { margin: 2pt 0 }
+      ul { margin: 4pt 0 0 16pt; padding: 0 }
+      li { margin-bottom: 2pt }
+      a { color: #000; text-decoration: none }
+      h2, h3 { break-after: avoid; page-break-after: avoid }
+      li, p { break-inside: avoid }
+      /* On screen the padding gives the text margins the viewport does not.
+         On paper @page already provides them, and 20mm of it was costing a
+         page. */
+      @media print { body { padding: 0; max-width: none } }
+    </style>
+  </head>
+  <body>
+    <h1>Vitalii Ovcharenko</h1>
+    <p>Senior Frontend Engineer</p>
+    <p>Location: UK · open to hybrid &amp; remote</p>
+    <p>Email: vitamin@ukr.net</p>
+    <p>GitHub: github.com/vitaminvp</p>
+    <p>LinkedIn: linkedin.com/in/vitaliiovcharenko</p>
+    <p>Phone: +44 7445 569501</p>
+    <p>Website: https://vitaminvp.github.io/</p>
+    <p>Right to work: eligible to work in the UK with sponsorship</p>
+
+    <h2>Summary</h2>
+    <p>Senior frontend engineer, UK-based, with more than 8 years in production React — nearly four of them at Altrata, a B2B data-intelligence business serving 3,300+ enterprise clients. Second most active engineer of ~40 on a 25,000-commit Turborepo monorepo of 16 Next.js apps and 57 shared packages, where I own a published graph-visualisation package outright and wrote the data-layer convention the codebase now follows. I set front-end architecture and standards, work the full width of a feature — GraphQL schema, typed queries, accessible React UI, Playwright and visual-regression coverage — and introduced the agent-instruction architecture the team codes against.</p>
+
+    <h2>Skills</h2>
+    <p><strong>Core:</strong> TYPESCRIPT, REACT, Next.js (App Router, RSC), NodeJS, HTML5/CSS3, Tailwind CSS</p>
+    <p><strong>Architecture:</strong> Frontend architecture, Design systems, Component libraries, State management, Monorepo, Code review, Mentoring</p>
+    <p><strong>Data &amp; state:</strong> TanStack Query, React Hook Form, Zod, nuqs, GraphQL, REST</p>
+    <p><strong>Quality:</strong> Vitest, Playwright, Testing Library, MSW, Storybook, Chromatic, WCAG 2.1 AA, Core Web Vitals</p>
+    <p><strong>Platform &amp; AI:</strong> Turborepo, pnpm, AWS (CDK, Cognito), Vercel, CI/CD, LaunchDarkly, Git, Claude Code, AGENTS.md / context engineering, MCP, GitHub Copilot, Cursor, Vercel AI SDK</p>
+
+    <h2>Experience</h2>
+    <h3>Senior Frontend Engineer, Altrata (formerly Euromoney Institutional Investor)</h3>
+    <p>2022 – present</p>
+    <p>TypeScript, React, Next.js App Router, GraphQL, Tailwind, Playwright, WCAG 2.1 AA</p>
+    <ul>
+      <li>Own pathfinder-charts, a published graph-visualisation package of ~900 TypeScript files — roughly 70% of its commit history is mine. Built the SVG chart, table and widget layer for people-and-organisation relationship graphs, up to third-degree paths, across the web UI and generated reports. Also built the product's advanced search.</li>
+      <li>2,757 commits — ~11% of a 25,000-commit monorepo, second most active of ~40 engineers.</li>
+      <li>Set front-end architecture: authored the repo-wide fetch-seam data-layer convention and its documentation, created two shared workspace packages, and am the third-largest contributor to the internal design system.</li>
+      <li>Accessibility to WCAG 2.1 AA — keyboard navigation, focus management and focus restoration across search and profile flows, enforced by axe-core in CI.</li>
+      <li>Test infrastructure: Vitest unit suites, Playwright e2e against both mocked and real APIs, Chromatic visual baselines, cross-browser on BrowserStack.</li>
+      <li>Led framework modernisation — Tailwind 4, Vite, Vitest and Storybook majors — plus GraphQL schema V2 migrations, and extended CI with path-based test selection.</li>
+      <li>Introduced the AGENTS.md working principles the team codes against and the audit script that keeps per-workspace agent docs in sync; ship production pull requests through Claude Code. My own monthly commit throughput went from ~50 to ~123 in the three months that followed.</li>
+      <li>Prototyped Explain this connection on Vercel AI SDK v6 — a streaming route handler with a Zod-typed structured response, feature-flagged, unit-tested, and degrading to a canned stream without a gateway key so e2e stays deterministic. Wrote the technical evaluation of three candidate LLM features, including natural language → search-filter mapping.</li>
+      <li>Mentor and code reviewer throughout, for up to five engineers at a time.</li>
+    </ul>
+    <h3>Mentor, Kottans</h3>
+    <p>2022 – present</p>
+    <p>diversity in tech, and modern React practice</p>
+    <h3>Front-End Developer, Wix</h3>
+    <p>2021 – 2022</p>
+    <ul>
+      <li>Built features for the Wix Editor platform in React, Redux and TypeScript, covered by end-to-end tests</li>
+    </ul>
+    <h3>Front-End Developer, GlobalLogic</h3>
+    <p>2021</p>
+    <ul>
+      <li>Built a video-streaming platform front end in React, Redux Saga and TypeScript, held at 100% unit-test coverage</li>
+    </ul>
+    <h3>Front-End Developer, PDFFiller</h3>
+    <p>2019 – 2021</p>
+    <ul>
+      <li>Migrated a CoffeeScript front end to React over two years, against REST APIs — the longest engagement before Altrata</li>
+      <li>React, Redux, React Hooks, REST</li>
+    </ul>
+    <h3>Front-End Developer, LiveStories</h3>
+    <p>2019</p>
+    <ul>
+      <li>Replaced a Python-rendered front end with a server-side-rendered Next.js and TypeScript application, tested with Jest and React Testing Library</li>
+    </ul>
+    <h3>Front-End Developer, AgriChain</h3>
+    <p>2018 – 2019</p>
+    <ul>
+      <li>Built, tested and deployed web applications end to end — ASP.NET, SQL, Leaflet and vanilla JavaScript</li>
+    </ul>
+    <h3>Web developer, Softcom</h3>
+    <p>2018</p>
+    <ul>
+      <li>Built internal applications supporting a manufacturing process in PHP, MySQL, JavaScript, HTML and CSS</li>
+    </ul>
+    <h3>System administrator, various employers</h3>
+    <p>2004 – 2017</p>
+    <p>Network, server and IT infrastructure administration — DHCP, DNS, proxying, ACLs, peripherals and video surveillance — for public-sector and retail organisations. Employers included Smart Solutions and ATB Market.</p>
+
+    <h2>Education</h2>
+    <p><strong>Cambridge ESOL Level 1 Certificate</strong> (25th May 2010)</p>
+    <p><strong>Master's degree in electronics</strong> — Igor Sikorsky Kyiv Polytechnic Institute (1st September 1998 – 1st July 2004)</p>
+
+    <h2>Professional development</h2>
+    <p>AI Coding Crash Course — AI Hero (2026); AI SDK v6 Crash Course — AI Hero (2026); Epic React — Kent C. Dodds (2025); Epic Web Dev — Kent C. Dodds (2024); CSS for JavaScript Developers — Josh W. Comeau (2023); Total TypeScript — Matt Pocock (2023)</p>
+
+    <h2>Talks</h2>
+    <p>Working with Claude Code (internal, ~15 engineers, Altrata, July 2026)</p>
+    <p>Epic React (internal, Altrata, 2025)</p>
+    <p>Functional-Light JavaScript (internal, Altrata, 2024)</p>
+    <p>React Patterns</p>
+    <p>Events, state, hooks implementation</p>
+  </body>
+</html>

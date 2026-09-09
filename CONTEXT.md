@@ -3,11 +3,15 @@
 A one-page résumé, published as a static document. Its shape follows from two
 constraints worth knowing before changing anything:
 
-- **It is printed.** `assets/styles/base.css` carries 102 rules across two
-  `@media print` blocks. Printing is a first-class use, not an afterthought.
+- **It is printed.** `assets/styles/base.css` carries an `@media print` block
+  and, mirroring it, an `@media only screen` one. Printing is a first-class
+  use, not an afterthought.
 - **It works without JavaScript.** Five `<noscript>` blocks hold the gallery
-  images, and `og:description` carries the summary for crawlers. Nothing
-  essential may depend on a script running.
+  images, `og:description` carries the summary for crawlers, and the personal
+  page is revealed by a checkbox rather than a script. Nothing essential may
+  depend on a script running.
+- **It is read by machines.** A second document, `cv.html`, states the same
+  facts as plain text for applicant tracking systems.
 
 ## Domain language
 
@@ -36,6 +40,12 @@ technology. Its URL comes from the `links` registry, one entry per technology.
 **Contact** — a way to reach the person. Some also appear in `<head>` as
 `rel="me"`.
 
+**Visibility** — three flags, and they are independent. `hidden` means nowhere.
+`exceptPrint` keeps a thing on the screen and off the paper. `personal` keeps it
+off the screen until the reader opens the personal page, and everything carrying
+it also carries `exceptPrint`. `build/render.js`'s `policy()` turns the last two
+into a class list; `.print-only` is the inverse of `exceptPrint`.
+
 ## Architecture
 
 **CV data module** (`data/cv.js`) — every fact about the person, stated once.
@@ -47,21 +57,42 @@ and the renderer does not escape them.
 interface. All three take their icon list from `cv.icons`, which is why the
 paths cannot drift apart again.
 
+**ATS render module** (`build/render-ats.js`) — owns the shape of the stripped
+variant. Writing `cv.html` is the whole of its interface. It filters on
+`exceptPrint`, so the rule is one sentence: *an item is in the ATS document if
+it prints.* Its `assertAts()` refuses to write a document containing an image,
+an audio element, a disclosure, an emoji, or any text that lives in CSS — a
+parser reads none of those.
+
+**Text module** (`build/plain.js`) — trusted HTML in, plain text out, plus
+`esc()` to put text back into a document. The direction of trust is the opposite
+of the render module's, which is the thing to keep in mind when editing it. It
+throws on an entity it does not know rather than let `&hellip;` reach a document
+nobody re-reads.
+
+**Experience module** (`build/experience.js`) — the one place the years are
+counted. Three templates state them and all three write `{{experience}}`, so the
+placeholder is named once, in `fill()`.
+
 Facts reach three consumers, so none of them holds a second copy:
 
 | Consumer | How |
 |---|---|
 | Markup | rendered directly |
-| CSS | generated `:root` custom properties — `base.css` reveals phone numbers on hover through `var(--phone-*)` |
+| CSS | generated `:root` custom properties — `--accent` is the theme, which one swatch click rewrites |
 | Runtime JS | `data-*` attributes on `<body>` — `scripts.js` counts from those dates |
 
-`index.html` is generated **and committed**: GitHub Pages serves this
-repository directly and there is no CI, so the built file has to be in git.
-Run `npm run build` after editing `data/cv.js` and commit both.
+`index.html` and `cv.html` are generated **and committed**: GitHub Pages serves
+this repository directly and there is no CI, so the built files have to be in
+git. Run `npm run build` after editing `data/cv.js` — it writes both documents —
+and commit them with the data.
 
 `build/normalize.js` and `build/verify.js` exist to prove a change to the
-generator did not change the document: they compare canonical forms in which
-formatting is invisible but everything a reader would see is not.
+generator did not change the documents: they compare canonical forms in which
+formatting is invisible but everything a reader would see is not. `verify.js`
+checks both documents and reports both, so a two-document change does not take
+two runs to see. Pass it the ref to compare against — its default `HEAD` is
+self-satisfying once the rebuilt files are committed.
 
 ## Deploy
 

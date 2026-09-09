@@ -704,14 +704,14 @@ module.exports = {
     {
       kind: "course",
       dates: "2025",
-      title: "Epic Web Dev",
-      school: { name: "Kent C. Dodds", url: "https://www.epicweb.dev/" },
+      title: "Epic React",
+      school: { name: "Kent C. Dodds", url: "https://www.epicreact.dev/" },
     },
     {
       kind: "course",
       dates: "2024",
-      title: "Epic React",
-      school: { name: "Kent C. Dodds", url: "https://www.epicreact.dev/" },
+      title: "Epic Web Dev",
+      school: { name: "Kent C. Dodds", url: "https://www.epicweb.dev/" },
     },
     {
       kind: "course",

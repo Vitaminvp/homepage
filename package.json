@@ -4,7 +4,7 @@
   "private": true,
   "description": "My résumé.",
   "scripts": {
-    "build": "node build/render.js",
+    "build": "node build/render.js && node build/render-ats.js",
     "verify": "node build/verify.js"
   }
 }
