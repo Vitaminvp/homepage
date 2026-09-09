@@ -442,10 +442,8 @@ function pastExperience() {
 // -------------------------------------------------------------- sidebar ----
 
 function languages() {
-  const items = cv.languages.map((l) =>
-    l.current
-      ? `<span class="language" lang="${l.code}">${l.flag} ${l.name}</span>`
-      : `<a href="${l.href}" hreflang="${l.code}" rel="alternate" class="language" lang="${l.code}" style="display: none">${l.flag} <span>${l.name}</span></a>`
+  const items = cv.languages.map(
+    (l) => `<span class="language" lang="${l.code}">${l.flag} ${l.name}</span>`
   );
 
   return `<section class="except-print personal">
