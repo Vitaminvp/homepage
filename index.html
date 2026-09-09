@@ -11,7 +11,7 @@
     <meta name="subject" content="Senior Frontend Engineer CV" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#ffffff" />
-    <meta property="og:description" content="&mdash; Senior frontend engineer, UK-based, with more than 8 years in production React &mdash; nearly four of them at Altrata, a B2B data-intelligence business serving 3,300+ enterprise clients. Second most active engineer of ~40 on a 25,000-commit Turborepo monorepo of 16 Next.js apps and 57 shared packages." />
+    <meta property="og:description" content="Senior frontend engineer, UK-based, with more than 8 years in production React &mdash; nearly four of them at Altrata, a B2B data-intelligence business serving 3,300+ enterprise clients. I own front-end architecture and standards on a 25,000-commit Turborepo monorepo of 16 Next.js apps and 57 shared packages." />
     <link rel="apple-touch-icon" sizes="57x57" href="./assets/icons/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="./assets/icons/apple-icon-60x60.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="./assets/icons/apple-icon-72x72.png" />
@@ -108,7 +108,7 @@
             <div class="row">
               <div class="three wide center aligned column" id="logo">
                 <object class="avatar" data="./assets/photos/avatar.svg" role="img" aria-label="My profile picture"></object>
-                <audio preload="auto">
+                <audio preload="none">
                   <source src="assets/sounds/likeabos.mp3" type="audio/mpeg" />
                 </audio>
               </div>
@@ -223,18 +223,14 @@
                   <div class="sixteen wide column">
                     <p>
                       Senior frontend engineer, UK-based, with <span id="experience">more than 8 years </span> in
-                      production React &mdash; nearly four of them at
-                      <strong>Altrata</strong>, a B2B data-intelligence business
-                      serving 3,300+ enterprise clients. Second most active
-                      engineer of ~40 on a 25,000-commit Turborepo monorepo of
-                      16 Next.js apps and 57 shared packages, where I own a
-                      published graph-visualisation package outright and wrote
-                      the data-layer convention the codebase now follows. I set
-                      front-end architecture and standards, work the full width
-                      of a feature &mdash; GraphQL schema, typed queries,
-                      accessible React UI, Playwright and visual-regression
-                      coverage &mdash; and introduced the agent-instruction
-                      architecture the team codes against.<strong style="margin-left: 0.0625em" class="except-print personal">*</strong>
+                      production React. Nearly four of them at
+                      <strong>Altrata</strong>, a B2B data-intelligence
+                      business, on a 25,000-commit Turborepo monorepo of Next.js
+                      and TypeScript. I own front-end architecture and
+                      standards, and take features from technical discovery
+                      through implementation, testing and deployment to
+                      production support &mdash; including a published
+                      graph-visualisation package I own outright.<strong style="margin-left: 0.0625em" class="except-print personal">*</strong>
                     </p>
                   </div>
                   <div class="sixteen wide column except-print personal">
@@ -271,7 +267,7 @@
                       <strong>Senior Frontend Engineer</strong> at
                       <strong><a href="https://altrata.com/" rel="external" target="_blank">Altrata</a></strong> <em>(formerly Euromoney Institutional Investor)</em><br /><sup style="display: none"><em>(here's my introduction letter
                           <a href="./" rel="external"><strong>don't have one yet </strong> </a>)
-                          <span class="pig">🐷<audio preload="auto">
+                          <span class="pig">🐷<audio preload="none">
                               <source src="assets/sounds/all-folks.mp3" type="audio/mpeg" /></audio></span> </em></sup>
                     </p>
                     <ol class="inverted">
@@ -295,47 +291,60 @@
                               <a rel="external" class="label" href="https://aws.amazon.com/" target="_blank">AWS</a>
                             </div>
                           </li>
-                          <li>Own <strong>pathfinder-charts</strong>, a published
-                          graph-visualisation package of ~900 TypeScript files
-                          &mdash; roughly 70% of its commit history is mine.
-                          Built the SVG chart, table and widget layer for
-                          people-and-organisation relationship graphs, up to
-                          third-degree paths, across the web UI and generated
-                          reports. Also built the product's advanced search.</li>
-                          <li><strong>2,757 commits &mdash; ~11% of a 25,000-commit
-                          monorepo, second most active of ~40 engineers.</strong></li>
+                          <li>Own <strong>pathfinder-charts</strong>, the reusable package
+                          that renders people-and-organisation relationship
+                          graphs &mdash; up to third-degree paths &mdash; across
+                          the web UI and generated reports. ~900 TypeScript
+                          files, roughly 70% of its history mine. Also built the
+                          product's advanced search.</li>
+                          <li>Own features end to end &mdash; technical discovery and
+                          architecture, implementation, testing, deployment and
+                          production support &mdash; working with Product,
+                          Design and backend engineers to turn business
+                          requirements into scalable front-end solutions.</li>
                           <li>Set front-end architecture: authored the repo-wide
                           <strong>fetch-seam</strong> data-layer convention and
                           its documentation, created two shared workspace
                           packages, and am the third-largest contributor to the
                           internal design system.</li>
+                          <li>Led adoption of Next.js <strong>Cache Components</strong>
+                          &mdash; partial prerendering &mdash; across three
+                          applications, route by route with per-route opt-outs:
+                          made client components prerender-safe and cached
+                          authentication, cutting <strong>TTFB by 50% and LCP
+                          by 20%</strong>, and route compute by 40%.</li>
                           <li>Accessibility to <strong>WCAG 2.1 AA</strong> &mdash; keyboard
                           navigation, focus management and focus restoration
                           across search and profile flows, enforced by axe-core
                           in CI.</li>
-                          <li>Test infrastructure: Vitest unit suites, Playwright e2e against
-                          both mocked and real APIs, Chromatic visual baselines,
-                          cross-browser on BrowserStack.</li>
-                          <li>Led framework modernisation &mdash; Tailwind 4, Vite, Vitest and
-                          Storybook majors &mdash; plus GraphQL schema V2
-                          migrations, and extended CI with path-based test
+                          <li>Own the test estate and the toolchain: Vitest, Playwright e2e
+                          against mocked and real APIs, Chromatic visual
+                          baselines; led the Tailwind 4, Vite and Storybook
+                          major upgrades and extended CI with path-based test
                           selection.</li>
-                          <li>Introduced the <strong>AGENTS.md</strong> working principles the
-                          team codes against and the audit script that keeps
-                          per-workspace agent docs in sync; ship production
-                          pull requests through <strong>Claude Code</strong>.
-                          My own monthly commit throughput went from ~50 to
-                          ~123 in the three months that followed.</li>
+                          <li>Introduced the repository-level <strong>AGENTS.md</strong>
+                          instructions the team codes against, and the audit
+                          script keeping per-workspace agent docs in sync; ship
+                          production pull requests through <strong>Claude
+                          Code</strong>, which raised my delivery throughput
+                          roughly 2.5&times; in the three months after.</li>
                           <li>Prototyped <em>Explain this connection</em> on
                           <strong>Vercel AI SDK v6</strong> &mdash; a streaming
                           route handler with a Zod-typed structured response,
-                          feature-flagged, unit-tested, and degrading to a
-                          canned stream without a gateway key so e2e stays
-                          deterministic. Wrote the technical evaluation of three
-                          candidate LLM features, including natural
+                          feature-flagged and unit-tested, degrading to a
+                          canned stream so e2e stays deterministic. Wrote the
+                          technical evaluation of three candidate LLM features,
+                          including natural
                           language&nbsp;&rarr;&nbsp;search-filter mapping.</li>
-                          <li>Mentor and code reviewer throughout, for up to five engineers
-                          at a time.</li>
+                          <li>Mentor and code reviewer for up to five engineers at a time,
+                          and present front-end topics internally &mdash; Claude
+                          Code, React patterns, functional JavaScript &mdash; to
+                          groups of up to 15 engineers.</li>
+                          <li class="except-print">Contributed across <strong>16 Next.js applications and
+                          57 shared packages serving 3,300+ enterprise
+                          clients</strong> &mdash; one of the monorepo's most
+                          active contributors, with 2,757 of its ~25,000
+                          commits, second of ~40 engineers.</li>
                         </ul>
                       </li>
                       <li>
@@ -463,7 +472,7 @@
                         process in PHP, MySQL, JavaScript, HTML and CSS</li>
                       <li class="except-print personal">CMS Joomla, WordPress, Bitrix
                         <span class="pig"
-                          >🐷<audio preload="auto">
+                          >🐷<audio preload="none">
                             <source
                               src="assets/sounds/all-folks.mp3"
                               type="audio/mpeg"
@@ -478,9 +487,9 @@
                       <strong>System administrator</strong> at different
                       companies (like state committee<span class="emoji"> 🏢</span>, communal enterprise<span class="emoji"> 📠</span>,
                       <a href="https://smart-hr.com.ua/" target="_blank" rel="external">Smart Solutions<span class="logo">
-                        <img width="45" src="assets/images/smartsolutions.svg" alt="Smart Solutions" /></span></a>,
+                        <img width="45" height="17" src="assets/images/smartsolutions.svg" alt="Smart Solutions" /></span></a>,
                       <a href="https://www.atbmarket.com/" target="_blank" rel="external">ATB Market<span class="logo">
-                        <img width="45" src="assets/images/atb.svg" alt="ATB Market" /></span></a>, etc.)
+                        <img width="45" height="16" src="assets/images/atb.svg" alt="ATB Market" /></span></a>, etc.)
                     </p>
                     <ul class="except-print personal">
                       <li>managed computers network
@@ -549,7 +558,6 @@
                     <span class="tag">TYPESCRIPT</span>
                     <span class="tag">REACT</span>
                     <span class="nowrap tag">Next.js (App Router, RSC)</span>
-                    <span class="tag">NodeJS</span>
                     <span class="tag">HTML5/CSS3</span>
                     <span class="nowrap tag">Tailwind CSS</span>
                   </p>
@@ -588,6 +596,7 @@
                     <span class="tag">Storybook</span>
                     <span class="tag">Chromatic</span>
                     <span class="nowrap tag">WCAG 2.1 AA</span>
+                    <span class="nowrap tag">Cache Components (PPR)</span>
                     <span class="nowrap tag">Core Web Vitals</span>
                   </p>
                 </section>
@@ -595,6 +604,7 @@
                   <h3>Platform &amp; AI</h3>
                   <p class="tags small bulleted">
                     <span class="tag">Turborepo</span>
+                    <span class="tag">Node.js</span>
                     <span class="tag">pnpm</span>
                     <span class="nowrap tag">AWS (CDK, Cognito)</span>
                     <span class="tag">Vercel</span>
@@ -602,8 +612,6 @@
                     <span class="tag">LaunchDarkly</span>
                     <span class="tag">Git</span>
                     <span class="nowrap tag">Claude Code</span>
-                    <span class="nowrap tag">AGENTS.md / context engineering</span>
-                    <span class="tag">MCP</span>
                     <span class="nowrap tag">GitHub Copilot</span>
                     <span class="tag">Cursor</span>
                     <span class="nowrap tag">Vercel AI SDK</span>
@@ -679,123 +687,6 @@
                     </li>
                     <li>
                       <div>
-                        <em>2026</em>
-                      </div>
-                      <div>
-                        <strong>AI Coding Crash Course</strong> at
-                        <a href="https://www.aihero.dev/workshops/ai-coding-crash-course" rel="external" target="_blank"><strong>AI Hero</strong></a>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <em>2026</em>
-                      </div>
-                      <div>
-                        <strong>AI SDK v6 Crash Course</strong> at
-                        <a href="https://www.aihero.dev/workshops/ai-sdk-v6-crash-course" rel="external" target="_blank"><strong>AI Hero</strong></a>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <em>2025</em>
-                      </div>
-                      <div>
-                        <strong>Epic React</strong> at
-                        <a href="https://www.epicreact.dev/" rel="external" target="_blank"><strong>Kent C. Dodds</strong></a>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <em>2024</em>
-                      </div>
-                      <div>
-                        <strong>Epic Web Dev</strong> at
-                        <a href="https://www.epicweb.dev/" rel="external" target="_blank"><strong>Kent C. Dodds</strong></a>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <em>2023</em>
-                      </div>
-                      <div>
-                        <strong>CSS for JavaScript Developers</strong> at
-                        <a href="https://css-for-js.dev/" rel="external" target="_blank"><strong>Josh W. Comeau</strong></a>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <em>2023</em>
-                      </div>
-                      <div>
-                        <strong>Total TypeScript</strong> at
-                        <a href="https://www.totaltypescript.com/" rel="external" target="_blank"><strong>Matt Pocock</strong></a>
-                      </div>
-                    </li>
-                    <li class="except-print">
-                      <div>
-                        <em>1<sup>st</sup> May 2019 &ndash; 31<sup>st</sup> August 2019</em>
-                      </div>
-                      <div>
-                        <strong>PDFfiller js, react school</strong> at
-                        <a href="https://pdffiller.com.ua/" rel="external" target="_blank"><strong>PDFfiller</strong></a>
-                      </div>
-                    </li>
-                    <li class="except-print">
-                      <div>
-                        <em>1<sup>st</sup> September 2018 &ndash; 31<sup>st</sup> May 2019</em>
-                      </div>
-                      <div>
-                        <strong>Kottans front-end
-                          <span class="emoji">&#128640;</span></strong>
-                        at
-                        <a href="https://dou.ua/calendar/23973/" rel="external" target="_blank"><strong>Kottans
-                            <span class="emoji">😺</span></strong></a>
-                      </div>
-                    </li>
-                    <li class="except-print">
-                      <div>
-                        <em>18<sup>th</sup> December 2018 &ndash; 28<sup>th</sup> February 2019</em>
-                      </div>
-                      <div>
-                        <strong>React for front-end Dev.</strong> at
-                        <a href="https://web-academy.com.ua/study/online-live/kurs-react" rel="external" target="_blank"><strong>Web<span class="emoji">🕸</span>
-                            Academy</strong></a>
-                      </div>
-                    </li>
-                    <li class="except-print">
-                      <div>
-                        <em>1<sup>st</sup> September 2018 &ndash; 26<sup>th</sup> November 2018</em>
-                      </div>
-                      <div>
-                        <strong>Javascript + React Advanced</strong> at
-                        <a href="https://www.easycode.school/courses/course-javascript-react-advanced" rel="external" target="_blank"><strong>EasyCode</strong></a>
-                        <a id="diploma-EC" href="#diploma-EasyCode" title="Show EasyCode diploma" class="except-print">
-                          📜
-                        </a>
-                      </div>
-                    </li>
-                    <li class="hidden">
-                      <div>
-                        <em>1<sup>st</sup> July 2018 &ndash; 4<sup>th</sup> August 2018</em>
-                      </div>
-                      <div>
-                        <strong>Front-end</strong> at
-                        <a href="https://web-academy.com.ua/study/web/html-css-javascript" rel="external" target="_blank"><strong>Web<span class="emoji">🕸</span>
-                            Academy</strong></a>
-                        <a id="diploma-WA" href="#diploma-WebAcademy" title="Show WebAcademy diploma" class="except-print">📜</a>
-                      </div>
-                    </li>
-                    <li class="hidden">
-                      <div>
-                        <em>1<sup>st</sup> September 2017 &ndash; 31<sup>st</sup> January 2018</em>
-                      </div>
-                      <div>
-                        <strong>Front-end</strong> at
-                        <a href="https://goit.ua" rel="external" target="_blank"><strong>GoIt</strong></a>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
                         <em>25<sup>th</sup> May 2010</em>
                       </div>
                       <div>
@@ -820,26 +711,46 @@
                       </div>
                     </li>
                   </ul>
+                  <h6>Professional development</h6>
+                  <p class="courses">
+                    <span><strong>AI Coding Crash Course</strong> &mdash; <a href="https://www.aihero.dev/workshops/ai-coding-crash-course" rel="external" target="_blank"><strong>AI Hero</strong></a> (2026)</span>;
+                    <span><strong>AI SDK v6 Crash Course</strong> &mdash; <a href="https://www.aihero.dev/workshops/ai-sdk-v6-crash-course" rel="external" target="_blank"><strong>AI Hero</strong></a> (2026)</span>;
+                    <span><strong>Epic React</strong> &mdash; <a href="https://www.epicreact.dev/" rel="external" target="_blank"><strong>Kent C. Dodds</strong></a> (2025)</span>;
+                    <span><strong>Epic Web Dev</strong> &mdash; <a href="https://www.epicweb.dev/" rel="external" target="_blank"><strong>Kent C. Dodds</strong></a> (2024)</span>;
+                    <span><strong>CSS for JavaScript Developers</strong> &mdash; <a href="https://css-for-js.dev/" rel="external" target="_blank"><strong>Josh W. Comeau</strong></a> (2023)</span>;
+                    <span><strong>Total TypeScript</strong> &mdash; <a href="https://www.totaltypescript.com/" rel="external" target="_blank"><strong>Matt Pocock</strong></a> (2023)</span>;
+                    <span class="except-print"><strong>PDFfiller js, react school</strong> &mdash; <a href="https://pdffiller.com.ua/" rel="external" target="_blank"><strong>PDFfiller</strong></a> (1<sup>st</sup> May 2019 &ndash; 31<sup>st</sup> August 2019)</span>;
+                    <span class="except-print"><strong>Kottans front-end</strong> &mdash; <a href="https://dou.ua/calendar/23973/" rel="external" target="_blank"><strong>Kottans
+                            <span class="emoji">😺</span></strong></a> (1<sup>st</sup> September 2018 &ndash; 31<sup>st</sup> May 2019)</span>;
+                    <span class="except-print"><strong>React for front-end Dev.</strong> &mdash; <a href="https://web-academy.com.ua/study/online-live/kurs-react" rel="external" target="_blank"><strong>Web<span class="emoji">🕸</span>
+                            Academy</strong></a> (18<sup>th</sup> December 2018 &ndash; 28<sup>th</sup> February 2019)</span>;
+                    <span class="except-print"><strong>Javascript + React Advanced</strong> &mdash; <a href="https://www.easycode.school/courses/course-javascript-react-advanced" rel="external" target="_blank"><strong>EasyCode</strong></a> (1<sup>st</sup> September 2018 &ndash; 26<sup>th</sup> November 2018)</span>;
+                    <span class="hidden"><strong>Front-end</strong> &mdash; <a href="https://web-academy.com.ua/study/web/html-css-javascript" rel="external" target="_blank"><strong>Web<span class="emoji">🕸</span>
+                            Academy</strong></a> (1<sup>st</sup> July 2018 &ndash; 4<sup>th</sup> August 2018)</span>;
+                    <span class="hidden"><strong>Front-end</strong> &mdash; <a href="https://goit.ua" rel="external" target="_blank"><strong>GoIt</strong></a> (1<sup>st</sup> September 2017 &ndash; 31<sup>st</sup> January 2018)</span>
+                  </p>
                 </section>
                 <section>
                   <h3>Reports <span class="emoji">📑</span></h3>
-                  <span class="report">
+                  <p class="courses">
+                    <span class="report">
                     <strong>Working with Claude Code</strong> <em>(internal, ~15 engineers, Altrata, July 2026)</em>
-                  </span>
-                  <span class="report">
+                  </span>;
+                    <span class="report">
                     <strong>Epic React</strong> <em>(internal, Altrata, 2025)</em>
-                  </span>
-                  <span class="report">
+                  </span>;
+                    <span class="report">
                     <strong>Functional-Light JavaScript</strong> <em>(internal, Altrata, 2024)</em>
-                  </span>
-                  <a href="https://youtu.be/Ja13H4j5iuY" rel="external" class="report" target="_blank">
+                  </span>;
+                    <a href="https://youtu.be/Ja13H4j5iuY" rel="external" class="report" target="_blank">
                     <img src="assets/images/react.png" class="logo" height="17" width="20" />
                     <strong>React Patterns</strong>
-                  </a>
-                  <a href="https://youtu.be/pw-I9SNLhcA" rel="external" class="report" target="_blank">
+                  </a>;
+                    <a href="https://youtu.be/pw-I9SNLhcA" rel="external" class="report" target="_blank">
                     <img src="assets/images/hooks.png" class="logo" height="18" width="20" />
                     <strong>Events, state, hooks implementation</strong>
                   </a>
+                  </p>
                 </section>
               </div>
             </div>
@@ -855,6 +766,6 @@
         </div>
       </article>
     </main>
-    <script src="./assets/js/scripts.js"></script>
+    <script src="./assets/js/scripts.js" defer></script>
   </body>
 </html>

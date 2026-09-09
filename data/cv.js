@@ -71,7 +71,7 @@ module.exports = {
     // {{experience}} is filled in by the renderer from dates.experienceStart,
     // so the years are counted in one place and never drift from the intro.
     ogDescription:
-      "&mdash; Senior frontend engineer, UK-based, with {{experience}} in production React &mdash; nearly four of them at Altrata, a B2B data-intelligence business serving 3,300+ enterprise clients. Second most active engineer of ~40 on a 25,000-commit Turborepo monorepo of 16 Next.js apps and 57 shared packages.",
+      "Senior frontend engineer, UK-based, with {{experience}} in production React &mdash; nearly four of them at Altrata, a B2B data-intelligence business serving 3,300+ enterprise clients. I own front-end architecture and standards on a 25,000-commit Turborepo monorepo of 16 Next.js apps and 57 shared packages.",
     themeColor: "#ffffff",
     tileColor: "#ffffff",
     accent: "midnightblue",
@@ -149,19 +149,22 @@ module.exports = {
     // so the years are counted in one place and never drift; the visible span
     // is replaced at runtime by the flip clock, and its text only shows with
     // JS off.
+    // Read in about eight seconds, so it states the role, the scale and what
+    // is owned — and one number, not six. The client count, the commit share
+    // and the app and package counts moved into the engagement below, where
+    // they are evidence rather than the first thing a reader has to parse.
+    // One fact per sentence, too: the first says who this is, the second where
+    // and at what scale, the third what is owned. A single 34-word opener made
+    // the reader parse all three at once.
     statement: `Senior frontend engineer, UK-based, with {{experience}} in
-                      production React &mdash; nearly four of them at
-                      <strong>Altrata</strong>, a B2B data-intelligence business
-                      serving 3,300+ enterprise clients. Second most active
-                      engineer of ~40 on a 25,000-commit Turborepo monorepo of
-                      16 Next.js apps and 57 shared packages, where I own a
-                      published graph-visualisation package outright and wrote
-                      the data-layer convention the codebase now follows. I set
-                      front-end architecture and standards, work the full width
-                      of a feature &mdash; GraphQL schema, typed queries,
-                      accessible React UI, Playwright and visual-regression
-                      coverage &mdash; and introduced the agent-instruction
-                      architecture the team codes against.`,
+                      production React. Nearly four of them at
+                      <strong>Altrata</strong>, a B2B data-intelligence
+                      business, on a 25,000-commit Turborepo monorepo of Next.js
+                      and TypeScript. I own front-end architecture and
+                      standards, and take features from technical discovery
+                      through implementation, testing and deployment to
+                      production support &mdash; including a published
+                      graph-visualisation package I own outright.`,
     // Kept behind the personal toggle: it is the character of the site, but on
     // a CV — and on the page a recruiter opens — it blurs the positioning.
     footnote: {
@@ -218,47 +221,73 @@ module.exports = {
             "aws",
           ],
           bullets: [
-            `Own <strong>pathfinder-charts</strong>, a published
-                          graph-visualisation package of ~900 TypeScript files
-                          &mdash; roughly 70% of its commit history is mine.
-                          Built the SVG chart, table and widget layer for
-                          people-and-organisation relationship graphs, up to
-                          third-degree paths, across the web UI and generated
-                          reports. Also built the product's advanced search.`,
-            `<strong>2,757 commits &mdash; ~11% of a 25,000-commit
-                          monorepo, second most active of ~40 engineers.</strong>`,
+            `Own <strong>pathfinder-charts</strong>, the reusable package
+                          that renders people-and-organisation relationship
+                          graphs &mdash; up to third-degree paths &mdash; across
+                          the web UI and generated reports. ~900 TypeScript
+                          files, roughly 70% of its history mine. Also built the
+                          product's advanced search.`,
+            `Own features end to end &mdash; technical discovery and
+                          architecture, implementation, testing, deployment and
+                          production support &mdash; working with Product,
+                          Design and backend engineers to turn business
+                          requirements into scalable front-end solutions.`,
             `Set front-end architecture: authored the repo-wide
                           <strong>fetch-seam</strong> data-layer convention and
                           its documentation, created two shared workspace
                           packages, and am the third-largest contributor to the
                           internal design system.`,
+            // The figures are the owner's own, from either side of the
+            // August 2026 rollout. Three of the five he has are here, and the
+            // choice is deliberate: TTFB is the technique's signature win
+            // and LCP is the Core Web Vital a reader recognises. FCP (-33%)
+            // says the same thing as TTFB, and the document-route cache figure
+            // (-50%) is jargon on a CV — both are interview material instead.
+            `Led adoption of Next.js <strong>Cache Components</strong>
+                          &mdash; partial prerendering &mdash; across three
+                          applications, route by route with per-route opt-outs:
+                          made client components prerender-safe and cached
+                          authentication, cutting <strong>TTFB by 50% and LCP
+                          by 20%</strong>, and route compute by 40%.`,
             `Accessibility to <strong>WCAG 2.1 AA</strong> &mdash; keyboard
                           navigation, focus management and focus restoration
                           across search and profile flows, enforced by axe-core
                           in CI.`,
-            `Test infrastructure: Vitest unit suites, Playwright e2e against
-                          both mocked and real APIs, Chromatic visual baselines,
-                          cross-browser on BrowserStack.`,
-            `Led framework modernisation &mdash; Tailwind 4, Vite, Vitest and
-                          Storybook majors &mdash; plus GraphQL schema V2
-                          migrations, and extended CI with path-based test
+            `Own the test estate and the toolchain: Vitest, Playwright e2e
+                          against mocked and real APIs, Chromatic visual
+                          baselines; led the Tailwind 4, Vite and Storybook
+                          major upgrades and extended CI with path-based test
                           selection.`,
-            `Introduced the <strong>AGENTS.md</strong> working principles the
-                          team codes against and the audit script that keeps
-                          per-workspace agent docs in sync; ship production
-                          pull requests through <strong>Claude Code</strong>.
-                          My own monthly commit throughput went from ~50 to
-                          ~123 in the three months that followed.`,
+            `Introduced the repository-level <strong>AGENTS.md</strong>
+                          instructions the team codes against, and the audit
+                          script keeping per-workspace agent docs in sync; ship
+                          production pull requests through <strong>Claude
+                          Code</strong>, which raised my delivery throughput
+                          roughly 2.5&times; in the three months after.`,
             `Prototyped <em>Explain this connection</em> on
                           <strong>Vercel AI SDK v6</strong> &mdash; a streaming
                           route handler with a Zod-typed structured response,
-                          feature-flagged, unit-tested, and degrading to a
-                          canned stream without a gateway key so e2e stays
-                          deterministic. Wrote the technical evaluation of three
-                          candidate LLM features, including natural
+                          feature-flagged and unit-tested, degrading to a
+                          canned stream so e2e stays deterministic. Wrote the
+                          technical evaluation of three candidate LLM features,
+                          including natural
                           language&nbsp;&rarr;&nbsp;search-filter mapping.`,
-            `Mentor and code reviewer throughout, for up to five engineers
-                          at a time.`,
+            `Mentor and code reviewer for up to five engineers at a time,
+                          and present front-end topics internally &mdash; Claude
+                          Code, React patterns, functional JavaScript &mdash; to
+                          groups of up to 15 engineers.`,
+            // The scale evidence. Screen only: a commit count is not an
+            // achievement, and the printed page is worth more spent on what
+            // was owned and delivered. Anyone who wants the measure of
+            // relative contribution across forty engineers can find it here.
+            {
+              exceptPrint: true,
+              html: `Contributed across <strong>16 Next.js applications and
+                          57 shared packages serving 3,300+ enterprise
+                          clients</strong> &mdash; one of the monorepo's most
+                          active contributors, with 2,757 of its ~25,000
+                          commits, second of ~40 engineers.`,
+            },
           ],
         },
         {
@@ -426,7 +455,7 @@ module.exports = {
             personal: true,
             html: `CMS Joomla, WordPress, Bitrix
                         <span class="pig"
-                          >🐷<audio preload="auto">
+                          >🐷<audio preload="none">
                             <source
                               src="assets/sounds/all-folks.mp3"
                               type="audio/mpeg"
@@ -444,12 +473,12 @@ module.exports = {
           {
             name: "Smart Solutions",
             url: "https://smart-hr.com.ua/",
-            logo: { src: "assets/images/smartsolutions.svg", width: 45 },
+            logo: { src: "assets/images/smartsolutions.svg", width: 45, height: 17 },
           },
           {
             name: "ATB Market",
             url: "https://www.atbmarket.com/",
-            logo: { src: "assets/images/atb.svg", width: 45 },
+            logo: { src: "assets/images/atb.svg", width: 45, height: 16 },
           },
         ],
         // Thirteen years of IT administration should not compete for space
@@ -504,7 +533,6 @@ module.exports = {
         { tag: "TYPESCRIPT" },
         { tag: "REACT" },
         { tag: "Next.js (App Router, RSC)", className: "nowrap tag" },
-        { tag: "NodeJS" },
         { tag: "HTML5/CSS3" },
         { tag: "Tailwind CSS", className: "nowrap tag" },
       ],
@@ -549,6 +577,7 @@ module.exports = {
         { tag: "Storybook" },
         { tag: "Chromatic" },
         { tag: "WCAG 2.1 AA", className: "nowrap tag" },
+        { tag: "Cache Components (PPR)", className: "nowrap tag" },
         { tag: "Core Web Vitals", className: "nowrap tag" },
       ],
     },
@@ -556,6 +585,7 @@ module.exports = {
       title: "Platform &amp; AI",
       items: [
         { tag: "Turborepo" },
+        { tag: "Node.js" },
         { tag: "pnpm" },
         { tag: "AWS (CDK, Cognito)", className: "nowrap tag" },
         { tag: "Vercel" },
@@ -563,8 +593,6 @@ module.exports = {
         { tag: "LaunchDarkly" },
         { tag: "Git" },
         { tag: "Claude Code", className: "nowrap tag" },
-        { tag: "AGENTS.md / context engineering", className: "nowrap tag" },
-        { tag: "MCP" },
         { tag: "GitHub Copilot", className: "nowrap tag" },
         { tag: "Cursor" },
         { tag: "Vercel AI SDK", className: "nowrap tag" },
