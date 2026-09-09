@@ -96,11 +96,46 @@ self-satisfying once the rebuilt files are committed.
 
 ## Deploy
 
-GitHub Pages, from the repository root — that is the live site. `.travis.yml`
-still describes an S3 deploy to `vitaminvp-staging` / `vitaminvp-production`,
-and `now.json` still names a Vercel project, but neither runs: the production
-bucket has been serving a copy from before May 2023. Three deploy targets are
-described, one is real.
+**GitHub Pages, from the `develop` branch at the repository root** — confirmed
+against the Pages API, which reports `source: {branch: "develop", path: "/"}`.
+That is the one deploy target this repository knows it has.
+
+**Vercel may or may not still be connected, and this repository cannot tell.**
+`now.json` named a project using a `name` field Vercel deprecated years ago —
+deprecated hard enough that the CLI refuses to run in a directory containing the
+file at all, erroring before it even reaches authentication. That is almost
+certainly why the last deployment failed, and deleting the file removes the
+error: the CLI now starts here where it previously would not. Whether a project
+is still linked on Vercel's side is a question only the dashboard answers.
+
+One is: `vitalii-ovcharenkos-projects/homepage-rgsa`, which builds every push
+and posts the result as a check. It failed on four consecutive commits, and
+deleting `now.json` did not change that — two of those four had the file already
+gone, so `now.json` blocked the CLI without ever being what broke the build.
+
+What broke it is output detection. No framework is detected and `package.json`
+carries a `build` script, so Vercel runs the build and then goes looking for an
+output directory — and this generator writes to the repository root, not to
+`public/`. `vercel.json` states that outright: no framework, `npm run build`,
+output from `.`.
+
+Note the two hosts disagree about the root. Pages serves the site from
+`/homepage/`, so the absolute `/assets/icons/…` and `/manifest.json` links in
+`<head>` resolve above it and 404 there, while on Vercel they would resolve. The
+relative `./assets/styles/base.css` works on both. That predates all of this and
+nothing here depends on it, but it is the reason the two deploys are not
+interchangeable.
+
+**S3 is retired and its buckets should be deleted.** `.travis.yml` described a
+deploy to `vitaminvp-staging` / `vitaminvp-production`; Travis stopped running,
+the buckets froze, and the config is now gone, so nothing can push to them
+again. They are still serving, though — both
+`http://vitaminvp-production.s3-website.eu-central-1.amazonaws.com` and
+`http://vitaminvp-staging.s3-website.eu-central-1.amazonaws.com` answer 200 with
+a copy from before May 2023: "more than 3 years", "I'm a frontend developer",
+and two Ukrainian phone numbers where the current document has one UK number.
+No commit can reach them; they have to go in the AWS console.
+`<link rel="canonical">` in `<head>` is the mitigation until they do.
 
 The service worker has been retired. `sw.js` is now a tombstone that clears
 caches and unregisters itself; delete it once it has been live long enough for
