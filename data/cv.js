@@ -455,7 +455,7 @@ module.exports = {
             personal: true,
             html: `CMS Joomla, WordPress, Bitrix
                         <span class="pig"
-                          >🐷<audio preload="auto">
+                          >🐷<audio preload="none">
                             <source
                               src="assets/sounds/all-folks.mp3"
                               type="audio/mpeg"
@@ -473,12 +473,12 @@ module.exports = {
           {
             name: "Smart Solutions",
             url: "https://smart-hr.com.ua/",
-            logo: { src: "assets/images/smartsolutions.svg", width: 45 },
+            logo: { src: "assets/images/smartsolutions.svg", width: 45, height: 17 },
           },
           {
             name: "ATB Market",
             url: "https://www.atbmarket.com/",
-            logo: { src: "assets/images/atb.svg", width: 45 },
+            logo: { src: "assets/images/atb.svg", width: 45, height: 16 },
           },
         ],
         // Thirteen years of IT administration should not compete for space

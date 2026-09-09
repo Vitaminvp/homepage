@@ -178,7 +178,7 @@ function header() {
   return `<div class="row">
               <div class="three wide center aligned column" id="logo">
                 <object class="avatar" data="${cv.avatar}" role="img" aria-label="My profile picture"></object>
-                <audio preload="auto">
+                <audio preload="none">
                   <source src="${cv.sounds.logo}" type="audio/mpeg" />
                 </audio>
               </div>
@@ -325,7 +325,7 @@ function recentExperience() {
                       <strong>${r.role}</strong> at
                       <strong><a href="${r.employer.url}" rel="external" target="_blank">${r.employer.name}</a></strong>${r.employerNote ? ` <em>(${r.employerNote})</em>` : ""}<br /><sup style="display: none"><em>(here's my introduction letter
                           <a href="${r.introLetter.href}" rel="external"><strong>${r.introLetter.text}</strong> </a>)
-                          <span class="pig">🐷<audio preload="auto">
+                          <span class="pig">🐷<audio preload="none">
                               <source src="${cv.sounds.pig}" type="audio/mpeg" /></audio></span> </em></sup>
                     </p>
                     <ol class="inverted">
@@ -357,7 +357,7 @@ function job(e) {
 function sysadmin(e) {
   const company = (c) =>
     `<a href="${c.url}" target="_blank" rel="external">${c.name}<span class="logo">
-                        <img width="${c.logo.width}" src="${c.logo.src}" alt="${c.name}" /></span></a>`;
+                        <img width="${c.logo.width}" height="${c.logo.height}" src="${c.logo.src}" alt="${c.name}" /></span></a>`;
 
   return `<li>
                     <p><em>${e.period}</em></p>
@@ -703,7 +703,7 @@ function document() {
         </div>
       </article>
     </main>
-    <script src="./assets/js/scripts.js"></script>
+    <script src="./assets/js/scripts.js" defer></script>
   </body>
 </html>
 `;
