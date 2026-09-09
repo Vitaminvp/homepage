@@ -96,11 +96,27 @@ self-satisfying once the rebuilt files are committed.
 
 ## Deploy
 
-GitHub Pages, from the repository root — that is the live site. `.travis.yml`
-still describes an S3 deploy to `vitaminvp-staging` / `vitaminvp-production`,
-and `now.json` still names a Vercel project, but neither runs: the production
-bucket has been serving a copy from before May 2023. Three deploy targets are
-described, one is real.
+**GitHub Pages, from the `develop` branch at the repository root.** That is the
+whole of it — confirmed against the Pages API, which reports
+`source: {branch: "develop", path: "/"}`. Nothing else is real, and nothing else
+is described here any more.
+
+Two configs used to say otherwise and both are gone. `.travis.yml` described an
+S3 deploy to `vitaminvp-staging` / `vitaminvp-production`; Travis stopped
+running, so the buckets froze. `now.json` named a Vercel project using a `name`
+field Vercel deprecated years ago — deprecated hard enough that the modern CLI
+refuses to run in a directory containing the file at all, which is the likeliest
+reason the last Vercel deployment failed.
+
+**The S3 buckets are still serving, and they still need turning off.** Both
+`http://vitaminvp-production.s3-website.eu-central-1.amazonaws.com` and
+`http://vitaminvp-staging.s3-website.eu-central-1.amazonaws.com` answer 200 with
+a copy from before May 2023: "more than 3 years", "I'm a frontend developer",
+and two Ukrainian phone numbers where the current document has one UK number.
+That copy is what a recruiter finds if it is what a search engine indexed, and
+no change in this repository can fix it — website hosting has to be disabled in
+the AWS console. `<link rel="canonical">` in `<head>` is the mitigation until
+then.
 
 The service worker has been retired. `sw.js` is now a tombstone that clears
 caches and unregisters itself; delete it once it has been live long enough for
