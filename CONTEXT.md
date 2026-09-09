@@ -113,11 +113,19 @@ and posts the result as a check. It failed on four consecutive commits, and
 deleting `now.json` did not change that — two of those four had the file already
 gone, so `now.json` blocked the CLI without ever being what broke the build.
 
-What broke it is output detection. No framework is detected and `package.json`
-carries a `build` script, so Vercel runs the build and then goes looking for an
-output directory — and this generator writes to the repository root, not to
-`public/`. `vercel.json` states that outright: no framework, `npm run build`,
-output from `.`.
+What broke it is the Node version. The build log stops immediately after
+cloning: *"Found invalid or discontinued Node.js Version: 18.x."* The project
+was set up in the Node 18 era — the deleted `.travis.yml` pinned `18.16.0` — and
+Vercel has since discontinued it, so the build died before running a single
+command. `package.json` now declares `engines.node: "24.x"`, which is what this
+generator is developed against. The Project Settings toggle in the Vercel
+dashboard is the other half of that switch, and only the account owner can move
+it.
+
+`vercel.json` is still worth having and still unproven: no framework is
+detected, `package.json` carries a `build` script, and this generator writes to
+the repository root rather than to `public/`, so Vercel would go looking in the
+wrong place. No build has yet got far enough to find out.
 
 Note the two hosts disagree about the root. Pages serves the site from
 `/homepage/`, so the absolute `/assets/icons/…` and `/manifest.json` links in
