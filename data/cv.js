@@ -71,7 +71,7 @@ module.exports = {
     // {{experience}} is filled in by the renderer from dates.experienceStart,
     // so the years are counted in one place and never drift from the intro.
     ogDescription:
-      "&mdash; Senior frontend engineer, UK-based, with {{experience}} in production React &mdash; nearly four of them at Altrata, a B2B data-intelligence business serving 3,300+ enterprise clients. Second most active engineer of ~40 on a 25,000-commit Turborepo monorepo of 16 Next.js apps and 57 shared packages.",
+      "Senior frontend engineer, UK-based, with {{experience}} in production React &mdash; nearly four of them at Altrata, a B2B data-intelligence business serving 3,300+ enterprise clients. I own front-end architecture and standards on a 25,000-commit Turborepo monorepo of 16 Next.js apps and 57 shared packages.",
     themeColor: "#ffffff",
     tileColor: "#ffffff",
     accent: "midnightblue",
@@ -153,15 +153,18 @@ module.exports = {
     // is owned — and one number, not six. The client count, the commit share
     // and the app and package counts moved into the engagement below, where
     // they are evidence rather than the first thing a reader has to parse.
+    // One fact per sentence, too: the first says who this is, the second where
+    // and at what scale, the third what is owned. A single 34-word opener made
+    // the reader parse all three at once.
     statement: `Senior frontend engineer, UK-based, with {{experience}} in
-                      production React &mdash; nearly four of them at
+                      production React. Nearly four of them at
                       <strong>Altrata</strong>, a B2B data-intelligence
                       business, on a 25,000-commit Turborepo monorepo of Next.js
                       and TypeScript. I own front-end architecture and
-                      standards, take features from technical discovery through
-                      implementation, testing and deployment to production
-                      support, and own a published graph-visualisation package
-                      outright.`,
+                      standards, and take features from technical discovery
+                      through implementation, testing and deployment to
+                      production support &mdash; including a published
+                      graph-visualisation package I own outright.`,
     // Kept behind the personal toggle: it is the character of the site, but on
     // a CV — and on the page a recruiter opens — it blurs the positioning.
     footnote: {
@@ -234,12 +237,18 @@ module.exports = {
                           its documentation, created two shared workspace
                           packages, and am the third-largest contributor to the
                           internal design system.`,
+            // The figures are the owner's own, from either side of the
+            // August 2026 rollout. Three of the five he has are here, and the
+            // choice is deliberate: TTFB is the technique's signature win
+            // and LCP is the Core Web Vital a reader recognises. FCP (-33%)
+            // says the same thing as TTFB, and the document-route cache figure
+            // (-50%) is jargon on a CV — both are interview material instead.
             `Led adoption of Next.js <strong>Cache Components</strong>
                           &mdash; partial prerendering &mdash; across three
-                          applications, making client components
-                          prerender-safe and caching authentication so the
-                          static shell renders without waiting on per-request
-                          data.`,
+                          applications, route by route with per-route opt-outs:
+                          made client components prerender-safe and cached
+                          authentication, cutting <strong>TTFB by 50% and LCP
+                          by 20%</strong>, and route compute by 40%.`,
             `Accessibility to <strong>WCAG 2.1 AA</strong> &mdash; keyboard
                           navigation, focus management and focus restoration
                           across search and profile flows, enforced by axe-core
@@ -273,11 +282,11 @@ module.exports = {
             // relative contribution across forty engineers can find it here.
             {
               exceptPrint: true,
-              html: `Among the most active contributors to the monorepo
-                          &mdash; <strong>2,757 of its 25,000 commits, second of
-                          ~40 engineers</strong> &mdash; across 16 Next.js apps
-                          and 57 shared packages serving 3,300+ enterprise
-                          clients.`,
+              html: `Contributed across <strong>16 Next.js applications and
+                          57 shared packages serving 3,300+ enterprise
+                          clients</strong> &mdash; one of the monorepo's most
+                          active contributors, with 2,757 of its ~25,000
+                          commits, second of ~40 engineers.`,
             },
           ],
         },
