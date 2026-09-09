@@ -1028,6 +1028,13 @@ li.bordered > ul > details > div {
   font-size: 0.9em;
   opacity: 0.75;
 }
+/* The workshop list reads as a sentence rather than a timeline, so it needs
+   the timeline's type size but none of its structure. */
+.courses {
+  font-size: 0.9em;
+  line-height: 1.45;
+  margin: 0;
+}
 .personal-toggle {
   opacity: 0.6;
   font-size: 0.9em;

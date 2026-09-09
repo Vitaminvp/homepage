@@ -589,15 +589,34 @@ function educationEntry(e) {
                     </li>`;
 }
 
+// The degree and the certificate are qualifications and keep a timeline row
+// each. The workshops are a reading list: nine of them as dated rows cost a
+// third of a page to say what one sentence says, and the space belongs to the
+// achievement bullets. Screen-only entries stay screen-only either way — the
+// class still comes from each entry.
 function education() {
+  const isCourse = (e) => e.kind === "course";
+  const qualifications = cv.education.filter((e) => !isCourse(e));
+  const courses = cv.education.filter(isCourse);
+
+  const course = (e) => {
+    const cls = e.hidden ? "hidden" : e.exceptPrint ? "except-print" : "";
+    const attrs = cls ? ` class="${cls}"` : "";
+    return `<span${attrs}><strong>${e.title}</strong> &mdash; ${schoolLink(e.school)} (${e.dates})</span>`;
+  };
+
   return `<section>
                   <h3>Education <span class="emoji">🏫</span></h3>
                   <ul class="timeline">
                     ${platforms()}
-                    ${cv.education
+                    ${qualifications
                       .map(educationEntry)
                       .join("\n                    ")}
                   </ul>
+                  <h6>Professional development</h6>
+                  <p class="courses">
+                    ${courses.map(course).join(";\n                    ")}
+                  </p>
                 </section>`;
 }
 
@@ -619,9 +638,14 @@ function reports() {
                   </span>`;
   });
 
+  // One paragraph, not five blocks. The Experience bullet already says these
+  // talks happen and to how many people; this is the list, and a list belongs
+  // on one line.
   return `<section>
                   <h3>Reports <span class="emoji">📑</span></h3>
-                  ${items.join("\n                  ")}
+                  <p class="courses">
+                    ${items.join(";\n                    ")}
+                  </p>
                 </section>`;
 }
 
