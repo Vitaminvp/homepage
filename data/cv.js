@@ -237,12 +237,16 @@ module.exports = {
                           its documentation, created two shared workspace
                           packages, and am the third-largest contributor to the
                           internal design system.`,
+            // No measured before/after exists for this, so it claims none.
+            // What it does claim is the delivery judgement — a staged rollout
+            // with an escape hatch per route — and the specific work that made
+            // a cached shell possible at all. Both are defensible line by line.
             `Led adoption of Next.js <strong>Cache Components</strong>
                           &mdash; partial prerendering &mdash; across three
-                          applications, making client components
-                          prerender-safe and caching authentication so the
-                          static shell renders without waiting on per-request
-                          data.`,
+                          applications, route by route with per-route
+                          opt-outs: client components made prerender-safe,
+                          authentication cached, the static shell served
+                          without waiting on per-request data.`,
             `Accessibility to <strong>WCAG 2.1 AA</strong> &mdash; keyboard
                           navigation, focus management and focus restoration
                           across search and profile flows, enforced by axe-core
