@@ -163,8 +163,9 @@ module.exports = {
                       TypeScript. I own front-end architecture and standards,
                       and take features from technical discovery through
                       implementation, testing and deployment to production
-                      support. I own and maintain a published
-                      graph-visualisation package.`,
+                      support. My work spans data visualisation, performance,
+                      accessibility, testing, design systems and AI-assisted
+                      development.`,
     // Kept behind the personal toggle: it is the character of the site, but on
     // a CV — and on the page a recruiter opens — it blurs the positioning.
     footnote: {
@@ -551,6 +552,7 @@ module.exports = {
         { tag: "Frontend architecture", className: "nowrap tag" },
         { tag: "Design systems", className: "nowrap tag" },
         { tag: "Component libraries", className: "nowrap tag" },
+        { tag: "Data visualisation", className: "nowrap tag" },
         { tag: "State management", className: "nowrap tag" },
         { tag: "Cache Components (PPR)", className: "nowrap tag" },
         { tag: "Monorepo" },
