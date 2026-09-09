@@ -519,7 +519,24 @@ module.exports = {
         { tag: "NodeJS" },
         { tag: "HTML5/CSS3" },
         { tag: "Tailwind CSS", className: "nowrap tag" },
-        { tag: "🎐 SASS", className: "tag except-print" },
+      ],
+    },
+    // The vocabulary job adverts screen on — "frontend architecture", "design
+    // systems", "state management" — existed in this CV only inside the Altrata
+    // prose. A reader scanning the skills blocks, and any keyword matcher
+    // weighted towards them, missed all of it. Accessibility and performance
+    // are not repeated here: Quality already names them specifically, as
+    // WCAG 2.1 AA and Core Web Vitals.
+    {
+      title: "Architecture",
+      items: [
+        { tag: "Frontend architecture", className: "nowrap tag" },
+        { tag: "Design systems", className: "nowrap tag" },
+        { tag: "Component libraries", className: "nowrap tag" },
+        { tag: "State management", className: "nowrap tag" },
+        { tag: "Monorepo" },
+        { tag: "Code review", className: "nowrap tag" },
+        { tag: "Mentoring" },
       ],
     },
     {
