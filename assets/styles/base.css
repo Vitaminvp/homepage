@@ -945,6 +945,19 @@ li.bordered > ul > details > div {
   .timeline > li:not(:last-child) {
     margin-bottom: 0.4em;
   }
+  /* The period and the role are one heading, not two paragraphs. On paper
+     every past role spent a whole line on "2021 – 2022" by itself, in the one
+     column that overflows — eight roles, eight lines. The pair fits one line.
+     Scoped to the Experience column: the sidebar has room, and its entries
+     are narrower. Only the first two paragraphs; the sysadmin entry's third
+     paragraph is its summary and stays a block. */
+  .ten.wide.column .timeline > li > p:nth-child(1),
+  .ten.wide.column .timeline > li > p:nth-child(2) {
+    display: inline;
+  }
+  .ten.wide.column .timeline > li > p:nth-child(1) {
+    margin-right: 0.6em;
+  }
   ul.timeline > li {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;

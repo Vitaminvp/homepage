@@ -47,7 +47,7 @@ function contactLines() {
       if (!label) return;
       const value =
         c.kind === "email"
-          ? cv.identity.email
+          ? c.email || cv.identity.email
           : c.kind === "website"
             ? cv.identity.siteLabel
             : c.phone
@@ -116,7 +116,8 @@ function recent() {
       const body = [`    <p>${text(p.summary)}</p>`, bullets(p.bullets)]
         .filter(Boolean)
         .join("\n");
-      return entry(heading, period, body);
+      // A project that predates the engagement carries its own period.
+      return entry(heading, p.period ? text(p.period) : period, body);
     })
     .join("\n");
 }
