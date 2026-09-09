@@ -122,17 +122,17 @@ generator is developed against. The Project Settings toggle in the Vercel
 dashboard is the other half of that switch, and only the account owner can move
 it.
 
-`vercel.json` is still worth having and still unproven: no framework is
-detected, `package.json` carries a `build` script, and this generator writes to
-the repository root rather than to `public/`, so Vercel would go looking in the
-wrong place. No build has yet got far enough to find out.
+`vercel.json` carries the other half: no framework detected, `npm run build`,
+and output taken from the repository root rather than from the `public/` Vercel
+would otherwise look for. With both in place a preview deployment succeeds and
+serves `/`, `/cv.html`, `/manifest.json` and `/assets/styles/base.css` — so this
+configuration is exercised, not assumed.
 
-Note the two hosts disagree about the root. Pages serves the site from
-`/homepage/`, so the absolute `/assets/icons/…` and `/manifest.json` links in
-`<head>` resolve above it and 404 there, while on Vercel they would resolve. The
-relative `./assets/styles/base.css` works on both. That predates all of this and
-nothing here depends on it, but it is the reason the two deploys are not
-interchangeable.
+Two hosts, one caveat worth remembering: `/manifest.json` and the absolute
+`/assets/icons/…` links in `<head>` resolve on Vercel, which serves from the
+domain root, and 404 on Pages, which serves from `/homepage/`. The relative
+`./assets/styles/base.css` works on both. That asymmetry predates this and is
+why the two deploys are not interchangeable.
 
 **S3 is retired and its buckets should be deleted.** `.travis.yml` described a
 deploy to `vitaminvp-staging` / `vitaminvp-production`; Travis stopped running,
