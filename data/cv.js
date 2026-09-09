@@ -237,16 +237,18 @@ module.exports = {
                           its documentation, created two shared workspace
                           packages, and am the third-largest contributor to the
                           internal design system.`,
-            // No measured before/after exists for this, so it claims none.
-            // What it does claim is the delivery judgement — a staged rollout
-            // with an escape hatch per route — and the specific work that made
-            // a cached shell possible at all. Both are defensible line by line.
+            // The figures are the owner's own, from the Speed Insights p75
+            // for these routes either side of the August 2026 rollout. Two of
+            // the five he has are here: TTFB is the technique's signature win
+            // and LCP is the Core Web Vital a reader recognises. FCP (-33%)
+            // says the same thing as TTFB, and the document-route cache figure
+            // (-50%) is jargon on a CV — both are interview material instead.
             `Led adoption of Next.js <strong>Cache Components</strong>
                           &mdash; partial prerendering &mdash; across three
-                          applications, route by route with per-route
-                          opt-outs: client components made prerender-safe,
-                          authentication cached, the static shell served
-                          without waiting on per-request data.`,
+                          applications, route by route with per-route opt-outs:
+                          made client components prerender-safe and cached
+                          authentication, cutting <strong>TTFB by 50% and LCP
+                          by 20%</strong>, and route compute by 40%.`,
             `Accessibility to <strong>WCAG 2.1 AA</strong> &mdash; keyboard
                           navigation, focus management and focus restoration
                           across search and profile flows, enforced by axe-core
