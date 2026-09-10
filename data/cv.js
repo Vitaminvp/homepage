@@ -174,9 +174,8 @@ module.exports = {
                       TypeScript. I own front-end architecture and standards,
                       and take features from technical discovery through
                       implementation, testing and deployment to production
-                      support. My work spans data visualisation, performance,
-                      accessibility, testing, design systems and AI-assisted
-                      development.`,
+                      support. My strongest areas are data visualisation,
+                      Next.js performance and AI-assisted development.`,
     // Kept behind the personal toggle: it is the character of the site, but on
     // a CV — and on the page a recruiter opens — it blurs the positioning.
     footnote: {
@@ -258,7 +257,7 @@ module.exports = {
             // says the same thing as TTFB, and the document-route cache figure
             // (-50%) is jargon on a CV — both are interview material instead.
             `Led adoption of Next.js <strong>Cache Components</strong>
-                          &mdash; partial prerendering &mdash; across three
+                          &mdash; Partial Prerendering (PPR) &mdash; across three
                           applications, route by route with per-route opt-outs:
                           made client components prerender-safe and cached
                           authentication, cutting <strong>TTFB by 50% and LCP
@@ -571,6 +570,13 @@ module.exports = {
         { tag: "State management", className: "nowrap tag" },
         { tag: "Cache Components (PPR)", className: "nowrap tag" },
         { tag: "Monorepo" },
+      ],
+    },
+    {
+      title: "Leadership",
+      items: [
+        { tag: "Technical leadership", className: "nowrap tag" },
+        { tag: "Engineering standards", className: "nowrap tag" },
         { tag: "Code review", className: "nowrap tag" },
         { tag: "Mentoring" },
       ],
