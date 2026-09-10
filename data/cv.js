@@ -53,7 +53,7 @@ module.exports = {
     // availability rather than as a requirement the reader has to satisfy:
     // "Requires UK visa sponsorship" reads like a rejection notice for
     // something that is simply a fact about paperwork.
-    rightToWork: "eligible to work in the UK with sponsorship",
+    rightToWork: "UK-based on a Skilled Worker visa; new sponsor required",
   },
 
   // What the site is called when installed to a home screen.
@@ -234,13 +234,17 @@ module.exports = {
                           my own. ~900 TypeScript
                           files, roughly 70% of its history mine. Also built the
                           product's advanced search.`,
-            `Own features end to end &mdash; technical discovery and
-                          architecture, implementation, testing, deployment and
-                          production support &mdash; working with Product,
-                          Design and backend engineers to challenge
+            // Agile, stakeholders, incident response and Datadog are the
+            // words UK senior specs ask for by name; each is true here, so
+            // they belong in the sentence rather than in a keyword list.
+            `Own features end to end in an agile, cross-functional team,
+                          from technical discovery to production support and
+                          incident response with Datadog, working with Product,
+                          Design and backend stakeholders to challenge
                           requirements, weigh trade-offs and choose pragmatic
                           solutions.`,
-            `Set front-end architecture: authored the repo-wide
+            `Set front-end architecture and shape the technical
+                          roadmap: authored the repo-wide
                           <strong>fetch-seam</strong> data-layer convention and
                           its documentation, created two shared workspace
                           packages, and am the third-largest contributor to the
@@ -269,7 +273,7 @@ module.exports = {
                           major upgrades and extended CI with path-based test
                           selection.`,
             `Introduced the repository-level <strong>AGENTS.md</strong>
-                          instructions the team codes against, and the audit
+                          the team codes against, and the audit
                           script keeping per-workspace agent docs in sync; ship
                           production pull requests through <strong>Claude
                           Code</strong>, which raised my delivery throughput
@@ -277,8 +281,7 @@ module.exports = {
             `Prototyped <em>Explain this connection</em> on
                           <strong>Vercel AI SDK v6</strong> &mdash; a streaming
                           route handler with a Zod-typed structured response,
-                          feature-flagged and unit-tested, degrading to a
-                          canned stream so e2e stays deterministic. Wrote the
+                          feature-flagged and unit-tested &mdash; and wrote the
                           technical evaluation of three candidate LLM features,
                           including natural
                           language&nbsp;&rarr;&nbsp;search-filter mapping.`,
@@ -314,7 +317,7 @@ module.exports = {
           // Stated now as what is actually taught, and it matches the stack the
           // rest of this CV claims.
           summary:
-            "diversity in tech; teaching React internals by building a React-like framework in plain JavaScript",
+            "Diversity-in-tech school; I teach React internals by building a React-like framework in plain JavaScript",
           stack: [
             "typescript",
             "react",
@@ -367,7 +370,7 @@ module.exports = {
         // written in. The stack stays named — a reader filtering on keywords
         // needs it — but a list of technologies is not a description of a job.
         bullets: [
-          "Built features for the <strong>Wix Editor</strong> platform in React, Redux and TypeScript, covered by end-to-end tests",
+          "Built features for the <strong>Wix Editor</strong> platform in React, Redux and TypeScript, with e2e tests; interviewed front-end candidates",
         ],
       },
       {
@@ -386,7 +389,7 @@ module.exports = {
         },
         spaceAfterLogo: true,
         bullets: [
-          "Built a video-streaming platform front end in React, Redux Saga and TypeScript, held at <strong>100% unit-test coverage</strong>",
+          "Built a video-streaming front end in React, Redux Saga and TypeScript at <strong>100% unit-test coverage</strong>; ran interviews",
         ],
       },
       {
@@ -607,6 +610,7 @@ module.exports = {
         { tag: "Vercel" },
         { tag: "CI/CD" },
         { tag: "LaunchDarkly" },
+        { tag: "Datadog" },
         { tag: "Git" },
         { tag: "Claude Code", className: "nowrap tag" },
         { tag: "GitHub Copilot", className: "nowrap tag" },
@@ -818,6 +822,10 @@ module.exports = {
       school: { name: "GoIt", url: "https://goit.ua" },
     },
     {
+      // Screen only: on a UK CV a sixteen-year-old B2 certificate raises the
+      // question it was meant to answer; four years at a British employer
+      // answer it better.
+      exceptPrint: true,
       kind: "certificate",
       dates: "25<sup>th</sup> May 2010",
       title: "Cambridge ESOL Level 1 Certificate",
@@ -825,7 +833,7 @@ module.exports = {
     },
     {
       kind: "degree",
-      dates: "1<sup>st</sup> September 1998 &ndash; 1<sup>st</sup> July 2004",
+      dates: "1998 &ndash; 2004",
       title: "Master's degree ",
       field: "electronics",
       diploma: { ref: "diploma-kpi" },
