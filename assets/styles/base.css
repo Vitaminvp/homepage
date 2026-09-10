@@ -160,7 +160,7 @@ a[rel="external"]:not([class]),
 a.report {
   text-decoration: underline;
 }
-a[rel="external"]:not(.label):hover,
+a[rel="external"]:not(.label):not(.report):hover,
 a.language:hover span {
   text-decoration: underline;
   text-align: center;
@@ -648,8 +648,10 @@ article {
 .contacts li a.facebook:hover .slide-wrapper {
   width: 15rem;
 }
+/* Wide enough for the longer of the two addresses; the shorter one simply
+   stops early inside the box. */
 .contacts li a.mail:hover .slide-wrapper {
-  width: 6.8rem;
+  width: 12rem;
 }
 .contacts li a.github:hover .slide-wrapper {
   width: 9rem;
@@ -1169,16 +1171,23 @@ button.audio svg {
 /* One talk per line. The line break is what separates them, which is why
    reports() emits no separator character: it used to join the items with
    "; ", and a separator sitting between two block boxes gets a line box of
-   its own — that is where the semicolons on their own line came from. */
-a.report {
-  display: flex;
-  align-items: center;
-}
-span.report {
+   its own — that is where the semicolons on their own line came from.
+
+   The title and the note are inline, not flex items: as flex items each
+   wrapped inside its own box, so a long talk broke its title in the middle
+   and its note somewhere else. Neither may break now; when the two do not
+   fit one line, the note moves down whole. The hover rule that centres
+   external links is excluded above — on a block it shifted the text. */
+.report {
   display: block;
 }
+.report strong,
+.report em {
+  white-space: nowrap;
+}
 a.report img {
-    margin-right: 5px;
+  vertical-align: middle;
+  margin-right: 5px;
 }
 
 /* Dialog */
