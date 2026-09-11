@@ -225,12 +225,14 @@ module.exports = {
             "aws",
           ],
           bullets: [
-            `Own <strong>pathfinder-charts</strong>, the reusable package
-                          that renders people-and-organisation relationship
+            `Own <strong>pathfinder-charts</strong>, the package rendering
+                          people-and-organisation relationship
                           graphs &mdash; up to third-degree paths &mdash; across
                           the web UI and generated reports; re-engineered from
                           SVG to <strong>pure CSS</strong> with an approach of
-                          my own. ~900 TypeScript
+                          my own: labels are real, accessible text, layout is
+                          the browser's, and a static graph renders server-side
+                          with no client JavaScript. ~900 TypeScript
                           files, roughly 70% of its history mine. Also built the
                           product's advanced search.`,
             // Agile, stakeholders, incident response and Datadog are the
