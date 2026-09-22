@@ -74,7 +74,7 @@ module.exports = {
   // Consumed by runtime JS through data attributes on <body>, not by the
   // renderer: scripts.js counts from these.
   dates: {
-    experienceStart: "2018-02-01",
+    experienceStart: "2017-01-01",
     kyivRelocation: "1998-08-01",
   },
 
@@ -446,7 +446,7 @@ module.exports = {
       },
       {
         kind: "job",
-        period: "2018",
+        period: "2017 &ndash; 2018",
         role: "Web developer",
         employer: {
           name: "Softcom",
