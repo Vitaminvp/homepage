@@ -188,7 +188,6 @@ function header() {
                   <div class="sixteen wide column">
                     <h1 class="name">${cv.identity.name}</h1>
                     <p class="role">${cv.identity.title} &middot; ${cv.identity.location}</p>
-                    <p class="role-note">${cv.identity.rightToWork}</p>
                     <ul class="contacts">
                       ${visibleContacts.map(contact).join("\n                      ")}
                     </ul>

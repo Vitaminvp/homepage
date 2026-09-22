@@ -40,7 +40,7 @@ const phones = {
 module.exports = {
   identity: {
     name: "Vitalii Ovcharenko",
-    title: "Senior Frontend Engineer",
+    title: "Senior Frontend Engineer / Senior Software Engineer",
     email: "vitaliiov4arenko@gmail.com",
     site: "https://vitaminvp.github.io/homepage/",
     siteLabel: "https://vitaminvp.github.io/",
@@ -48,12 +48,6 @@ module.exports = {
     // says "UK-based" in prose; this is the same fact where a reader scanning
     // the header will find it.
     location: "UK &middot; open to hybrid &amp; remote",
-    // UK recruiters filter on this before anything else, and an unstated status
-    // is read as the worse answer — so it is stated, and it prints. Worded as
-    // availability rather than as a requirement the reader has to satisfy:
-    // "Requires UK visa sponsorship" reads like a rejection notice for
-    // something that is simply a fact about paperwork.
-    rightToWork: "UK-based on a Skilled Worker visa; new sponsor required",
   },
 
   // What the site is called when installed to a home screen.
@@ -64,10 +58,10 @@ module.exports = {
     // in the browser tab, so it carries the role rather than the word for what
     // kind of document it is. Likewise the description: {{experience}} is
     // filled in by the renderer, so no number here can drift from the intro.
-    title: "Vitalii Ovcharenko &mdash; Senior Frontend Engineer",
+    title: "Vitalii Ovcharenko &mdash; Senior Frontend Engineer / Senior Software Engineer",
     description:
       "Senior frontend engineer, UK-based, with {{experience}} in production React &mdash; TypeScript, Next.js App Router, GraphQL, frontend architecture, accessibility and test infrastructure.",
-    subject: "Senior Frontend Engineer CV",
+    subject: "Senior Frontend Engineer / Senior Software Engineer CV",
     // {{experience}} is filled in by the renderer from dates.experienceStart,
     // so the years are counted in one place and never drift from the intro.
     ogDescription:
@@ -622,6 +616,16 @@ module.exports = {
         { tag: "GitHub Copilot", className: "nowrap tag" },
         { tag: "Cursor" },
         { tag: "Vercel AI SDK", className: "nowrap tag" },
+      ],
+    },
+    {
+      title: "Backend",
+      items: [
+        { tag: "Node.js APIs", className: "nowrap tag" },
+        { tag: "GraphQL schema design", className: "nowrap tag" },
+        { tag: "SQL / NoSQL", className: "nowrap tag" },
+        { tag: "Auth (OAuth, Cognito)", className: "nowrap tag" },
+        { tag: "Docker" },
       ],
     },
     {

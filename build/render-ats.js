@@ -56,10 +56,6 @@ function contactLines() {
       lines.push(`${label}: ${text(value)}`);
     });
 
-  // Its own field rather than a clause appended to the job title, so a parser
-  // that reads fields can find it.
-  lines.push(`Right to work: ${text(cv.identity.rightToWork)}`);
-
   return lines.map((l) => `    <p>${l}</p>`).join("\n");
 }
 
