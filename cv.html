@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Vitalii Ovcharenko — Senior Frontend Engineer / Senior Software Engineer — CV</title>
+    <title>Vitalii Ovcharenko — Senior Full Stack Engineer / Senior Frontend Engineer — CV</title>
     <meta name="robots" content="noindex, follow" />
     <link rel="canonical" href="https://vitaminvp.github.io/homepage/" />
     <style>
@@ -42,7 +42,7 @@
   </head>
   <body>
     <h1>Vitalii Ovcharenko</h1>
-    <p>Senior Frontend Engineer / Senior Software Engineer</p>
+    <p>Senior Full Stack Engineer / Senior Frontend Engineer</p>
     <p>Location: UK · open to hybrid &amp; remote</p>
     <p>Email: vitaliiov4arenko@gmail.com</p>
     <p>GitHub: github.com/vitaminvp</p>
@@ -51,35 +51,39 @@
     <p>Website: https://vitaminvp.github.io/</p>
 
     <h2>Summary</h2>
-    <p>Senior frontend engineer, UK-based, with more than 9 years in production React. Nearly four of them at Altrata, a B2B data-intelligence business, on a Turborepo monorepo of Next.js and TypeScript. I own front-end architecture and standards, and take features from technical discovery through implementation, testing and deployment to production support. My strongest areas are data visualisation, Next.js performance and AI-assisted development.</p>
+    <p>Senior full-stack engineer, UK-based, with more than 9 years building for the web, nearly four of them at Altrata. Front end: React, Next.js and TypeScript — architecture, data visualisation, performance. Back end: GraphQL APIs on AWS Lambda, DynamoDB, OpenSearch and CDK infrastructure. AI-assisted development throughout.</p>
 
     <h2>Skills</h2>
-    <p><strong>Core:</strong> REACT, TYPESCRIPT, JAVASCRIPT, Next.js (App Router, RSC), HTML5/CSS3, Tailwind CSS</p>
-    <p><strong>Architecture:</strong> Frontend architecture, Design systems, Component libraries, Data visualisation, State management, Cache Components (PPR), Monorepo</p>
+    <p><strong>Core:</strong> REACT, TYPESCRIPT, NODE.JS, JAVASCRIPT, Next.js (App Router, RSC), GraphQL, AWS (Lambda, AppSync, CDK), HTML5/CSS3, Tailwind CSS</p>
+    <p><strong>Architecture:</strong> Frontend architecture, GraphQL schema design, Serverless, Infrastructure as code, Design systems, Component libraries, Data visualisation, State management, Cache Components (PPR), Monorepo</p>
     <p><strong>Leadership:</strong> Technical leadership, Engineering standards, Code review, Mentoring</p>
-    <p><strong>Data &amp; state:</strong> TanStack Query, React Hook Form, Zod, nuqs, GraphQL, REST</p>
-    <p><strong>Quality:</strong> Vitest, Playwright, Testing Library, MSW, Storybook, Chromatic, WCAG 2.1 AA, Core Web Vitals</p>
-    <p><strong>Platform &amp; AI:</strong> Turborepo, Node.js, pnpm, AWS (CDK, Cognito), Vercel, CI/CD, LaunchDarkly, Datadog, Git, Claude Code, GitHub Copilot, Cursor, Vercel AI SDK</p>
-    <p><strong>Backend:</strong> Node.js APIs, GraphQL schema design, SQL / NoSQL, Auth (OAuth, Cognito), Docker</p>
+    <p><strong>Data &amp; state:</strong> TanStack Query, React Hook Form, Zod, nuqs, REST, DynamoDB, OpenSearch, PostgreSQL (Aurora), Neo4j</p>
+    <p><strong>Quality:</strong> Vitest, Jest, Playwright, BDD acceptance tests, Testing Library, MSW, Storybook, Chromatic, WCAG 2.1 AA, Core Web Vitals</p>
+    <p><strong>Platform &amp; AI:</strong> Turborepo, pnpm, S3 / SQS / KMS, Auth (OAuth, Cognito), Docker, GitHub Actions, Vercel, CI/CD, LaunchDarkly, Datadog, Git, Claude Code, GitHub Copilot, Cursor, Vercel AI SDK</p>
 
     <h2>Experience</h2>
-    <h3>Senior Frontend Engineer, Altrata (formerly Euromoney Institutional Investor)</h3>
-    <p>2022 – present</p>
-    <p>TypeScript, React, Next.js App Router, GraphQL, Tailwind, Playwright, WCAG 2.1 AA</p>
+    <h3>Full Stack Engineer, Altrata (formerly Euromoney Institutional Investor)</h3>
+    <p>2026 – present</p>
+    <p>TypeScript, Node.js, AWS Lambda, AppSync GraphQL, DynamoDB, OpenSearch, AWS CDK, React, Next.js</p>
     <ul>
-      <li>Own pathfinder-charts, the reusable package that renders people-and-organisation relationship graphs — up to third-degree paths — across the web UI and generated reports; re-engineered from SVG to pure CSS with an approach of my own. ~900 TypeScript files, roughly 70% of its history mine. Also built the product's advanced search.</li>
-      <li>Own features end to end in an agile, cross-functional team, from technical discovery to production support and incident response with Datadog, working with Product, Design and backend stakeholders to challenge requirements, weigh trade-offs and choose pragmatic solutions.</li>
-      <li>Set front-end architecture and shape the technical roadmap: authored the repo-wide fetch-seam data-layer convention and its documentation, created two shared workspace packages, and am the third-largest contributor to the internal design system.</li>
-      <li>Led adoption of Next.js Cache Components — Partial Prerendering (PPR) — across three applications, route by route with per-route opt-outs: made client components prerender-safe and cached authentication, cutting TTFB by 50% and LCP by 20%, and route compute by 40%.</li>
-      <li>Accessibility to WCAG 2.1 AA — keyboard navigation, focus management and focus restoration across search and profile flows, enforced by axe-core in CI.</li>
-      <li>Own the test estate and the toolchain: Vitest, Playwright e2e against mocked and real APIs, Chromatic visual baselines; led the Tailwind 4, Vite and Storybook major upgrades and extended CI with path-based test selection.</li>
-      <li>Introduced the repository-level AGENTS.md the team codes against, and the audit script keeping per-workspace agent docs in sync; ship production pull requests through Claude Code, which raised my delivery throughput roughly 2.5× in the three months after.</li>
-      <li>Prototyped Explain this connection on Vercel AI SDK v6 — a streaming route handler with a Zod-typed structured response, feature-flagged and unit-tested — and wrote the technical evaluation of three candidate LLM features, including natural language → search-filter mapping.</li>
-      <li>Mentor and code reviewer for up to five engineers at a time, and give front-end talks — Claude Code, React patterns, functional JavaScript — to audiences of 20 to 50 engineers.</li>
+      <li>Build GraphQL APIs on AWS Lambda and AppSync in Node.js and TypeScript, over DynamoDB, OpenSearch and Neo4j: search filters, exports and list sharing, with authorisation enforced in the API.</li>
+      <li>Deliver features end to end, from OpenSearch index mappings to the Next.js UI: moved advanced people search onto a new engine across four repositories.</li>
+      <li>Infrastructure in AWS CDK: KMS-encrypted S3, per-account SFTP access, Aurora Serverless v2 PostgreSQL, SQS queues on customer-managed keys.</li>
+      <li>Run production releases across three backend services, 13 in four weeks, with Jest and a 559-scenario BDD acceptance suite as required merge checks.</li>
+      <li>React and Next.js: retired the legacy chart estate, 103,000 lines removed, and took the home page from 38 to 88 on mobile Lighthouse.</li>
     </ul>
     <h3>Mentor, Kottans</h3>
     <p>2019 – present</p>
     <p>Diversity-in-tech school; I teach React internals by building a React-like framework in plain JavaScript</p>
+    <h3>Senior Frontend Engineer, Altrata</h3>
+    <p>2022 – 2026</p>
+    <ul>
+      <li>Own pathfinder-charts, the package rendering relationship graphs across the web UI and generated reports, ~900 TypeScript files; re-engineered it from SVG to pure CSS. Also built the product's advanced search.</li>
+      <li>Front-end architecture: the repo-wide fetch-seam data-layer convention, two shared packages, the design system; test estate on Vitest, Playwright and Chromatic; WCAG 2.1 AA enforced by axe-core in CI.</li>
+      <li>Next.js Cache Components (PPR) across three applications, route by route: TTFB down 50%, LCP down 20%, route compute down 40%.</li>
+      <li>AI-assisted development: the repository-level AGENTS.md, production pull requests through Claude Code, an LLM feature prototyped on Vercel AI SDK v6.</li>
+      <li>Features from technical discovery to production support and incident response with Datadog, in an agile, cross-functional team.</li>
+    </ul>
     <h3>Senior Front-End Developer, Wix</h3>
     <p>2021 – 2022</p>
     <ul>
@@ -118,7 +122,7 @@
     <p><strong>Master's degree in electronics</strong> — Igor Sikorsky Kyiv Polytechnic Institute (1998 – 2004)</p>
 
     <h2>Professional development</h2>
-    <p>AI Coding Crash Course — AI Hero (2026); AI SDK v6 Crash Course — AI Hero (2026); Epic React — Kent C. Dodds (2025); Epic Web Dev — Kent C. Dodds (2024); CSS for JavaScript Developers — Josh W. Comeau (2023); Total TypeScript — Matt Pocock (2023)</p>
+    <p>AWS &amp; TypeScript Masterclass (CDK, Serverless) — Udemy (2026); AI Coding Crash Course — AI Hero (2026); AI SDK v6 Crash Course — AI Hero (2026); Epic React — Kent C. Dodds (2025); Epic Web Dev — Kent C. Dodds (2024); CSS for JavaScript Developers — Josh W. Comeau (2023); Total TypeScript — Matt Pocock (2023)</p>
 
     <h2>Talks</h2>
     <p>Working with Claude Code (internal, 20+ engineers, Altrata, July 2026)</p>

@@ -28,6 +28,13 @@ const links = {
   storybook: { text: "storybook", url: "https://storybook.js.org/" },
   turborepo: { text: "turborepo", url: "https://turborepo.com/" },
   aws: { text: "AWS", url: "https://aws.amazon.com/" },
+  nodejs: { text: "Node.js", url: "https://nodejs.org/" },
+  lambda: { text: "AWS Lambda", url: "https://aws.amazon.com/lambda/" },
+  appsync: { text: "AppSync", url: "https://aws.amazon.com/appsync/" },
+  dynamodb: { text: "DynamoDB", url: "https://aws.amazon.com/dynamodb/" },
+  opensearch: { text: "OpenSearch", url: "https://opensearch.org/" },
+  postgresql: { text: "PostgreSQL", url: "https://www.postgresql.org/" },
+  cdk: { text: "AWS CDK", url: "https://aws.amazon.com/cdk/" },
 };
 
 // The UK number is the only one shown. The Ukrainian one is kept as a fact but
@@ -40,7 +47,7 @@ const phones = {
 module.exports = {
   identity: {
     name: "Vitalii Ovcharenko",
-    title: "Senior Frontend Engineer / Senior Software Engineer",
+    title: "Senior Full Stack Engineer / Senior Frontend Engineer",
     email: "vitaliiov4arenko@gmail.com",
     site: "https://vitaminvp.github.io/homepage/",
     siteLabel: "https://vitaminvp.github.io/",
@@ -58,14 +65,14 @@ module.exports = {
     // in the browser tab, so it carries the role rather than the word for what
     // kind of document it is. Likewise the description: {{experience}} is
     // filled in by the renderer, so no number here can drift from the intro.
-    title: "Vitalii Ovcharenko &mdash; Senior Frontend Engineer / Senior Software Engineer",
+    title: "Vitalii Ovcharenko &mdash; Senior Full Stack Engineer / Senior Frontend Engineer",
     description:
-      "Senior frontend engineer, UK-based, with {{experience}} in production React &mdash; TypeScript, Next.js App Router, GraphQL, frontend architecture, accessibility and test infrastructure.",
-    subject: "Senior Frontend Engineer / Senior Software Engineer CV",
+      "Senior full-stack engineer, UK-based and frontend-led, with {{experience}} building for the web &mdash; React, TypeScript, Next.js App Router, GraphQL APIs on AWS Lambda, DynamoDB, OpenSearch, AWS CDK, accessibility and test infrastructure.",
+    subject: "Senior Full Stack Engineer / Senior Frontend Engineer CV",
     // {{experience}} is filled in by the renderer from dates.experienceStart,
     // so the years are counted in one place and never drift from the intro.
     ogDescription:
-      "Senior frontend engineer, UK-based, with {{experience}} in production React &mdash; nearly four of them at Altrata, a B2B data-intelligence business serving 3,300+ enterprise clients. I own front-end architecture and standards on a 25,000-commit Turborepo monorepo of 16 Next.js apps and 57 shared packages.",
+      "Senior full-stack engineer, UK-based and frontend-led, with {{experience}} building for the web &mdash; nearly four of them at Altrata, a B2B data-intelligence business serving 3,300+ enterprise clients. I own front-end architecture and standards on a 25,000-commit Turborepo monorepo of 16 Next.js apps and 57 shared packages, and since September 2026 deliver across the stack: GraphQL APIs on AWS Lambda, DynamoDB, OpenSearch and CDK infrastructure.",
     themeColor: "#ffffff",
     tileColor: "#ffffff",
     accent: "midnightblue",
@@ -161,15 +168,13 @@ module.exports = {
     // One fact per sentence, too: the first says who this is, the second where
     // and at what scale, the third what is owned. A single 34-word opener made
     // the reader parse all three at once.
-    statement: `Senior frontend engineer, UK-based, with {{experience}} in
-                      production React. Nearly four of them at
-                      <strong>Altrata</strong>, a B2B data-intelligence
-                      business, on a Turborepo monorepo of Next.js and
-                      TypeScript. I own front-end architecture and standards,
-                      and take features from technical discovery through
-                      implementation, testing and deployment to production
-                      support. My strongest areas are data visualisation,
-                      Next.js performance and AI-assisted development.`,
+    statement: `Senior full-stack engineer, UK-based, with {{experience}}
+                      building for the web, nearly four of them at
+                      <strong>Altrata</strong>. Front end: React, Next.js and
+                      TypeScript &mdash; architecture, data visualisation,
+                      performance. Back end: GraphQL APIs on AWS Lambda,
+                      DynamoDB, OpenSearch and CDK infrastructure. AI-assisted
+                      development throughout.`,
     // Kept behind the personal toggle: it is the character of the site, but on
     // a CV — and on the page a recruiter opens — it blurs the positioning.
     footnote: {
@@ -188,8 +193,8 @@ module.exports = {
 
   experience: {
     recent: {
-      period: "2022 &ndash; present",
-      role: "Senior Frontend Engineer",
+      period: "2026 &ndash; present",
+      role: "Full Stack Engineer",
       // Euromoney People Intelligence rebranded as Altrata in 2022, and the
       // parent renamed itself Delinian. Naming both is what lets a recruiter
       // connect this line to the company they have heard of.
@@ -200,100 +205,40 @@ module.exports = {
         {
           // The engagement above already states this role and employer.
           sameAsEngagement: true,
-          role: "Senior Frontend Engineer",
+          role: "Full Stack Engineer",
           product: "Altrata",
           summary:
-            "TypeScript, React, Next.js App Router, GraphQL, Tailwind, Playwright, WCAG 2.1 AA",
+            "TypeScript, Node.js, AWS Lambda, AppSync GraphQL, DynamoDB, OpenSearch, AWS CDK, React, Next.js",
           stack: [
             "typescript",
+            "nodejs",
+            "lambda",
+            "appsync",
+            "graphql",
+            "dynamodb",
+            "opensearch",
+            "postgresql",
+            "cdk",
             "react",
             "nextjs",
-            "graphql",
-            "tanstackQuery",
-            "zod",
-            "tailwindcss",
-            "storybook",
-            "vitest",
-            "playwright",
-            "turborepo",
-            "aws",
           ],
           bullets: [
-            `Own <strong>pathfinder-charts</strong>, the reusable package
-                          that renders people-and-organisation relationship
-                          graphs &mdash; up to third-degree paths &mdash; across
-                          the web UI and generated reports; re-engineered from
-                          SVG to <strong>pure CSS</strong> with an approach of
-                          my own. ~900 TypeScript
-                          files, roughly 70% of its history mine. Also built the
-                          product's advanced search.`,
-            // Agile, stakeholders, incident response and Datadog are the
-            // words UK senior specs ask for by name; each is true here, so
-            // they belong in the sentence rather than in a keyword list.
-            `Own features end to end in an agile, cross-functional team,
-                          from technical discovery to production support and
-                          incident response with Datadog, working with Product,
-                          Design and backend stakeholders to challenge
-                          requirements, weigh trade-offs and choose pragmatic
-                          solutions.`,
-            `Set front-end architecture and shape the technical
-                          roadmap: authored the repo-wide
-                          <strong>fetch-seam</strong> data-layer convention and
-                          its documentation, created two shared workspace
-                          packages, and am the third-largest contributor to the
-                          internal design system.`,
-            // The figures are the owner's own, for these three applications
-            // either side of the August 2026 rollout. No tool is named: an
-            // earlier version of this comment guessed one and guessed wrong.
-            // Three of the five figures he has are here, and the
-            // choice is deliberate: TTFB is the technique's signature win
-            // and LCP is the Core Web Vital a reader recognises. FCP (-33%)
-            // says the same thing as TTFB, and the document-route cache figure
-            // (-50%) is jargon on a CV — both are interview material instead.
-            `Led adoption of Next.js <strong>Cache Components</strong>
-                          &mdash; Partial Prerendering (PPR) &mdash; across three
-                          applications, route by route with per-route opt-outs:
-                          made client components prerender-safe and cached
-                          authentication, cutting <strong>TTFB by 50% and LCP
-                          by 20%</strong>, and route compute by 40%.`,
-            `Accessibility to <strong>WCAG 2.1 AA</strong> &mdash; keyboard
-                          navigation, focus management and focus restoration
-                          across search and profile flows, enforced by axe-core
-                          in CI.`,
-            `Own the test estate and the toolchain: Vitest, Playwright e2e
-                          against mocked and real APIs, Chromatic visual
-                          baselines; led the Tailwind 4, Vite and Storybook
-                          major upgrades and extended CI with path-based test
-                          selection.`,
-            `Introduced the repository-level <strong>AGENTS.md</strong>
-                          the team codes against, and the audit
-                          script keeping per-workspace agent docs in sync; ship
-                          production pull requests through <strong>Claude
-                          Code</strong>, which raised my delivery throughput
-                          roughly 2.5&times; in the three months after.`,
-            `Prototyped <em>Explain this connection</em> on
-                          <strong>Vercel AI SDK v6</strong> &mdash; a streaming
-                          route handler with a Zod-typed structured response,
-                          feature-flagged and unit-tested &mdash; and wrote the
-                          technical evaluation of three candidate LLM features,
-                          including natural
-                          language&nbsp;&rarr;&nbsp;search-filter mapping.`,
-            `Mentor and code reviewer for up to five engineers at a time,
-                          and give front-end talks &mdash; Claude Code, React
-                          patterns, functional JavaScript &mdash; to audiences
-                          of 20 to 50 engineers.`,
-            // The scale evidence. Screen only: a commit count is not an
-            // achievement, and the printed page is worth more spent on what
-            // was owned and delivered. Anyone who wants the measure of
-            // relative contribution across forty engineers can find it here.
-            {
-              exceptPrint: true,
-              html: `Contributed across <strong>16 Next.js applications and
-                          57 shared packages serving 3,300+ enterprise
-                          clients</strong> &mdash; one of the monorepo's most
-                          active contributors, with 2,757 of its ~25,000
-                          commits, second of ~40 engineers.`,
-            },
+            `Build GraphQL APIs on <strong>AWS Lambda and AppSync</strong> in
+                          Node.js and TypeScript, over DynamoDB, OpenSearch and
+                          Neo4j: search filters, exports and list sharing, with
+                          authorisation enforced in the API.`,
+            `Deliver features <strong>end to end</strong>, from OpenSearch index
+                          mappings to the Next.js UI: moved advanced people
+                          search onto a new engine across four repositories.`,
+            `Infrastructure in <strong>AWS CDK</strong>: KMS-encrypted S3,
+                          per-account SFTP access, Aurora Serverless v2
+                          PostgreSQL, SQS queues on customer-managed keys.`,
+            `Run production releases across three backend services, 13 in four
+                          weeks, with Jest and a 559-scenario BDD acceptance
+                          suite as required merge checks.`,
+            `React and Next.js: retired the legacy chart estate, 103,000 lines
+                          removed, and took the home page from <strong>38 to 88
+                          on mobile Lighthouse</strong>.`,
           ],
         },
         {
@@ -342,6 +287,55 @@ module.exports = {
     // the milestones below keep their full dates, since they are dates rather
     // than spans.
     past: [
+      {
+        kind: "job",
+        period: "2022 &ndash; 2026",
+        role: "Senior Frontend Engineer",
+        employer: { name: "Altrata", url: "https://altrata.com/" },
+        bullets: [
+          `Own <strong>pathfinder-charts</strong>, the package rendering
+                      relationship graphs across the web UI and generated
+                      reports, ~900 TypeScript files; re-engineered it from SVG
+                      to <strong>pure CSS</strong>. Also built the product's
+                      advanced search.`,
+          `Front-end architecture: the repo-wide <strong>fetch-seam</strong>
+                      data-layer convention, two shared packages, the design
+                      system; test estate on Vitest, Playwright and Chromatic;
+                      <strong>WCAG 2.1 AA</strong> enforced by axe-core in CI.`,
+          // The figures are the owner's own, for these three applications
+          // either side of the August 2026 rollout. No tool is named: an
+          // earlier version of this comment guessed one and guessed wrong.
+          // Three of the five figures he has are here, and the
+          // choice is deliberate: TTFB is the technique's signature win
+          // and LCP is the Core Web Vital a reader recognises. FCP (-33%)
+          // says the same thing as TTFB, and the document-route cache figure
+          // (-50%) is jargon on a CV — both are interview material instead.
+          `Next.js <strong>Cache Components</strong> (PPR) across three
+                      applications, route by route: <strong>TTFB down 50%, LCP
+                      down 20%</strong>, route compute down 40%.`,
+          `AI-assisted development: the repository-level
+                      <strong>AGENTS.md</strong>, production pull requests
+                      through <strong>Claude Code</strong>, an LLM feature
+                      prototyped on <strong>Vercel AI SDK v6</strong>.`,
+          // Agile, stakeholders, incident response and Datadog are the
+          // words UK senior specs ask for by name; each is true here, so
+          // they belong in the sentence rather than in a keyword list.
+          `Features from technical discovery to production support and incident
+                      response with Datadog, in an agile, cross-functional team.`,
+          // The scale evidence. Screen only: a commit count is not an
+          // achievement, and the printed page is worth more spent on what
+          // was owned and delivered. Anyone who wants the measure of
+          // relative contribution across forty engineers can find it here.
+          {
+            exceptPrint: true,
+            html: `Contributed across <strong>16 Next.js applications and
+                      57 shared packages serving 3,300+ enterprise
+                      clients</strong> &mdash; one of the monorepo's most
+                      active contributors, with 2,757 of its ~25,000
+                      commits, second of ~40 engineers.`,
+          },
+        ],
+      },
       {
         kind: "job",
         period: "2021 &ndash; 2022",
@@ -542,8 +536,11 @@ module.exports = {
       items: [
         { tag: "REACT" },
         { tag: "TYPESCRIPT" },
+        { tag: "NODE.JS" },
         { tag: "JAVASCRIPT" },
         { tag: "Next.js (App Router, RSC)", className: "nowrap tag" },
+        { tag: "GraphQL" },
+        { tag: "AWS (Lambda, AppSync, CDK)", className: "nowrap tag" },
         { tag: "HTML5/CSS3" },
         { tag: "Tailwind CSS", className: "nowrap tag" },
       ],
@@ -558,6 +555,9 @@ module.exports = {
       title: "Architecture",
       items: [
         { tag: "Frontend architecture", className: "nowrap tag" },
+        { tag: "GraphQL schema design", className: "nowrap tag" },
+        { tag: "Serverless" },
+        { tag: "Infrastructure as code", className: "nowrap tag" },
         { tag: "Design systems", className: "nowrap tag" },
         { tag: "Component libraries", className: "nowrap tag" },
         { tag: "Data visualisation", className: "nowrap tag" },
@@ -582,8 +582,11 @@ module.exports = {
         { tag: "React Hook Form", className: "nowrap tag" },
         { tag: "Zod" },
         { tag: "nuqs" },
-        { tag: "GraphQL" },
         { tag: "REST" },
+        { tag: "DynamoDB" },
+        { tag: "OpenSearch" },
+        { tag: "PostgreSQL (Aurora)", className: "nowrap tag" },
+        { tag: "Neo4j" },
         { color: "deeppink", label: "DEEPPINK" },
       ],
     },
@@ -591,7 +594,9 @@ module.exports = {
       title: "Quality",
       items: [
         { tag: "Vitest" },
+        { tag: "Jest" },
         { tag: "Playwright" },
+        { tag: "BDD acceptance tests", className: "nowrap tag" },
         { tag: "Testing Library", className: "nowrap tag" },
         { tag: "MSW" },
         { tag: "Storybook" },
@@ -604,9 +609,11 @@ module.exports = {
       title: "Platform &amp; AI",
       items: [
         { tag: "Turborepo" },
-        { tag: "Node.js" },
         { tag: "pnpm" },
-        { tag: "AWS (CDK, Cognito)", className: "nowrap tag" },
+        { tag: "S3 / SQS / KMS", className: "nowrap tag" },
+        { tag: "Auth (OAuth, Cognito)", className: "nowrap tag" },
+        { tag: "Docker" },
+        { tag: "GitHub Actions", className: "nowrap tag" },
         { tag: "Vercel" },
         { tag: "CI/CD" },
         { tag: "LaunchDarkly" },
@@ -616,16 +623,6 @@ module.exports = {
         { tag: "GitHub Copilot", className: "nowrap tag" },
         { tag: "Cursor" },
         { tag: "Vercel AI SDK", className: "nowrap tag" },
-      ],
-    },
-    {
-      title: "Backend",
-      items: [
-        { tag: "Node.js APIs", className: "nowrap tag" },
-        { tag: "GraphQL schema design", className: "nowrap tag" },
-        { tag: "SQL / NoSQL", className: "nowrap tag" },
-        { tag: "Auth (OAuth, Cognito)", className: "nowrap tag" },
-        { tag: "Docker" },
       ],
     },
     {
@@ -729,6 +726,12 @@ module.exports = {
   // year only: the Total TypeScript date is the invoice, the AI Coding one is
   // when the material was worked through, the rest are approximate.
   education: [
+    {
+      kind: "course",
+      dates: "2026",
+      title: "AWS &amp; TypeScript Masterclass (CDK, Serverless)",
+      school: { name: "Udemy", url: "https://www.udemy.com/" },
+    },
     {
       kind: "course",
       dates: "2026",
