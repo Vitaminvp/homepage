@@ -346,8 +346,12 @@ function job(e) {
                     <p><em>${e.period}</em></p>
                     <p>
                       <strong>${e.role}</strong> at
-                      <strong><a href="${e.employer.url}" rel="external" target="_blank">${e.employer.name}
-                          <img alt="${l.alt}" class="logo" src="${l.src}" height="${l.height}" width="${l.width}" />${gap}</a></strong>
+                      <strong><a href="${e.employer.url}" rel="external" target="_blank">${e.employer.name}${
+                        l
+                          ? `
+                          <img alt="${l.alt}" class="logo" src="${l.src}" height="${l.height}" width="${l.width}" />${gap}`
+                          : ""
+                      }</a></strong>
                     </p>
                     <ul>
                       ${e.bullets.map(bullet).join("\n                      ")}
